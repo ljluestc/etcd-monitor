@@ -1,0 +1,1033 @@
+{
+  "project": "etcd-monitor",
+  "version": "1.0.0",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "MVP",
+      "timeline": "Weeks 1-6",
+      "status": "in_progress",
+      "tasks": [
+        {
+          "id": "task-1.1",
+          "title": "Setup Project Infrastructure",
+          "description": "Initialize project structure, dependencies, and development environment",
+          "priority": "P0",
+          "estimatedHours": 8,
+          "status": "in_progress",
+          "assignee": "TaskMaster",
+          "startedAt": "2025-10-10T20:30:00Z",
+          "subtasks": [
+            {
+              "id": "task-1.1.1",
+              "title": "Initialize Go backend project",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.2",
+              "title": "Setup React/TypeScript frontend",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.3",
+              "title": "Configure PostgreSQL + TimescaleDB",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.4",
+              "title": "Setup Redis for messaging",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.5",
+              "title": "Configure Docker Compose for local dev",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.2",
+          "title": "Implement etcd Client Connection",
+          "description": "Create secure connection handler for etcd clusters with TLS support",
+          "priority": "P0",
+          "estimatedHours": 12,
+          "status": "in_progress",
+          "assignee": "TaskMaster",
+          "startedAt": "2025-10-10T20:30:00Z",
+          "subtasks": [
+            {
+              "id": "task-1.2.1",
+              "title": "Implement etcd v3 client wrapper",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.2.2",
+              "title": "Add TLS/SSL connection support",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.2.3",
+              "title": "Implement connection pooling",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.2.4",
+              "title": "Add connection health checks",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.2.5",
+              "title": "Handle connection retries and failover",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.3",
+          "title": "Implement Cluster Health Monitoring",
+          "description": "Monitor cluster membership, leader status, and node health",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "in_progress",
+          "assignee": "TaskMaster",
+          "startedAt": "2025-10-10T20:30:00Z",
+          "subtasks": [
+            {
+              "id": "task-1.3.1",
+              "title": "Implement cluster membership tracking",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.2",
+              "title": "Monitor leader election and changes",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.3",
+              "title": "Detect split-brain scenarios",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.4",
+              "title": "Monitor node connectivity",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.5",
+              "title": "Create health status aggregation logic",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.4",
+          "title": "Implement Core Metrics Collection",
+          "description": "Collect latency, throughput, and database size metrics",
+          "priority": "P0",
+          "estimatedHours": 24,
+          "status": "in_progress",
+          "assignee": "TaskMaster",
+          "startedAt": "2025-10-10T20:30:00Z",
+          "subtasks": [
+            {
+              "id": "task-1.4.1",
+              "title": "Implement request latency tracking (read/write)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.2",
+              "title": "Implement throughput metrics (ops/sec)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.3",
+              "title": "Track database size growth",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.4",
+              "title": "Setup time-series data storage in TimescaleDB",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.5",
+              "title": "Implement metric aggregation and rollups",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.6",
+              "title": "Create metrics API endpoints",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.5",
+          "title": "Implement Basic Alerting System",
+          "description": "Create alerting engine with email notifications",
+          "priority": "P0",
+          "estimatedHours": 16,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.5.1",
+              "title": "Design alert rule engine",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.2",
+              "title": "Implement threshold-based alert triggers",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.3",
+              "title": "Create alert severity classification",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.4",
+              "title": "Implement email notification handler",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.5",
+              "title": "Add alert deduplication logic",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.6",
+              "title": "Create alert configuration API",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.6",
+          "title": "Build Basic Dashboard UI",
+          "description": "Create React dashboard with key metrics visualization",
+          "priority": "P0",
+          "estimatedHours": 32,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.6.1",
+              "title": "Setup React app structure and routing",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.2",
+              "title": "Design and implement cluster overview page",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.3",
+              "title": "Create real-time metrics charts",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.4",
+              "title": "Implement cluster health status display",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.5",
+              "title": "Add node details view",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.6",
+              "title": "Implement WebSocket for real-time updates",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.7",
+              "title": "Create alert notification UI",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.7",
+          "title": "Testing and Quality Assurance",
+          "description": "Write tests and ensure quality for MVP features",
+          "priority": "P0",
+          "estimatedHours": 24,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.7.1",
+              "title": "Write unit tests for backend services",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.7.2",
+              "title": "Write integration tests for etcd client",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.7.3",
+              "title": "Write frontend component tests",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.7.4",
+              "title": "Setup CI/CD pipeline",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.7.5",
+              "title": "Perform manual QA testing",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-2",
+      "name": "Enhanced Monitoring",
+      "timeline": "Weeks 7-10",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-2.1",
+          "title": "Implement Advanced Metrics Collection",
+          "description": "Add memory, disk I/O, network, and additional performance metrics",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.1.1",
+              "title": "Implement memory usage tracking",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.1.2",
+              "title": "Implement disk I/O metrics",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.1.3",
+              "title": "Add network bandwidth monitoring",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.1.4",
+              "title": "Track proposal commit duration",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.1.5",
+              "title": "Monitor watcher count and performance",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.1.6",
+              "title": "Add custom metric query support",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.2",
+          "title": "Implement Multi-Cluster Support",
+          "description": "Enable monitoring multiple etcd clusters from single interface",
+          "priority": "P1",
+          "estimatedHours": 28,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.2.1",
+              "title": "Design multi-cluster data model",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.2.2",
+              "title": "Implement cluster registration API",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.2.3",
+              "title": "Create cluster grouping functionality",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.2.4",
+              "title": "Build unified dashboard view",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.2.5",
+              "title": "Implement cluster switching UI",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.2.6",
+              "title": "Add per-cluster configuration management",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.3",
+          "title": "Integrate Additional Alert Channels",
+          "description": "Add Slack, PagerDuty, and webhook integrations",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.3.1",
+              "title": "Implement Slack notification integration",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.3.2",
+              "title": "Implement PagerDuty integration",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.3.3",
+              "title": "Add generic webhook support",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.3.4",
+              "title": "Create alert channel configuration UI",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.3.5",
+              "title": "Implement alert routing logic",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.4",
+          "title": "Develop RESTful API",
+          "description": "Create comprehensive API for all monitoring data and operations",
+          "priority": "P1",
+          "estimatedHours": 24,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.4.1",
+              "title": "Design API specification (OpenAPI/Swagger)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.4.2",
+              "title": "Implement cluster management endpoints",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.4.3",
+              "title": "Implement metrics query endpoints",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.4.4",
+              "title": "Implement alert management endpoints",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.4.5",
+              "title": "Add API authentication (JWT)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.4.6",
+              "title": "Create API documentation",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.5",
+          "title": "Enhanced Visualization Features",
+          "description": "Add advanced charts, historical trends, and custom dashboards",
+          "priority": "P1",
+          "estimatedHours": 28,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.5.1",
+              "title": "Implement historical trend charts",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.5.2",
+              "title": "Add custom dashboard builder",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.5.3",
+              "title": "Create cluster topology visualization",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.5.4",
+              "title": "Implement metric comparison views",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.5.5",
+              "title": "Add dark/light theme toggle",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.6",
+          "title": "Implement etcdctl Command Interface",
+          "description": "Build interactive etcdctl command execution interface",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.6.1",
+              "title": "Implement key-value operations (put/get/delete/watch)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.6.2",
+              "title": "Implement cluster operations (member list, endpoint health/status)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.6.3",
+              "title": "Implement data operations (compaction, snapshot save/restore)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.6.4",
+              "title": "Add command history and auto-completion",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.6.5",
+              "title": "Create command execution UI with output formatting",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.6.6",
+              "title": "Implement batch command execution",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.7",
+          "title": "Implement Benchmark Testing System",
+          "description": "Build comprehensive benchmark testing for performance validation",
+          "priority": "P1",
+          "estimatedHours": 24,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.7.1",
+              "title": "Implement write benchmark tests (sequential/random)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.7.2",
+              "title": "Implement read benchmark tests (linearizable/serializable)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.7.3",
+              "title": "Add configurable test parameters (connections, clients, key/value size)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.7.4",
+              "title": "Implement SLI/SLO tracking (throughput and latency baselines)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.7.5",
+              "title": "Create historical benchmark results storage and comparison",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.7.6",
+              "title": "Build benchmark scheduling and automation",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.7.7",
+              "title": "Implement performance regression detection",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.7.8",
+              "title": "Create benchmark results visualization UI",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.8",
+          "title": "Implement Disk Performance Testing",
+          "description": "Add FIO-based disk performance validation",
+          "priority": "P2",
+          "estimatedHours": 16,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.8.1",
+              "title": "Integrate FIO for disk testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.8.2",
+              "title": "Implement WAL fsync performance tests",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.8.3",
+              "title": "Test database read/write patterns",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.8.4",
+              "title": "Add production readiness validation (99% fsync < 10ms)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.8.5",
+              "title": "Create disk health check automation",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.8.6",
+              "title": "Build performance recommendations engine",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-3",
+      "name": "Enterprise Features",
+      "timeline": "Weeks 11-14",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-3.1",
+          "title": "Implement RBAC and Security",
+          "description": "Add role-based access control and security hardening",
+          "priority": "P0",
+          "estimatedHours": 32,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.1.1",
+              "title": "Design RBAC model (roles and permissions)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.1.2",
+              "title": "Implement user authentication system",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.1.3",
+              "title": "Implement authorization middleware",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.1.4",
+              "title": "Add OAuth2 support",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.1.5",
+              "title": "Implement secrets management",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.1.6",
+              "title": "Create user management UI",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.1.7",
+              "title": "Perform security audit",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.2",
+          "title": "Implement Backup Monitoring",
+          "description": "Track backup jobs, snapshots, and integrity verification",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.2.1",
+              "title": "Implement backup job tracking",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.2.2",
+              "title": "Monitor snapshot creation and schedule",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.2.3",
+              "title": "Track snapshot retention policies",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.2.4",
+              "title": "Implement snapshot integrity checks",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.2.5",
+              "title": "Create backup monitoring dashboard",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.2.6",
+              "title": "Add backup failure alerts",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.3",
+          "title": "Implement Audit Logging",
+          "description": "Log cluster events, configuration changes, and admin actions",
+          "priority": "P2",
+          "estimatedHours": 16,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.3.1",
+              "title": "Design audit log data model",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.3.2",
+              "title": "Implement cluster event logging",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.3.3",
+              "title": "Track configuration changes",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.3.4",
+              "title": "Log administrative actions",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.3.5",
+              "title": "Create audit log search and filter UI",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.3.6",
+              "title": "Implement audit log export",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.4",
+          "title": "Prometheus and Grafana Integration",
+          "description": "Export metrics to Prometheus and provide Grafana templates",
+          "priority": "P1",
+          "estimatedHours": 16,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.4.1",
+              "title": "Implement Prometheus metrics exporter",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.4.2",
+              "title": "Create Grafana dashboard templates",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.4.3",
+              "title": "Document Prometheus integration",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.4.4",
+              "title": "Create Grafana setup guide",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.5",
+          "title": "Performance Optimization",
+          "description": "Optimize system performance for scale",
+          "priority": "P0",
+          "estimatedHours": 24,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.5.1",
+              "title": "Profile and optimize database queries",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.5.2",
+              "title": "Implement caching layer (Redis)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.5.3",
+              "title": "Optimize metrics collection pipeline",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.5.4",
+              "title": "Frontend performance optimization",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.5.5",
+              "title": "Load testing and benchmarking",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-4",
+      "name": "Polish and Scale",
+      "timeline": "Weeks 15-16",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-4.1",
+          "title": "UI/UX Improvements",
+          "description": "Polish user interface and improve user experience",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.1.1",
+              "title": "Conduct UX review and gather feedback",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.1.2",
+              "title": "Improve dashboard layout and navigation",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.1.3",
+              "title": "Add in-app help and tooltips",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.1.4",
+              "title": "Improve error messages and user feedback",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.1.5",
+              "title": "Accessibility improvements (WCAG compliance)",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.2",
+          "title": "Documentation Completion",
+          "description": "Write comprehensive documentation for users and developers",
+          "priority": "P0",
+          "estimatedHours": 24,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.2.1",
+              "title": "Write installation guide",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.2.2",
+              "title": "Write user guide and tutorials",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.2.3",
+              "title": "Write API reference documentation",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.2.4",
+              "title": "Write architecture documentation",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.2.5",
+              "title": "Create troubleshooting guide",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.2.6",
+              "title": "Write developer contribution guide",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.3",
+          "title": "CLI Tool Development",
+          "description": "Create command-line interface for etcd-monitor",
+          "priority": "P1",
+          "estimatedHours": 16,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.3.1",
+              "title": "Design CLI commands and structure",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.3.2",
+              "title": "Implement cluster status commands",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.3.3",
+              "title": "Implement metrics query commands",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.3.4",
+              "title": "Implement alert management commands",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.3.5",
+              "title": "Add CLI documentation",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.4",
+          "title": "Production Readiness",
+          "description": "Prepare system for production deployment",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.4.1",
+              "title": "Create deployment guides (Docker, K8s)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.4.2",
+              "title": "Setup monitoring for etcd-monitor itself",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.4.3",
+              "title": "Implement health check endpoints",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.4.4",
+              "title": "Create backup and disaster recovery procedures",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.4.5",
+              "title": "Final security review",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.4.6",
+              "title": "Performance benchmarking and validation",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.5",
+          "title": "Release Preparation",
+          "description": "Prepare for v1.0 release",
+          "priority": "P0",
+          "estimatedHours": 12,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.5.1",
+              "title": "Create release notes",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.5.2",
+              "title": "Build release artifacts",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.5.3",
+              "title": "Create demo environment",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.5.4",
+              "title": "Prepare launch announcement",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "totalPhases": 4,
+    "totalTasks": 33,
+    "totalSubtasks": 192,
+    "estimatedTotalHours": 560,
+    "priorities": {
+      "P0": 15,
+      "P1": 16,
+      "P2": 2
+    }
+  }
+}

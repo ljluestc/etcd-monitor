@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(go build:*)",
+      "Bash(go run:*)",
+      "Bash(cat:*)",
+      "WebFetch(domain:pingap.io)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:blog.devops.dev)",
+      "Bash(go mod:*)",
+      "Bash(test:*)",
+      "WebFetch(domain:clay-wangzhi.com)",
+      "Bash(where go)",
+      "Bash(dir \"C:\\Users\\calelin\\etcd-monitor\")",
+      "Bash(dir \"C:\\Users\\calelin\\etcd-monitor\\grafana\")",
+      "Bash(dir \"C:\\Users\\calelin\\etcd-monitor\\prometheus\")",
+      "Bash(dir \"C:\\Users\\calelin\\etcd-monitor\\grafana\\datasources\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

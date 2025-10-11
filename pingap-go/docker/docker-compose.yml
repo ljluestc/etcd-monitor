@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  pingap:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: pingap-go
+    ports:
+      - "80:80"       # HTTP
+      - "443:443"     # HTTPS
+      - "3000:3000"   # Admin UI
+      - "9090:9090"   # Metrics
+    volumes:
+      - ./config.toml:/app/config.toml:ro
+      - pingap-logs:/var/log/pingap
+      - pingap-data:/opt/pingap
+    environment:
+      - TZ=UTC
+    restart: unless-stopped
+    networks:
+      - pingap-network
+
+  # Example backend service 1
+  backend1:
+    image: hashicorp/http-echo
+    container_name: backend1
+    command:
+      - "-text=Backend Server 1"
+      - "-listen=:8001"
+    ports:
+      - "8001:8001"
+    networks:
+      - pingap-network
+
+  # Example backend service 2
+  backend2:
+    image: hashicorp/http-echo
+    container_name: backend2
+    command:
+      - "-text=Backend Server 2"
+      - "-listen=:8002"
+    ports:
+      - "8002:8002"
+    networks:
+      - pingap-network
+
+  # Example backend service 3
+  backend3:
+    image: hashicorp/http-echo
+    container_name: backend3
+    command:
+      - "-text=Backend Server 3"
+      - "-listen=:8003"
+    ports:
+      - "8003:8003"
+    networks:
+      - pingap-network
+
+  # Prometheus for metrics
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    ports:
+      - "9091:9090"
+    networks:
+      - pingap-network
+
+volumes:
+  pingap-logs:
+  pingap-data:
+  prometheus-data:
+
+networks:
+  pingap-network:
+    driver: bridge
