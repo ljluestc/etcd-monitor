@@ -1,7 +1,7 @@
 package client
 
 import (
-	"etcd-operator/pkg/etcd"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd"
 )
 
 // Member contains member info including v2 and v3

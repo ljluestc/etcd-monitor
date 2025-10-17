@@ -5,10 +5,10 @@ import (
 
 	"k8s.io/klog/v2"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/clusterprovider"
-	featureutil "etcd-operator/pkg/featureprovider/util"
-	"etcd-operator/pkg/inspection/metrics"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/clusterprovider"
+	featureutil "github.com/etcd-monitor/taskmaster/pkg/featureprovider/util"
+	"github.com/etcd-monitor/taskmaster/pkg/inspection/metrics"
 )
 
 var alarmTypeList = []string{"NOSPACE", "CORRUPT"}

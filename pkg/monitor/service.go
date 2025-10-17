@@ -399,3 +399,18 @@ func (ms *MonitorService) IsRunning() bool {
 	defer ms.mu.RUnlock()
 	return ms.isRunning
 }
+
+// GetHealthChecker returns the health checker instance
+func (ms *MonitorService) GetHealthChecker() *HealthChecker {
+	return ms.healthChecker
+}
+
+// GetMetricsCollector returns the metrics collector instance
+func (ms *MonitorService) GetMetricsCollector() *MetricsCollector {
+	return ms.metricsCollector
+}
+
+// GetAlertManager returns the alert manager instance
+func (ms *MonitorService) GetAlertManager() *AlertManager {
+	return ms.alertManager
+}

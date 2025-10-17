@@ -1,0 +1,329 @@
+?   	github.com/etcd-monitor/taskmaster	[no test files]
+# github.com/etcd-monitor/taskmaster/pkg/monitor [github.com/etcd-monitor/taskmaster/pkg/monitor.test]
+pkg/monitor/alert_comprehensive_test.go:174:16: no new variables on left side of :=
+pkg/monitor/alert_comprehensive_test.go:224:24: am.GetAlertsByLevel undefined (type *AlertManager has no field or method GetAlertsByLevel)
+pkg/monitor/alert_comprehensive_test.go:229:23: am.GetAlertsByType undefined (type *AlertManager has no field or method GetAlertsByType)
+pkg/monitor/alert_comprehensive_test.go:260:6: am.CleanupExpiredAlerts undefined (type *AlertManager has no field or method CleanupExpiredAlerts)
+pkg/monitor/alert_comprehensive_test.go:310:26: alert.ToJSON undefined (type Alert has no field or method ToJSON)
+pkg/monitor/alert_comprehensive_test.go:315:29: undefined: AlertFromJSON
+pkg/monitor/health_test.go:46:26: cannot use mockClient (variable of type *MockEtcdClient) as *clientv3.Client value in argument to NewHealthChecker
+pkg/monitor/health_test.go:66:23: undefined: clientv3.ResponseHeader
+pkg/monitor/health_test.go:75:23: undefined: clientv3.ResponseHeader
+pkg/monitor/health_test.go:76:14: cannot use []*clientv3.Member{…} (value of type []*clientv3.Member) as []*etcdserverpb.Member value in struct literal
+pkg/monitor/health_test.go:76:14: too many errors
+# github.com/etcd-monitor/taskmaster/pkg/api [github.com/etcd-monitor/taskmaster/pkg/api.test]
+pkg/api/server_comprehensive_test.go:120:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:143:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:174:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:201:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:221:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:254:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:276:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:300:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:345:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:367:31: cannot use mockService (variable of type *MockMonitorService) as *monitor.MonitorService value in argument to NewServer
+pkg/api/server_comprehensive_test.go:367:31: too many errors
+# github.com/etcd-monitor/taskmaster/cmd/etcd-monitor [github.com/etcd-monitor/taskmaster/cmd/etcd-monitor.test]
+cmd/etcd-monitor/main_test.go:14:6: MockEtcdMonitorTarget redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:14:6: other declaration of MockEtcdMonitorTarget
+cmd/etcd-monitor/main_test.go:27:6: TestEtcdMonitor_Comprehensive redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:27:6: other declaration of TestEtcdMonitor_Comprehensive
+cmd/etcd-monitor/main_test.go:45:6: TestEtcdMonitor_RunEtcdMonitor redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:45:6: other declaration of TestEtcdMonitor_RunEtcdMonitor
+cmd/etcd-monitor/main_test.go:108:6: TestEtcdMonitor_RunHealthCheck redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:108:6: other declaration of TestEtcdMonitor_RunHealthCheck
+cmd/etcd-monitor/main_test.go:144:6: TestEtcdMonitor_RunMetricsCollection redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:144:6: other declaration of TestEtcdMonitor_RunMetricsCollection
+cmd/etcd-monitor/main_test.go:180:6: TestEtcdMonitor_RunAlertManagement redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:180:6: other declaration of TestEtcdMonitor_RunAlertManagement
+cmd/etcd-monitor/main_test.go:216:6: TestEtcdMonitor_EdgeCases redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:216:6: other declaration of TestEtcdMonitor_EdgeCases
+cmd/etcd-monitor/main_test.go:312:6: TestEtcdMonitor_DataStructures redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:312:6: other declaration of TestEtcdMonitor_DataStructures
+cmd/etcd-monitor/main_test.go:322:6: TestEtcdMonitor_Interfaces redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:322:6: other declaration of TestEtcdMonitor_Interfaces
+cmd/etcd-monitor/main_test.go:331:6: TestEtcdMonitor_ErrorHandling redeclared in this block
+	cmd/etcd-monitor/etcd_monitor_test.go:331:6: other declaration of TestEtcdMonitor_ErrorHandling
+cmd/etcd-monitor/main_test.go:331:6: too many errors
+# github.com/etcd-monitor/taskmaster/pkg/examples [github.com/etcd-monitor/taskmaster/pkg/examples.test]
+pkg/examples/examples_test.go:14:2: logger declared and not used
+?   	github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1	[no test files]
+# github.com/etcd-monitor/taskmaster/pkg/clusterprovider [github.com/etcd-monitor/taskmaster/pkg/clusterprovider.test]
+pkg/clusterprovider/cluster_test.go:31:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:38:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:53:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:65:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:73:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:85:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:97:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:116:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:128:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:136:15: undefined: NewClusterProvider
+pkg/clusterprovider/cluster_test.go:136:15: too many errors
+# github.com/etcd-monitor/taskmaster/cmd/etcdcluster-controller [github.com/etcd-monitor/taskmaster/cmd/etcdcluster-controller.test]
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:14:6: MockEtcdClusterControllerTarget redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:14:6: other declaration of MockEtcdClusterControllerTarget
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:27:6: TestEtcdClusterController_Comprehensive redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:27:6: other declaration of TestEtcdClusterController_Comprehensive
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:45:6: TestEtcdClusterController_RunEtcdClusterController redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:45:6: other declaration of TestEtcdClusterController_RunEtcdClusterController
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:108:6: TestEtcdClusterController_RunClusterManagement redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:108:6: other declaration of TestEtcdClusterController_RunClusterManagement
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:144:6: TestEtcdClusterController_RunClusterHealth redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:144:6: other declaration of TestEtcdClusterController_RunClusterHealth
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:180:6: TestEtcdClusterController_RunClusterScaling redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:180:6: other declaration of TestEtcdClusterController_RunClusterScaling
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:216:6: TestEtcdClusterController_EdgeCases redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:216:6: other declaration of TestEtcdClusterController_EdgeCases
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:312:6: TestEtcdClusterController_DataStructures redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:312:6: other declaration of TestEtcdClusterController_DataStructures
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:322:6: TestEtcdClusterController_Interfaces redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:322:6: other declaration of TestEtcdClusterController_Interfaces
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:331:6: TestEtcdClusterController_ErrorHandling redeclared in this block
+	cmd/etcdcluster-controller/controller_test.go:331:6: other declaration of TestEtcdClusterController_ErrorHandling
+cmd/etcdcluster-controller/etcdcluster_controller_test.go:331:6: too many errors
+# github.com/etcd-monitor/taskmaster/cmd/etcdinspection-controller [github.com/etcd-monitor/taskmaster/cmd/etcdinspection-controller.test]
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:14:6: MockEtcdInspectionControllerTarget redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:14:6: other declaration of MockEtcdInspectionControllerTarget
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:27:6: TestEtcdInspectionController_Comprehensive redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:27:6: other declaration of TestEtcdInspectionController_Comprehensive
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:45:6: TestEtcdInspectionController_RunEtcdInspectionController redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:45:6: other declaration of TestEtcdInspectionController_RunEtcdInspectionController
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:108:6: TestEtcdInspectionController_RunInspectionManagement redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:108:6: other declaration of TestEtcdInspectionController_RunInspectionManagement
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:144:6: TestEtcdInspectionController_RunInspectionHealth redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:144:6: other declaration of TestEtcdInspectionController_RunInspectionHealth
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:180:6: TestEtcdInspectionController_RunInspectionMetrics redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:180:6: other declaration of TestEtcdInspectionController_RunInspectionMetrics
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:216:6: TestEtcdInspectionController_EdgeCases redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:216:6: other declaration of TestEtcdInspectionController_EdgeCases
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:312:6: TestEtcdInspectionController_DataStructures redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:312:6: other declaration of TestEtcdInspectionController_DataStructures
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:322:6: TestEtcdInspectionController_Interfaces redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:322:6: other declaration of TestEtcdInspectionController_Interfaces
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:331:6: TestEtcdInspectionController_ErrorHandling redeclared in this block
+	cmd/etcdinspection-controller/controller_test.go:331:6: other declaration of TestEtcdInspectionController_ErrorHandling
+cmd/etcdinspection-controller/etcdinspection_controller_test.go:331:6: too many errors
+?   	github.com/etcd-monitor/taskmaster/cmd	[no test files]
+?   	github.com/etcd-monitor/taskmaster/cmd/examples	[no test files]
+FAIL	github.com/etcd-monitor/taskmaster/cmd/etcd-monitor [build failed]
+FAIL	github.com/etcd-monitor/taskmaster/cmd/etcdcluster-controller [build failed]
+FAIL	github.com/etcd-monitor/taskmaster/cmd/etcdinspection-controller [build failed]
+# github.com/etcd-monitor/taskmaster/pkg/etcd [github.com/etcd-monitor/taskmaster/pkg/etcd.test]
+pkg/etcd/client_test.go:14:2: "k8s.io/client-go/kubernetes" imported and not used
+=== RUN   TestMain_Comprehensive
+=== RUN   TestMain_Comprehensive/Main_function_exists
+=== RUN   TestMain_Comprehensive/Command_structure
+--- PASS: TestMain_Comprehensive (0.00s)
+    --- PASS: TestMain_Comprehensive/Main_function_exists (0.00s)
+    --- PASS: TestMain_Comprehensive/Command_structure (0.00s)
+PASS
+coverage: [no statements]
+ok  	github.com/etcd-monitor/taskmaster/cmd/main	1.039s	coverage: [no statements]
+FAIL	github.com/etcd-monitor/taskmaster/pkg/api [build failed]
+=== RUN   TestBenchmark_Comprehensive
+=== RUN   TestBenchmark_Comprehensive/NewRunner
+=== RUN   TestBenchmark_Comprehensive/Config_validation
+=== RUN   TestBenchmark_Comprehensive/BenchmarkType_constants
+=== RUN   TestBenchmark_Comprehensive/Result_structure
+=== RUN   TestBenchmark_Comprehensive/generateRandomString
+=== RUN   TestBenchmark_Comprehensive/getLatencyBucket
+=== RUN   TestBenchmark_Comprehensive/percentile_calculation
+=== RUN   TestBenchmark_Comprehensive/percentile_with_empty_slice
+=== RUN   TestBenchmark_Comprehensive/PrintResult_with_valid_result
+2025-10-17T00:31:26.317-0700	INFO	benchmark/benchmark.go:397	Benchmark completed	{"type": "write", "duration": "1s", "total_ops": 100, "successful_ops": 95, "failed_ops": 5, "throughput": 100, "avg_latency": 10.5, "p50_latency": 8, "p95_latency": 25, "p99_latency": 45}
+=== RUN   TestBenchmark_Comprehensive/Runner_with_nil_client_should_error
+--- PASS: TestBenchmark_Comprehensive (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/NewRunner (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/Config_validation (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/BenchmarkType_constants (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/Result_structure (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/generateRandomString (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/getLatencyBucket (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/percentile_calculation (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/percentile_with_empty_slice (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/PrintResult_with_valid_result (0.00s)
+    --- PASS: TestBenchmark_Comprehensive/Runner_with_nil_client_should_error (0.00s)
+PASS
+coverage: 15.5% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/benchmark	1.062s	coverage: 15.5% of statements
+FAIL	github.com/etcd-monitor/taskmaster/pkg/clusterprovider [build failed]
+?   	github.com/etcd-monitor/taskmaster/pkg/clusterprovider/providers	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/clusterprovider/providers/imported	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/controllers/etcdinspection	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/controllers/etcdcluster	[no test files]
+# github.com/etcd-monitor/taskmaster/pkg/featureprovider [github.com/etcd-monitor/taskmaster/pkg/featureprovider.test]
+pkg/featureprovider/feature_test.go:31:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:38:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:53:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:65:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:73:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:85:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:97:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:116:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:128:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:136:15: undefined: NewFeatureProvider
+pkg/featureprovider/feature_test.go:136:15: too many errors
+# github.com/etcd-monitor/taskmaster/pkg/inspection
+pkg/inspection/consistency.go:42:15: assignment mismatch: 2 variables but etcd.NewStat returns 1 value
+pkg/inspection/consistency.go:42:28: cannot use cli (variable of type *clientv3.Client) as *etcd.ClientConfig value in argument to etcd.NewStat
+pkg/inspection/consistency.go:42:33: cannot use cluster.Spec.StorageBackend (variable of type "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1".EtcdStorageBackend) as string value in argument to etcd.NewStat
+pkg/inspection/consistency.go:113:34: undefined: memberData
+pkg/inspection/inspection.go:13:2: "github.com/etcd-monitor/taskmaster/pkg/controllers/util" imported and not used
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client/versions	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client/versions/v3	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/util	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/clientset/versioned	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/informers/externalversions	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/informers/externalversions/internalinterfaces	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/inspection/metrics	[no test files]
+=== RUN   TestClientBuilder_Comprehensive
+=== RUN   TestClientBuilder_Comprehensive/NewSimpleClientBuilder
+=== RUN   TestClientBuilder_Comprehensive/ConfigOrDie
+=== RUN   TestClientBuilder_Comprehensive/ClientOrDie
+=== RUN   TestClientBuilder_Comprehensive/DynamicClientOrDie
+--- PASS: TestClientBuilder_Comprehensive (0.00s)
+    --- PASS: TestClientBuilder_Comprehensive/NewSimpleClientBuilder (0.00s)
+    --- PASS: TestClientBuilder_Comprehensive/ConfigOrDie (0.00s)
+    --- PASS: TestClientBuilder_Comprehensive/ClientOrDie (0.00s)
+    --- PASS: TestClientBuilder_Comprehensive/DynamicClientOrDie (0.00s)
+=== RUN   TestUtil_Constants
+=== RUN   TestUtil_Constants/Component_Constants
+=== RUN   TestUtil_Constants/EtcdClusterPhase_Constants
+=== RUN   TestUtil_Constants/Cluster_Constants
+--- PASS: TestUtil_Constants (0.00s)
+    --- PASS: TestUtil_Constants/Component_Constants (0.00s)
+    --- PASS: TestUtil_Constants/EtcdClusterPhase_Constants (0.00s)
+    --- PASS: TestUtil_Constants/Cluster_Constants (0.00s)
+PASS
+coverage: 16.7% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/controllers/util	1.068s	coverage: 16.7% of statements
+FAIL	github.com/etcd-monitor/taskmaster/pkg/etcd [build failed]
+=== RUN   TestWrapper_Comprehensive
+=== RUN   TestWrapper_Comprehensive/NewWrapper
+=== RUN   TestWrapper_Comprehensive/NewWrapper_with_nil_logger
+=== RUN   TestWrapper_Comprehensive/Wrapper_structure
+=== RUN   TestWrapper_Comprehensive/Put_operation_with_nil_client
+2025-10-17T00:31:30.112-0700	DEBUG	etcdctl/wrapper.go:29	Put operation	{"key": "test-key"}
+=== RUN   TestWrapper_Comprehensive/Get_operation_with_nil_client
+2025-10-17T00:31:30.112-0700	DEBUG	etcdctl/wrapper.go:35	Get operation	{"key": "test-key"}
+=== RUN   TestWrapper_Comprehensive/Delete_operation_with_nil_client
+2025-10-17T00:31:30.112-0700	DEBUG	etcdctl/wrapper.go:41	Delete operation	{"key": "test-key"}
+=== RUN   TestWrapper_Comprehensive/Watch_operation_with_nil_client
+2025-10-17T00:31:30.113-0700	DEBUG	etcdctl/wrapper.go:47	Watch operation	{"key": "test-key"}
+=== RUN   TestWrapper_Comprehensive/Transaction_operation_with_nil_client
+2025-10-17T00:31:30.113-0700	DEBUG	etcdctl/wrapper.go:223	Creating transaction
+=== RUN   TestWrapper_Comprehensive/Compact_operation_with_nil_client
+2025-10-17T00:31:30.113-0700	INFO	etcdctl/wrapper.go:152	Compacting keyspace	{"revision": 1}
+=== RUN   TestWrapper_Comprehensive/MemberList_operation_with_nil_client
+2025-10-17T00:31:30.113-0700	DEBUG	etcdctl/wrapper.go:53	Member list operation
+=== RUN   TestWrapper_Comprehensive/MemberAdd_operation_with_nil_client
+2025-10-17T00:31:30.113-0700	INFO	etcdctl/wrapper.go:59	Adding member	{"peer_urls": ["http://localhost:2380"]}
+=== RUN   TestWrapper_Comprehensive/MemberRemove_operation_with_nil_client
+2025-10-17T00:31:30.113-0700	INFO	etcdctl/wrapper.go:65	Removing member	{"member_id": 1}
+=== RUN   TestWrapper_Comprehensive/SnapshotSave_operation_with_nil_client
+2025-10-17T00:31:30.113-0700	INFO	etcdctl/wrapper.go:169	Saving snapshot	{"path": "/tmp/test.db"}
+=== RUN   TestWrapper_Comprehensive/Defrag_operation_with_nil_client
+2025-10-17T00:31:30.113-0700	INFO	etcdctl/wrapper.go:158	Defragmenting	{"endpoint": "localhost:2379"}
+=== RUN   TestWrapper_Comprehensive/AlarmList_operation_with_nil_client
+2025-10-17T00:31:30.114-0700	DEBUG	etcdctl/wrapper.go:185	Listing alarms
+=== RUN   TestWrapper_Comprehensive/AlarmDisarm_operation_with_nil_client
+2025-10-17T00:31:30.114-0700	INFO	etcdctl/wrapper.go:191	Disarming alarm	{"type": "NONE", "member_id": 1}
+=== RUN   TestWrapper_Comprehensive/Grant_operation_with_nil_client
+2025-10-17T00:31:30.114-0700	DEBUG	etcdctl/wrapper.go:199	Granting lease	{"ttl": 60}
+=== RUN   TestWrapper_Comprehensive/Revoke_operation_with_nil_client
+2025-10-17T00:31:30.114-0700	DEBUG	etcdctl/wrapper.go:205	Revoking lease	{"lease_id": 1}
+=== RUN   TestWrapper_Comprehensive/KeepAlive_operation_with_nil_client
+2025-10-17T00:31:30.114-0700	DEBUG	etcdctl/wrapper.go:211	Starting lease keep-alive	{"lease_id": 1}
+=== RUN   TestWrapper_Comprehensive/TimeToLive_operation_with_nil_client
+2025-10-17T00:31:30.115-0700	DEBUG	etcdctl/wrapper.go:217	Getting lease TTL	{"lease_id": 1}
+=== RUN   TestWrapper_Comprehensive/GetWithPrefix_operation_with_nil_client
+2025-10-17T00:31:30.115-0700	DEBUG	etcdctl/wrapper.go:229	Get with prefix	{"prefix": "test-prefix"}
+=== RUN   TestWrapper_Comprehensive/DeleteWithPrefix_operation_with_nil_client
+2025-10-17T00:31:30.115-0700	DEBUG	etcdctl/wrapper.go:235	Delete with prefix	{"prefix": "test-prefix"}
+=== RUN   TestWrapper_Comprehensive/GetRange_operation_with_nil_client
+2025-10-17T00:31:30.115-0700	DEBUG	etcdctl/wrapper.go:241	Get range	{"start": "start", "end": "end"}
+=== RUN   TestWrapper_Comprehensive/PutWithLease_operation_with_nil_client
+2025-10-17T00:31:30.116-0700	DEBUG	etcdctl/wrapper.go:247	Put with lease	{"key": "test-key", "lease_id": 1}
+=== RUN   TestWrapper_Comprehensive/CompareAndSwap_operation_with_nil_client
+2025-10-17T00:31:30.116-0700	DEBUG	etcdctl/wrapper.go:255	Compare-and-swap	{"key": "test-key"}
+=== RUN   TestWrapper_Comprehensive/ExecuteCommand_with_put
+2025-10-17T00:31:30.116-0700	DEBUG	etcdctl/wrapper.go:29	Put operation	{"key": "key"}
+=== RUN   TestWrapper_Comprehensive/ExecuteCommand_with_get
+2025-10-17T00:31:30.116-0700	DEBUG	etcdctl/wrapper.go:35	Get operation	{"key": "key"}
+=== RUN   TestWrapper_Comprehensive/ExecuteCommand_with_invalid_command
+=== RUN   TestWrapper_Comprehensive/ExecuteCommand_with_insufficient_args
+=== RUN   TestWrapper_Comprehensive/EndpointHealth_with_nil_client
+2025-10-17T00:31:30.116-0700	DEBUG	etcdctl/wrapper.go:71	Checking endpoint health
+=== RUN   TestWrapper_Comprehensive/EndpointStatus_with_nil_client
+2025-10-17T00:31:30.116-0700	DEBUG	etcdctl/wrapper.go:107	Getting endpoint status
+=== RUN   TestWrapper_Comprehensive/Context_with_timeout
+2025-10-17T00:31:30.117-0700	DEBUG	etcdctl/wrapper.go:29	Put operation	{"key": "test-key"}
+--- PASS: TestWrapper_Comprehensive (0.01s)
+    --- PASS: TestWrapper_Comprehensive/NewWrapper (0.00s)
+    --- PASS: TestWrapper_Comprehensive/NewWrapper_with_nil_logger (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Wrapper_structure (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Put_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Get_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Delete_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Watch_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Transaction_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Compact_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/MemberList_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/MemberAdd_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/MemberRemove_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/SnapshotSave_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Defrag_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/AlarmList_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/AlarmDisarm_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Grant_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Revoke_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/KeepAlive_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/TimeToLive_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/GetWithPrefix_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/DeleteWithPrefix_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/GetRange_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/PutWithLease_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/CompareAndSwap_operation_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/ExecuteCommand_with_put (0.00s)
+    --- PASS: TestWrapper_Comprehensive/ExecuteCommand_with_get (0.00s)
+    --- PASS: TestWrapper_Comprehensive/ExecuteCommand_with_invalid_command (0.00s)
+    --- PASS: TestWrapper_Comprehensive/ExecuteCommand_with_insufficient_args (0.00s)
+    --- PASS: TestWrapper_Comprehensive/EndpointHealth_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/EndpointStatus_with_nil_client (0.00s)
+    --- PASS: TestWrapper_Comprehensive/Context_with_timeout (0.00s)
+PASS
+coverage: 68.3% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/etcdctl	1.064s	coverage: 68.3% of statements
+FAIL	github.com/etcd-monitor/taskmaster/pkg/examples [build failed]
+FAIL	github.com/etcd-monitor/taskmaster/pkg/featureprovider [build failed]
+FAIL	github.com/etcd-monitor/taskmaster/pkg/inspection [build failed]
+=== RUN   TestK8sClient_Comprehensive
+=== RUN   TestK8sClient_Comprehensive/GetClientConfig_with_empty_kubeconfig
+=== RUN   TestK8sClient_Comprehensive/GetClientConfig_with_invalid_kubeconfig
+=== RUN   TestK8sClient_Comprehensive/GetClientConfig_with_valid_kubeconfig_path
+=== RUN   TestK8sClient_Comprehensive/GenerateInformer_with_nil_config
+=== RUN   TestK8sClient_Comprehensive/GenerateInformer_with_invalid_config
+=== RUN   TestK8sClient_Comprehensive/GenerateInformer_with_valid_config_but_invalid_host
+=== RUN   TestK8sClient_Comprehensive/GenerateInformer_with_label_selector
+=== RUN   TestK8sClient_Comprehensive/GetClientConfig_error_handling
+=== RUN   TestK8sClient_Comprehensive/GenerateInformer_error_handling
+=== RUN   TestK8sClient_Comprehensive/GenerateInformer_with_empty_label_selector
+=== RUN   TestK8sClient_Comprehensive/GenerateInformer_with_complex_label_selector
+--- PASS: TestK8sClient_Comprehensive (0.01s)
+    --- PASS: TestK8sClient_Comprehensive/GetClientConfig_with_empty_kubeconfig (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GetClientConfig_with_invalid_kubeconfig (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GetClientConfig_with_valid_kubeconfig_path (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GenerateInformer_with_nil_config (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GenerateInformer_with_invalid_config (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GenerateInformer_with_valid_config_but_invalid_host (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GenerateInformer_with_label_selector (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GetClientConfig_error_handling (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GenerateInformer_error_handling (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GenerateInformer_with_empty_label_selector (0.00s)
+    --- PASS: TestK8sClient_Comprehensive/GenerateInformer_with_complex_label_selector (0.00s)
+PASS
+coverage: 76.2% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/k8s	1.086s	coverage: 76.2% of statements
+FAIL	github.com/etcd-monitor/taskmaster/pkg/monitor [build failed]

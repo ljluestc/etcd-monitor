@@ -6,7 +6,7 @@ import (
 
 	"k8s.io/klog/v2"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
 )
 
 type EtcdFactory func(cluster *ClusterContext) (Cluster, error)

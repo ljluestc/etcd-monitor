@@ -3,10 +3,10 @@ package inspection
 import (
 	"k8s.io/klog/v2"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/etcd"
-	featureutil "etcd-operator/pkg/featureprovider/util"
-	"etcd-operator/pkg/inspection/metrics"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd"
+	featureutil "github.com/etcd-monitor/taskmaster/pkg/featureprovider/util"
+	"github.com/etcd-monitor/taskmaster/pkg/inspection/metrics"
 )
 
 // CollectClusterConsistentData collects consistency data from all etcd members
@@ -39,11 +39,10 @@ func (c *Server) CollectClusterConsistentData(inspection *etcdv1alpha1.EtcdInspe
 	defer cli.Close()
 
 	// Create stat collector
-	stat, err := etcd.NewStat(cli, cluster.Spec.StorageBackend)
-	if err != nil {
-		klog.Errorf("failed to create stat collector for cluster %s, err is %v", name, err)
-		return err
+	config := &etcd.ClientConfig{
+		Endpoints: []string{endpoint},
 	}
+	stat := etcd.NewStat(config, string(cluster.Spec.StorageBackend))
 
 	// Collect metadata from all members
 	type memberData struct {

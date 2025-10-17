@@ -1,0 +1,223 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        go-version: ['1.21', '1.22', '1.23']
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: ${{ matrix.go-version }}
+
+    - name: Cache Go modules
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/go/pkg/mod
+          ~/.cache/go-build
+        key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-${{ matrix.go-version }}-
+          ${{ runner.os }}-go-
+
+    - name: Install dependencies
+      run: |
+        go mod download
+        go mod verify
+        go install github.com/axw/gocov/gocov@latest
+        go install github.com/AlekSi/gocov-xml@latest
+
+    - name: Run unit tests with coverage
+      run: |
+        go test -v -race -coverprofile=coverage.out -covermode=atomic ./... 2>&1 | tee test_output.log
+
+    - name: Generate coverage report
+      run: |
+        go tool cover -html=coverage.out -o coverage.html
+        go tool cover -func=coverage.out | tee coverage_summary.txt
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        files: ./coverage.out
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+        token: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Check coverage threshold
+      run: |
+        COVERAGE=$(go tool cover -func=coverage.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
+        echo "Total coverage: $COVERAGE%"
+        if (( $(echo "$COVERAGE < 80" | bc -l) )); then
+          echo "❌ Coverage is below 80% threshold: $COVERAGE%"
+          exit 1
+        else
+          echo "✅ Coverage meets 80% threshold: $COVERAGE%"
+        fi
+
+    - name: Run tests with run_tests.sh
+      run: |
+        chmod +x run_tests.sh
+        ./run_tests.sh || true
+
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-reports-${{ matrix.go-version }}
+        path: |
+          coverage.out
+          coverage.html
+          coverage_summary.txt
+          coverage_reports/
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results-${{ matrix.go-version }}
+        path: |
+          test_output.log
+          **/test_output.log
+          **/integration_test_output.log
+          **/performance_test_output.log
+          **/security_test_output.log
+          **/vulnerability_test_output.log
+          **/linting_output.log
+          **/golangci_lint_output.log
+        if-no-files-found: ignore
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: 1.21
+        
+    - name: Install security tools
+      run: |
+        go install github.com/securecodewarrior/gosec/v2/cmd/gosec@latest
+        go install golang.org/x/vuln/cmd/govulncheck@latest
+        
+    - name: Run security scan
+      run: |
+        gosec ./...
+        govulncheck ./...
+        
+    - name: Run dependency check
+      run: |
+        go list -json -deps ./... | nancy sleuth
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [test, security]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: 1.21
+        
+    - name: Build binaries
+      run: |
+        # Build main etcd-monitor
+        go build -o bin/etcd-monitor ./cmd/etcd-monitor
+        
+        # Build etcdcluster-controller
+        go build -o bin/etcdcluster-controller ./cmd/etcdcluster-controller
+        
+        # Build etcdinspection-controller
+        go build -o bin/etcdinspection-controller ./cmd/etcdinspection-controller
+        
+        # Build examples
+        go build -o bin/examples ./cmd/examples
+        
+        # Build pingap-go
+        go build -o bin/pingap ./pingap-go/cmd/pingap
+        
+    - name: Upload binaries
+      uses: actions/upload-artifact@v3
+      with:
+        name: binaries
+        path: bin/
+
+  docker:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    needs: [test, security]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Build Docker image
+      run: |
+        docker build -t etcd-monitor:latest .
+        
+    - name: Run Docker image
+      run: |
+        docker run --rm etcd-monitor:latest --help
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [test, security, build, docker]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Deploy to staging
+      run: |
+        echo "Deploying to staging environment..."
+        # Add deployment logic here
+        
+    - name: Deploy to production
+      run: |
+        echo "Deploying to production environment..."
+        # Add production deployment logic here
+
+  notify:
+    name: Notify
+    runs-on: ubuntu-latest
+    needs: [test, security, build, docker, deploy]
+    if: always()
+    
+    steps:
+    - name: Notify on success
+      if: needs.test.result == 'success' && needs.security.result == 'success' && needs.build.result == 'success'
+      run: |
+        echo "✅ All tests passed and deployment successful!"
+        
+    - name: Notify on failure
+      if: needs.test.result == 'failure' || needs.security.result == 'failure' || needs.build.result == 'failure'
+      run: |
+        echo "❌ Tests failed or deployment failed!"

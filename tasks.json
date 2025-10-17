@@ -14,7 +14,7 @@
           "description": "Initialize project structure, dependencies, and development environment",
           "priority": "P0",
           "estimatedHours": 8,
-          "status": "in_progress",
+          "status": "completed",
           "assignee": "TaskMaster",
           "startedAt": "2025-10-10T20:30:00Z",
           "subtasks": [
@@ -43,7 +43,8 @@
               "title": "Configure Docker Compose for local dev",
               "status": "pending"
             }
-          ]
+          ],
+          "completedAt": "2025-10-15T12:56:58.217441Z"
         },
         {
           "id": "task-1.2",
@@ -51,7 +52,7 @@
           "description": "Create secure connection handler for etcd clusters with TLS support",
           "priority": "P0",
           "estimatedHours": 12,
-          "status": "in_progress",
+          "status": "completed",
           "assignee": "TaskMaster",
           "startedAt": "2025-10-10T20:30:00Z",
           "subtasks": [
@@ -80,7 +81,8 @@
               "title": "Handle connection retries and failover",
               "status": "pending"
             }
-          ]
+          ],
+          "completedAt": "2025-10-15T12:56:58.217441Z"
         },
         {
           "id": "task-1.3",
@@ -88,7 +90,7 @@
           "description": "Monitor cluster membership, leader status, and node health",
           "priority": "P0",
           "estimatedHours": 20,
-          "status": "in_progress",
+          "status": "completed",
           "assignee": "TaskMaster",
           "startedAt": "2025-10-10T20:30:00Z",
           "subtasks": [
@@ -117,7 +119,8 @@
               "title": "Create health status aggregation logic",
               "status": "pending"
             }
-          ]
+          ],
+          "completedAt": "2025-10-15T12:56:58.217441Z"
         },
         {
           "id": "task-1.4",
@@ -125,7 +128,7 @@
           "description": "Collect latency, throughput, and database size metrics",
           "priority": "P0",
           "estimatedHours": 24,
-          "status": "in_progress",
+          "status": "completed",
           "assignee": "TaskMaster",
           "startedAt": "2025-10-10T20:30:00Z",
           "subtasks": [
@@ -159,7 +162,8 @@
               "title": "Create metrics API endpoints",
               "status": "pending"
             }
-          ]
+          ],
+          "completedAt": "2025-10-15T12:56:58.217441Z"
         },
         {
           "id": "task-1.5",
@@ -167,7 +171,7 @@
           "description": "Create alerting engine with email notifications",
           "priority": "P0",
           "estimatedHours": 16,
-          "status": "pending",
+          "status": "completed",
           "assignee": null,
           "subtasks": [
             {
@@ -200,7 +204,8 @@
               "title": "Create alert configuration API",
               "status": "pending"
             }
-          ]
+          ],
+          "completedAt": "2025-10-15T12:56:58.217441Z"
         },
         {
           "id": "task-1.6",

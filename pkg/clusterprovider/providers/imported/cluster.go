@@ -5,9 +5,9 @@ import (
 
 	"k8s.io/klog/v2"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/clusterprovider"
-	"etcd-operator/pkg/etcd"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/clusterprovider"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd"
 )
 
 const (

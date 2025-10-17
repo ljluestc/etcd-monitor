@@ -1,0 +1,201 @@
+# Test alert rules configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: alert-rules
+  namespace: default
+data:
+  alert_rules.yaml: |
+    # Alert rules for etcd-monitor
+    groups:
+      - name: etcd_cluster
+        rules:
+          - alert: EtcdClusterDown
+            expr: etcd_cluster_health == 0
+            for: 1m
+            labels:
+              severity: critical
+              service: etcd
+              component: cluster
+            annotations:
+              summary: "Etcd cluster is down"
+              description: "Etcd cluster has been down for more than 1 minute"
+              runbook_url: "https://docs.example.com/runbooks/etcd-cluster-down"
+          
+          - alert: EtcdClusterUnhealthy
+            expr: etcd_cluster_health < 1
+            for: 2m
+            labels:
+              severity: warning
+              service: etcd
+              component: cluster
+            annotations:
+              summary: "Etcd cluster is unhealthy"
+              description: "Etcd cluster health is below 100% for more than 2 minutes"
+              runbook_url: "https://docs.example.com/runbooks/etcd-cluster-unhealthy"
+      
+      - name: etcd_performance
+        rules:
+          - alert: EtcdHighMemoryUsage
+            expr: etcd_memory_usage_percent > 80
+            for: 5m
+            labels:
+              severity: warning
+              service: etcd
+              component: performance
+            annotations:
+              summary: "Etcd memory usage is high"
+              description: "Etcd memory usage is {{ $value }}% for more than 5 minutes"
+              runbook_url: "https://docs.example.com/runbooks/etcd-high-memory"
+          
+          - alert: EtcdCriticalMemoryUsage
+            expr: etcd_memory_usage_percent > 95
+            for: 1m
+            labels:
+              severity: critical
+              service: etcd
+              component: performance
+            annotations:
+              summary: "Etcd memory usage is critical"
+              description: "Etcd memory usage is {{ $value }}% for more than 1 minute"
+              runbook_url: "https://docs.example.com/runbooks/etcd-critical-memory"
+          
+          - alert: EtcdHighDiskUsage
+            expr: etcd_disk_usage_percent > 90
+            for: 1m
+            labels:
+              severity: critical
+              service: etcd
+              component: performance
+            annotations:
+              summary: "Etcd disk usage is critical"
+              description: "Etcd disk usage is {{ $value }}% for more than 1 minute"
+              runbook_url: "https://docs.example.com/runbooks/etcd-high-disk"
+          
+          - alert: EtcdSlowRequests
+            expr: etcd_request_duration_seconds > 1
+            for: 2m
+            labels:
+              severity: warning
+              service: etcd
+              component: performance
+            annotations:
+              summary: "Etcd requests are slow"
+              description: "Etcd request duration is {{ $value }}s for more than 2 minutes"
+              runbook_url: "https://docs.example.com/runbooks/etcd-slow-requests"
+          
+          - alert: EtcdHighErrorRate
+            expr: rate(etcd_requests_failed_total[5m]) / rate(etcd_requests_total[5m]) > 0.05
+            for: 3m
+            labels:
+              severity: warning
+              service: etcd
+              component: performance
+            annotations:
+              summary: "Etcd error rate is high"
+              description: "Etcd error rate is {{ $value | humanizePercentage }} for more than 3 minutes"
+              runbook_url: "https://docs.example.com/runbooks/etcd-high-error-rate"
+      
+      - name: etcd_consistency
+        rules:
+          - alert: EtcdConsistencyCheckFailed
+            expr: etcd_consistency_check_failed == 1
+            for: 0m
+            labels:
+              severity: critical
+              service: etcd
+              component: consistency
+            annotations:
+              summary: "Etcd consistency check failed"
+              description: "Etcd consistency check has failed"
+              runbook_url: "https://docs.example.com/runbooks/etcd-consistency-failed"
+          
+          - alert: EtcdDataInconsistency
+            expr: etcd_data_inconsistency == 1
+            for: 0m
+            labels:
+              severity: critical
+              service: etcd
+              component: consistency
+            annotations:
+              summary: "Etcd data inconsistency detected"
+              description: "Etcd data inconsistency has been detected"
+              runbook_url: "https://docs.example.com/runbooks/etcd-data-inconsistency"
+      
+      - name: etcd_alarms
+        rules:
+          - alert: EtcdAlarmActive
+            expr: etcd_alarm_active > 0
+            for: 0m
+            labels:
+              severity: warning
+              service: etcd
+              component: alarms
+            annotations:
+              summary: "Etcd alarm is active"
+              description: "Etcd alarm {{ $labels.alarm_type }} is active"
+              runbook_url: "https://docs.example.com/runbooks/etcd-alarm-active"
+          
+          - alert: EtcdAlarmCritical
+            expr: etcd_alarm_active > 0 and etcd_alarm_type == "NOSPACE"
+            for: 0m
+            labels:
+              severity: critical
+              service: etcd
+              component: alarms
+            annotations:
+              summary: "Etcd critical alarm: NOSPACE"
+              description: "Etcd NOSPACE alarm is active - cluster is out of space"
+              runbook_url: "https://docs.example.com/runbooks/etcd-nospace-alarm"
+      
+      - name: etcd_network
+        rules:
+          - alert: EtcdNetworkPartition
+            expr: etcd_network_partition == 1
+            for: 0m
+            labels:
+              severity: critical
+              service: etcd
+              component: network
+            annotations:
+              summary: "Etcd network partition detected"
+              description: "Etcd network partition has been detected"
+              runbook_url: "https://docs.example.com/runbooks/etcd-network-partition"
+          
+          - alert: EtcdHighNetworkLatency
+            expr: etcd_network_latency_seconds > 0.1
+            for: 5m
+            labels:
+              severity: warning
+              service: etcd
+              component: network
+            annotations:
+              summary: "Etcd network latency is high"
+              description: "Etcd network latency is {{ $value }}s for more than 5 minutes"
+              runbook_url: "https://docs.example.com/runbooks/etcd-high-latency"
+      
+      - name: etcd_leader
+        rules:
+          - alert: EtcdLeaderElectionFailed
+            expr: etcd_leader_election_failed == 1
+            for: 0m
+            labels:
+              severity: critical
+              service: etcd
+              component: leader
+            annotations:
+              summary: "Etcd leader election failed"
+              description: "Etcd leader election has failed"
+              runbook_url: "https://docs.example.com/runbooks/etcd-leader-election-failed"
+          
+          - alert: EtcdNoLeader
+            expr: etcd_leader_count == 0
+            for: 1m
+            labels:
+              severity: critical
+              service: etcd
+              component: leader
+            annotations:
+              summary: "Etcd has no leader"
+              description: "Etcd cluster has no leader for more than 1 minute"
+              runbook_url: "https://docs.example.com/runbooks/etcd-no-leader"

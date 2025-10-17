@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"path"
 	"sync"
+	"time"
 
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"go.uber.org/zap"
@@ -347,7 +348,7 @@ func (sm *SnapshotManager) CreateSnapshot(ctx context.Context, version int64) (*
 	}
 
 	snapshot := &ConfigSnapshot{
-		Timestamp: clientv3.GetPrefixRangeEnd("")[0], // Use current timestamp
+		Timestamp: time.Now().Unix(), // Use current timestamp
 		Version:   version,
 		Config:    configs,
 	}

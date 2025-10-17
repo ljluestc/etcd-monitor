@@ -19,6 +19,7 @@ package v1alpha1
 import (
 	corev1 "k8s.io/api/core/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
 )
 
 // +genclient
@@ -95,4 +96,103 @@ type EtcdClusterList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 	Items           []EtcdCluster `json:"items" protobuf:"bytes,2,rep,name=items"`
+}
+
+// DeepCopyObject returns a generically typed copy of an object
+func (in *EtcdCluster) DeepCopyObject() runtime.Object {
+	if c := in.DeepCopy(); c != nil {
+		return c
+	}
+	return nil
+}
+
+// DeepCopyObject returns a generically typed copy of an object
+func (in *EtcdClusterList) DeepCopyObject() runtime.Object {
+	if c := in.DeepCopy(); c != nil {
+		return c
+	}
+	return nil
+}
+
+// DeepCopy returns a deep copy of the EtcdCluster
+func (in *EtcdCluster) DeepCopy() *EtcdCluster {
+	if in == nil {
+		return nil
+	}
+	out := new(EtcdCluster)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type
+func (in *EtcdCluster) DeepCopyInto(out *EtcdCluster) {
+	*out = *in
+	out.TypeMeta = in.TypeMeta
+	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
+	in.Spec.DeepCopyInto(&out.Spec)
+	in.Status.DeepCopyInto(&out.Status)
+}
+
+// DeepCopy returns a deep copy of the EtcdClusterList
+func (in *EtcdClusterList) DeepCopy() *EtcdClusterList {
+	if in == nil {
+		return nil
+	}
+	out := new(EtcdClusterList)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type
+func (in *EtcdClusterList) DeepCopyInto(out *EtcdClusterList) {
+	*out = *in
+	out.TypeMeta = in.TypeMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
+	if in.Items != nil {
+		in, out := &in.Items, &out.Items
+		*out = make([]EtcdCluster, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy returns a deep copy of the EtcdClusterSpec
+func (in *EtcdClusterSpec) DeepCopy() *EtcdClusterSpec {
+	if in == nil {
+		return nil
+	}
+	out := new(EtcdClusterSpec)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type
+func (in *EtcdClusterSpec) DeepCopyInto(out *EtcdClusterSpec) {
+	*out = *in
+	if in.SecureConfig != nil {
+		in, out := &in.SecureConfig, &out.SecureConfig
+		*out = new(SecureConfig)
+		**out = **in
+	}
+}
+
+// DeepCopy returns a deep copy of the EtcdClusterStatus
+func (in *EtcdClusterStatus) DeepCopy() *EtcdClusterStatus {
+	if in == nil {
+		return nil
+	}
+	out := new(EtcdClusterStatus)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type
+func (in *EtcdClusterStatus) DeepCopyInto(out *EtcdClusterStatus) {
+	*out = *in
+	if in.Members != nil {
+		in, out := &in.Members, &out.Members
+		*out = make([]EtcdMember, len(*in))
+		copy(*out, *in)
+	}
 }

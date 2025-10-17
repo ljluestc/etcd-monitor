@@ -1,5 +1,5 @@
 package versions
 
 import (
-	_ "etcd-operator/pkg/etcd/client/versions/v3" // import etcd client of v3
+	_ "github.com/etcd-monitor/taskmaster/pkg/etcd/client/versions/v3" // import etcd client of v3
 )

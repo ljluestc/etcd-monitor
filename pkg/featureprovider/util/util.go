@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
 )
 
 const (

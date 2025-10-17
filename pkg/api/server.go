@@ -111,11 +111,37 @@ func (s *Server) handleClusterStatus(w http.ResponseWriter, r *http.Request) {
 
 // handleClusterMembers returns cluster member information
 func (s *Server) handleClusterMembers(w http.ResponseWriter, r *http.Request) {
-	// This would get member information from the monitor service
-	response := map[string]interface{}{
-		"message": "Not yet implemented",
+	ctx := r.Context()
+
+	// Get cluster status which includes member info
+	status, err := s.monitorService.GetClusterStatus()
+	if err != nil {
+		s.writeError(w, http.StatusInternalServerError, "Failed to get cluster status", err)
+		return
 	}
-	s.writeJSON(w, http.StatusNotImplemented, response)
+
+	// Get detailed member information from health checker
+	healthChecker := s.monitorService.GetHealthChecker()
+	if healthChecker == nil {
+		s.writeError(w, http.StatusInternalServerError, "Health checker not available", nil)
+		return
+	}
+
+	// Get member list
+	members, err := healthChecker.GetMemberList(ctx)
+	if err != nil {
+		s.writeError(w, http.StatusInternalServerError, "Failed to get member list", err)
+		return
+	}
+
+	response := map[string]interface{}{
+		"member_count": status.MemberCount,
+		"quorum_size":  status.QuorumSize,
+		"members":      members,
+		"timestamp":    time.Now().Format(time.RFC3339),
+	}
+
+	s.writeJSON(w, http.StatusOK, response)
 }
 
 // handleClusterLeader returns the current leader information
@@ -186,18 +212,46 @@ func (s *Server) handleLatencyMetrics(w http.ResponseWriter, r *http.Request) {
 
 // handleAlerts returns current active alerts
 func (s *Server) handleAlerts(w http.ResponseWriter, r *http.Request) {
-	response := map[string]interface{}{
-		"message": "Active alerts - not yet implemented",
+	alertManager := s.monitorService.GetAlertManager()
+	if alertManager == nil {
+		s.writeError(w, http.StatusInternalServerError, "Alert manager not available", nil)
+		return
 	}
-	s.writeJSON(w, http.StatusNotImplemented, response)
+
+	// Get active alerts from the alert manager
+	activeAlerts := alertManager.GetActiveAlerts()
+
+	response := map[string]interface{}{
+		"active_alerts": activeAlerts,
+		"count":         len(activeAlerts),
+		"timestamp":     time.Now().Format(time.RFC3339),
+	}
+
+	s.writeJSON(w, http.StatusOK, response)
 }
 
 // handleAlertHistory returns alert history
 func (s *Server) handleAlertHistory(w http.ResponseWriter, r *http.Request) {
-	response := map[string]interface{}{
-		"message": "Alert history - not yet implemented",
+	alertManager := s.monitorService.GetAlertManager()
+	if alertManager == nil {
+		s.writeError(w, http.StatusInternalServerError, "Alert manager not available", nil)
+		return
 	}
-	s.writeJSON(w, http.StatusNotImplemented, response)
+
+	// Parse query parameters for filtering
+	// limit := r.URL.Query().Get("limit") // Future enhancement
+	// since := r.URL.Query().Get("since") // Future enhancement
+
+	// Get alert history
+	history := alertManager.GetAlertHistory()
+
+	response := map[string]interface{}{
+		"history":   history,
+		"count":     len(history),
+		"timestamp": time.Now().Format(time.RFC3339),
+	}
+
+	s.writeJSON(w, http.StatusOK, response)
 }
 
 // handleBenchmark runs a performance benchmark

@@ -78,6 +78,10 @@ func NewRunner(client *clientv3.Client, config *Config, logger *zap.Logger) *Run
 
 // Run executes the benchmark
 func (r *Runner) Run(ctx context.Context) (*Result, error) {
+	if r.client == nil {
+		return nil, fmt.Errorf("etcd client is nil")
+	}
+
 	r.logger.Info("Starting benchmark",
 		zap.String("type", string(r.config.Type)),
 		zap.Int("connections", r.config.Connections),

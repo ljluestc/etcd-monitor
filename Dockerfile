@@ -28,4 +28,5 @@ EXPOSE 8080
 
 # Run the application
 ENTRYPOINT ["./etcd-monitor"]
-CMD ["--endpoints=localhost:2379", "--api-port=8080"]
+# Default endpoints - can be overridden by docker-compose environment variables
+CMD ["--api-port=8080"]

@@ -3,9 +3,9 @@ package alarm
 import (
 	"sync"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/featureprovider"
-	"etcd-operator/pkg/inspection"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/featureprovider"
+	"github.com/etcd-monitor/taskmaster/pkg/inspection"
 )
 
 const (

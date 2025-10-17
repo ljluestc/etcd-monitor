@@ -1,0 +1,11 @@
+mode: atomic
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:45.65,48.2 1 0
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:50.89,53.2 1 0
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:55.114,58.2 1 0
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:60.154,63.2 1 0
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:71.62,76.2 2 4
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:82.64,84.16 2 0
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:84.16,85.13 1 0
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:87.2,87.12 1 0
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:90.65,92.2 1 0
+github.com/etcd-monitor/taskmaster/pkg/controllers/util/util.go:94.70,96.2 1 0

@@ -1,0 +1,229 @@
+# Comprehensive Test Configuration for etcd-monitor
+# This file defines test settings, coverage thresholds, and test patterns
+
+# Test Coverage Configuration
+coverage:
+  # Minimum coverage threshold (percentage)
+  threshold: 90
+  
+  # Coverage modes to use
+  modes:
+    - atomic
+    - count
+  
+  # Packages to include in coverage
+  include:
+    - "./pkg/..."
+    - "./cmd/..."
+    - "./pingap-go/..."
+  
+  # Packages to exclude from coverage
+  exclude:
+    - "./vendor/..."
+    - "./test/..."
+    - "./integration_tests/..."
+
+# Test Categories
+test_categories:
+  unit:
+    enabled: true
+    timeout: "5m"
+    parallel: true
+    packages:
+      - "./pkg/..."
+      - "./cmd/..."
+      - "./pingap-go/..."
+  
+  integration:
+    enabled: true
+    timeout: "10m"
+    parallel: false
+    packages:
+      - "./integration_tests/..."
+    tags:
+      - "integration"
+  
+  performance:
+    enabled: true
+    timeout: "15m"
+    parallel: false
+    packages:
+      - "./pkg/benchmark/..."
+    tags:
+      - "benchmark"
+  
+  security:
+    enabled: true
+    timeout: "5m"
+    parallel: true
+    tools:
+      - "gosec"
+      - "govulncheck"
+      - "nancy"
+
+# Test Patterns
+test_patterns:
+  # Unit test patterns
+  unit_tests:
+    - "*_test.go"
+    - "test_*.go"
+  
+  # Integration test patterns
+  integration_tests:
+    - "*_integration_test.go"
+    - "integration_*.go"
+  
+  # Performance test patterns
+  performance_tests:
+    - "*_benchmark_test.go"
+    - "benchmark_*.go"
+  
+  # Security test patterns
+  security_tests:
+    - "*_security_test.go"
+    - "security_*.go"
+
+# Test Data Configuration
+test_data:
+  # Test data directory
+  directory: "./testdata"
+  
+  # Test fixtures
+  fixtures:
+    - "etcd_cluster_config.yaml"
+    - "monitoring_config.yaml"
+    - "alert_rules.yaml"
+  
+  # Mock data
+  mocks:
+    - "etcd_client_mock.go"
+    - "k8s_client_mock.go"
+    - "prometheus_mock.go"
+
+# Test Environment Configuration
+test_environment:
+  # Environment variables for tests
+  env_vars:
+    - "ETCD_ENDPOINTS=http://localhost:2379"
+    - "KUBECONFIG=/tmp/kubeconfig"
+    - "PROMETHEUS_URL=http://localhost:9090"
+    - "GRAFANA_URL=http://localhost:3000"
+  
+  # Test ports
+  ports:
+    etcd: 2379
+    prometheus: 9090
+    grafana: 3000
+    api: 8080
+  
+  # Test timeouts
+  timeouts:
+    connection: "30s"
+    request: "10s"
+    test: "5m"
+
+# Test Reporting Configuration
+reporting:
+  # Report formats
+  formats:
+    - "html"
+    - "json"
+    - "xml"
+    - "text"
+  
+  # Report output directory
+  output_dir: "./test_reports"
+  
+  # Report generation tools
+  tools:
+    - "go test"
+    - "golangci-lint"
+    - "gosec"
+    - "govulncheck"
+  
+  # Coverage report settings
+  coverage:
+    html: true
+    json: true
+    xml: true
+    text: true
+
+# Test Dependencies
+dependencies:
+  # External services required for tests
+  services:
+    - name: "etcd"
+      image: "quay.io/coreos/etcd:v3.5.0"
+      ports:
+        - "2379:2379"
+        - "2380:2380"
+      env:
+        - "ETCD_NAME=etcd-server"
+        - "ETCD_DATA_DIR=/etcd-data"
+        - "ETCD_LISTEN_CLIENT_URLS=http://0.0.0.0:2379"
+        - "ETCD_ADVERTISE_CLIENT_URLS=http://localhost:2379"
+        - "ETCD_LISTEN_PEER_URLS=http://0.0.0.0:2380"
+        - "ETCD_INITIAL_ADVERTISE_PEER_URLS=http://localhost:2380"
+        - "ETCD_INITIAL_CLUSTER=etcd-server=http://localhost:2380"
+        - "ETCD_INITIAL_CLUSTER_STATE=new"
+        - "ETCD_INITIAL_CLUSTER_TOKEN=etcd-cluster-1"
+  
+    - name: "prometheus"
+      image: "prom/prometheus:v2.40.0"
+      ports:
+        - "9090:9090"
+      volumes:
+        - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+  
+    - name: "grafana"
+      image: "grafana/grafana:9.3.0"
+      ports:
+        - "3000:3000"
+      env:
+        - "GF_SECURITY_ADMIN_PASSWORD=admin"
+
+# Test Quality Gates
+quality_gates:
+  # Test coverage gates
+  coverage:
+    unit_tests: 90
+    integration_tests: 80
+    overall: 85
+  
+  # Test performance gates
+  performance:
+    max_duration: "5m"
+    max_memory: "1GB"
+    max_cpu: "80%"
+  
+  # Test security gates
+  security:
+    max_vulnerabilities: 0
+    max_severity: "medium"
+    max_cvss_score: 7.0
+
+# Test Automation
+automation:
+  # Auto-run tests on file changes
+  watch:
+    enabled: true
+    patterns:
+      - "*.go"
+      - "*.yaml"
+      - "*.yml"
+      - "*.json"
+  
+  # Auto-fix issues
+  auto_fix:
+    enabled: true
+    tools:
+      - "gofmt"
+      - "goimports"
+      - "golint"
+  
+  # Auto-generate test data
+  generate_test_data:
+    enabled: true
+    patterns:
+      - "testdata/*.yaml"
+      - "testdata/*.json"

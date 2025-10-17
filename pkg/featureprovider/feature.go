@@ -1,21 +1,21 @@
 package featureprovider
 
 import (
-	"etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/controllers/util"
-	"etcd-operator/pkg/etcd"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/controllers/util"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd"
 )
 
 // Feature is an abstract, pluggable interface for cluster features.
 type Feature interface {
 	// Equal checks whether the feature needs to be updated
-	Equal(cluster *v1alpha1.EtcdCluster) bool
+	Equal(cluster *etcdv1alpha1.EtcdCluster) bool
 
 	// Sync synchronizes the latest feature configuration
-	Sync(cluster *v1alpha1.EtcdCluster) error
+	Sync(cluster *etcdv1alpha1.EtcdCluster) error
 
 	// Do executes inspection tasks.
-	Do(task *v1alpha1.EtcdInspection) error
+	Do(task *etcdv1alpha1.EtcdInspection) error
 }
 
 type FeatureContext struct {

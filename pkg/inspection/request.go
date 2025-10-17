@@ -9,10 +9,10 @@ import (
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"k8s.io/klog/v2"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/etcd"
-	featureutil "etcd-operator/pkg/featureprovider/util"
-	"etcd-operator/pkg/inspection/metrics"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd"
+	featureutil "github.com/etcd-monitor/taskmaster/pkg/featureprovider/util"
+	"github.com/etcd-monitor/taskmaster/pkg/inspection/metrics"
 )
 
 // watcherInfo holds information about an active watcher

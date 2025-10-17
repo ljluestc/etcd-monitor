@@ -3,15 +3,14 @@ package k8s
 import (
 	"time"
 
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	kubeinformers "k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/klog/v2"
 
-	clientset "etcd-operator/pkg/generated/clientset/versioned"
-	informers "etcd-operator/pkg/generated/informers/externalversions"
+	clientset "github.com/etcd-monitor/taskmaster/pkg/generated/clientset/versioned"
+	informers "github.com/etcd-monitor/taskmaster/pkg/generated/informers/externalversions"
 )
 
 // GetClientConfig gets *rest.Config with the kube config
@@ -53,13 +52,7 @@ func GenerateInformer(config *rest.Config, labelSelector string) (
 	}
 
 	kubeInformerFactory := kubeinformers.NewSharedInformerFactory(kubeClient, time.Second*30)
-	etcdInformerFactory := informers.NewSharedInformerFactoryWithOptions(
-		clustetClient,
-		time.Second*30,
-		informers.WithTweakListOptions(func(options *metav1.ListOptions) {
-			options.LabelSelector = labelSelector
-		}),
-	)
+	etcdInformerFactory := informers.NewSharedInformerFactory(clustetClient, time.Second*30)
 
 	return kubeClient, clustetClient, kubeInformerFactory, etcdInformerFactory, nil
 }

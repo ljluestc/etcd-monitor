@@ -6,9 +6,9 @@ import (
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"k8s.io/klog/v2"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/etcd"
-	"etcd-operator/pkg/etcd/client"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd/client"
 )
 
 type V3 struct {

@@ -1,0 +1,150 @@
+# Test monitoring configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: monitoring-config
+  namespace: default
+data:
+  monitoring.yaml: |
+    # Monitoring configuration for etcd-monitor
+    monitoring:
+      # Health check configuration
+      health_check:
+        enabled: true
+        interval: "30s"
+        timeout: "10s"
+        retry_count: 3
+        retry_interval: "5s"
+      
+      # Metrics collection configuration
+      metrics:
+        enabled: true
+        interval: "60s"
+        timeout: "30s"
+        retry_count: 3
+        retry_interval: "10s"
+        prometheus:
+          enabled: true
+          url: "http://localhost:9090"
+          timeout: "30s"
+          retry_count: 3
+          retry_interval: "10s"
+      
+      # Alerting configuration
+      alerting:
+        enabled: true
+        channels:
+          - type: "email"
+            enabled: true
+            config:
+              smtp_server: "smtp.gmail.com"
+              smtp_port: 587
+              username: "test@example.com"
+              password: "testpass"
+              from: "test@example.com"
+              to: ["admin@example.com"]
+              subject: "Etcd Monitor Alert"
+          - type: "slack"
+            enabled: true
+            config:
+              webhook_url: "https://hooks.slack.com/services/TEST/BOT/TOKEN"
+              channel: "#alerts"
+              username: "etcd-monitor"
+              icon_emoji: ":warning:"
+          - type: "console"
+            enabled: true
+            config:
+              log_level: "info"
+              format: "json"
+      
+      # Alert rules
+      alert_rules:
+        - name: "etcd_cluster_down"
+          condition: "etcd_cluster_health == 0"
+          severity: "critical"
+          message: "Etcd cluster is down"
+          duration: "1m"
+        - name: "etcd_high_memory_usage"
+          condition: "etcd_memory_usage > 80"
+          severity: "warning"
+          message: "Etcd memory usage is high: {{.Value}}%"
+          duration: "5m"
+        - name: "etcd_high_disk_usage"
+          condition: "etcd_disk_usage > 90"
+          severity: "critical"
+          message: "Etcd disk usage is critical: {{.Value}}%"
+          duration: "1m"
+        - name: "etcd_slow_requests"
+          condition: "etcd_request_duration > 1"
+          severity: "warning"
+          message: "Etcd requests are slow: {{.Value}}s"
+          duration: "2m"
+        - name: "etcd_high_error_rate"
+          condition: "etcd_error_rate > 5"
+          severity: "warning"
+          message: "Etcd error rate is high: {{.Value}}%"
+          duration: "3m"
+      
+      # Inspection configuration
+      inspection:
+        enabled: true
+        interval: "300s"
+        timeout: "60s"
+        retry_count: 3
+        retry_interval: "15s"
+        features:
+          - name: "alarm"
+            enabled: true
+            config:
+              check_interval: "60s"
+              timeout: "30s"
+          - name: "consistency"
+            enabled: true
+            config:
+              check_interval: "120s"
+              timeout: "60s"
+          - name: "healthy"
+            enabled: true
+            config:
+              check_interval: "30s"
+              timeout: "15s"
+          - name: "request"
+            enabled: true
+            config:
+              check_interval: "60s"
+              timeout: "30s"
+      
+      # Logging configuration
+      logging:
+        level: "info"
+        format: "json"
+        output: "stdout"
+        file:
+          enabled: false
+          path: "/var/log/etcd-monitor.log"
+          max_size: "100MB"
+          max_backups: 3
+          max_age: 28
+      
+      # API configuration
+      api:
+        enabled: true
+        host: "0.0.0.0"
+        port: 8080
+        timeout: "30s"
+        cors:
+          enabled: true
+          allowed_origins: ["*"]
+          allowed_methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+          allowed_headers: ["*"]
+          allow_credentials: true
+        auth:
+          enabled: false
+          type: "basic"
+          config:
+            username: "admin"
+            password: "admin"
+        rate_limit:
+          enabled: true
+          requests_per_minute: 100
+          burst: 10

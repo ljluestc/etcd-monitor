@@ -26,8 +26,8 @@ import (
 	flag "github.com/spf13/pflag"
 	klog "k8s.io/klog/v2"
 
-	etcdclustercontroller "etcd-operator/cmd/etcdcluster-controller"
-	etcdinspectioncontroller "etcd-operator/cmd/etcdinspection-controller"
+	etcdclustercontroller "github.com/etcd-monitor/taskmaster/cmd/etcdcluster-controller"
+	etcdinspectioncontroller "github.com/etcd-monitor/taskmaster/cmd/etcdinspection-controller"
 )
 
 func main() {

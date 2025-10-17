@@ -3,6 +3,7 @@ package etcd
 import (
 	"context"
 	"fmt"
+	"time"
 
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"k8s.io/klog/v2"
@@ -10,7 +11,7 @@ import (
 
 // MemberList returns the member list from etcd cluster
 func MemberList(client *clientv3.Client) (*clientv3.MemberListResponse, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), client.Endpoints()[0])
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	resp, err := client.MemberList(ctx)
@@ -24,7 +25,7 @@ func MemberList(client *clientv3.Client) (*clientv3.MemberListResponse, error) {
 
 // Status returns the status of an etcd member
 func Status(endpoint string, client *clientv3.Client) (*clientv3.StatusResponse, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), client.Endpoints()[0])
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	resp, err := client.Status(ctx, endpoint)
@@ -38,7 +39,7 @@ func Status(endpoint string, client *clientv3.Client) (*clientv3.StatusResponse,
 
 // AlarmList returns the list of alarms from etcd cluster
 func AlarmList(client *clientv3.Client) (*clientv3.AlarmResponse, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), client.Endpoints()[0])
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
 	resp, err := client.AlarmList(ctx)

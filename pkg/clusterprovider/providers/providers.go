@@ -1,5 +1,5 @@
 package providers
 
 import (
-	_ "etcd-operator/pkg/clusterprovider/providers/imported" // import imported provider
+	_ "github.com/etcd-monitor/taskmaster/pkg/clusterprovider/providers/imported" // import imported provider
 )

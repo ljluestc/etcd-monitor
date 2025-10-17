@@ -2,21 +2,14 @@ package util
 
 import (
 	"fmt"
-	"reflect"
-	"testing"
 
 	"k8s.io/apimachinery/pkg/runtime"
-	"k8s.io/apimachinery/pkg/util/diff"
-	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	"k8s.io/client-go/dynamic"
 	clientset "k8s.io/client-go/kubernetes"
-	fake "k8s.io/client-go/kubernetes/fake"
 	restclient "k8s.io/client-go/rest"
-	core "k8s.io/client-go/testing"
-	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog/v2"
 
-	"etcd-operator/pkg/k8s"
+	"github.com/etcd-monitor/taskmaster/pkg/k8s"
 )
 
 const (
@@ -36,6 +29,38 @@ const (
 	ClusterTLSSecretName      = "certName"
 	ClusterExtensionClientURL = "extClientURL"
 )
+
+// EventRecorder is a simple event recorder interface
+type EventRecorder interface {
+	Event(object runtime.Object, eventtype, reason, message string)
+	Eventf(object runtime.Object, eventtype, reason, messageFmt string, args ...interface{})
+	AnnotatedEventf(object runtime.Object, annotations map[string]string, eventtype, reason, messageFmt string, args ...interface{})
+}
+
+// eventRecorder implements EventRecorder interface
+type eventRecorder struct {
+}
+
+// NewEventRecorder creates a new event recorder
+func NewEventRecorder(client clientset.Interface) EventRecorder {
+	// For now, return a no-op recorder to avoid compilation issues
+	return &eventRecorder{}
+}
+
+func (e *eventRecorder) Event(object runtime.Object, eventtype, reason, message string) {
+	// No-op implementation for now
+	klog.V(2).Infof("Event: %s %s %s", eventtype, reason, message)
+}
+
+func (e *eventRecorder) Eventf(object runtime.Object, eventtype, reason, messageFmt string, args ...interface{}) {
+	// No-op implementation for now
+	klog.V(2).Infof("Eventf: %s %s %s", eventtype, reason, fmt.Sprintf(messageFmt, args...))
+}
+
+func (e *eventRecorder) AnnotatedEventf(object runtime.Object, annotations map[string]string, eventtype, reason, messageFmt string, args ...interface{}) {
+	// No-op implementation for now
+	klog.V(2).Infof("AnnotatedEventf: %s %s %s", eventtype, reason, fmt.Sprintf(messageFmt, args...))
+}
 
 type ClientBuilder interface {
 	ConfigOrDie() *restclient.Config

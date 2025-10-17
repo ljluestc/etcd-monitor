@@ -79,11 +79,13 @@ services:
     container_name: etcd-monitor
     ports:
       - "8080:8080"
-    environment:
-      - ENDPOINTS=etcd1:2379,etcd2:2379,etcd3:2379
-      - API_PORT=8080
-      - HEALTH_CHECK_INTERVAL=30s
-      - METRICS_INTERVAL=10s
+    command:
+      - "--endpoints=etcd1:2379,etcd2:2379,etcd3:2379"
+      - "--api-host=0.0.0.0"
+      - "--api-port=8080"
+      - "--health-check-interval=30s"
+      - "--metrics-interval=10s"
+      - "--dial-timeout=5s"
     depends_on:
       - etcd1
       - etcd2

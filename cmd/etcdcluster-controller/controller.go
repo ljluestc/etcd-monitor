@@ -26,16 +26,14 @@ import (
 	"github.com/spf13/pflag"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/uuid"
-	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/tools/clientcmd"
 	"k8s.io/client-go/tools/leaderelection"
 	"k8s.io/client-go/tools/leaderelection/resourcelock"
 	klog "k8s.io/klog/v2"
 
-	"etcd-operator/pkg/controllers/etcdcluster"
-	"etcd-operator/pkg/controllers/util"
-	"etcd-operator/pkg/k8s"
-	"etcd-operator/pkg/signals"
+	"github.com/etcd-monitor/taskmaster/pkg/controllers/etcdcluster"
+	"github.com/etcd-monitor/taskmaster/pkg/controllers/util"
+	"github.com/etcd-monitor/taskmaster/pkg/k8s"
+	"github.com/etcd-monitor/taskmaster/pkg/signals"
 )
 
 type EtcdClusterCommand struct {

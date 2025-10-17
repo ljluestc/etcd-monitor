@@ -1,0 +1,34 @@
+# Test etcd cluster configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: etcd-cluster-config
+  namespace: default
+data:
+  etcd_endpoints: "http://localhost:2379,http://localhost:2380"
+  etcd_ca_cert: |
+    -----BEGIN CERTIFICATE-----
+    MIICljCCAX4CCQDQ5Y7n8tqX7zANBgkqhkiG9w0BAQsFADBAMQswCQYDVQQGEwJV
+    UzELMAkGA1UECAwCQ0ExCzAJBgNVBAcMAkNBMRYwFAYDVQQDDA1ldGNkLWNhLWNl
+    cnQwHhcNMjMwMTAxMDAwMDAwWhcNMjQwMTAxMDAwMDAwWjBAMQswCQYDVQQGEwJV
+    UzELMAkGA1UECAwCQ0ExCzAJBgNVBAcMAkNBMRYwFAYDVQQDDA1ldGNkLWNhLWNl
+    cnQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7VJTUt9Us8cKBwB5m
+    -----END CERTIFICATE-----
+  etcd_client_cert: |
+    -----BEGIN CERTIFICATE-----
+    MIICljCCAX4CCQDQ5Y7n8tqX7zANBgkqhkiG9w0BAQsFADBAMQswCQYDVQQGEwJV
+    UzELMAkGA1UECAwCQ0ExCzAJBgNVBAcMAkNBMRYwFAYDVQQDDA1ldGNkLWNhLWNl
+    cnQwHhcNMjMwMTAxMDAwMDAwWhcNMjQwMTAxMDAwMDAwWjBAMQswCQYDVQQGEwJV
+    UzELMAkGA1UECAwCQ0ExCzAJBgNVBAcMAkNBMRYwFAYDVQQDDA1ldGNkLWNhLWNl
+    cnQwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7VJTUt9Us8cKBwB5m
+    -----END CERTIFICATE-----
+  etcd_client_key: |
+    -----BEGIN PRIVATE KEY-----
+    MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC7VJTUt9Us8cKB
+    wB5m
+    -----END PRIVATE KEY-----
+  etcd_username: "testuser"
+  etcd_password: "testpass"
+  etcd_timeout: "30s"
+  etcd_retry_count: 3
+  etcd_retry_interval: "1s"

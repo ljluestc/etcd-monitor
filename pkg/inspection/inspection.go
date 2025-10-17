@@ -9,12 +9,12 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/klog/v2"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/controllers/util"
-	"etcd-operator/pkg/etcd"
-	"etcd-operator/pkg/featureprovider"
-	featureutil "etcd-operator/pkg/featureprovider/util"
-	clientset "etcd-operator/pkg/generated/clientset/versioned"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/controllers/util"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd"
+	"github.com/etcd-monitor/taskmaster/pkg/featureprovider"
+	featureutil "github.com/etcd-monitor/taskmaster/pkg/featureprovider/util"
+	clientset "github.com/etcd-monitor/taskmaster/pkg/generated/clientset/versioned"
 )
 
 // Server manages inspection tasks for etcd clusters

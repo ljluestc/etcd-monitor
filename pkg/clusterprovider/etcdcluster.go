@@ -3,9 +3,9 @@ package clusterprovider
 import (
 	"k8s.io/client-go/dynamic"
 
-	etcdv1alpha1 "etcd-operator/api/etcd/v1alpha1"
-	"etcd-operator/pkg/controllers/util"
-	"etcd-operator/pkg/etcd"
+	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
+	"github.com/etcd-monitor/taskmaster/pkg/controllers/util"
+	"github.com/etcd-monitor/taskmaster/pkg/etcd"
 )
 
 // Cluster is an abstract, pluggable interface for etcd clusters.

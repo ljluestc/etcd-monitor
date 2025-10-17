@@ -58,7 +58,14 @@ func (hc *HealthChecker) CheckClusterHealth(ctx context.Context) (*ClusterStatus
 	var currentLeaderID uint64
 
 	for _, member := range membersResp.Members {
-		memberHealthy, isLeader, err := hc.checkMemberHealth(ctx, member)
+		// Convert etcdserverpb.Member to clientv3.Member
+		clientMember := &clientv3.Member{
+			ID:         member.ID,
+			Name:       member.Name,
+			PeerURLs:   member.PeerURLs,
+			ClientURLs: member.ClientURLs,
+		}
+		memberHealthy, isLeader, err := hc.checkMemberHealth(ctx, clientMember)
 		if err != nil {
 			hc.logger.Warn("Failed to check member health",
 				zap.Uint64("member_id", member.ID),
@@ -275,4 +282,66 @@ func (hc *HealthChecker) PerformHealthCheck(ctx context.Context) bool {
 		return false
 	}
 	return status.Healthy
+}
+
+// MemberInfo contains detailed information about a cluster member
+type MemberInfo struct {
+	ID         uint64   `json:"id"`
+	Name       string   `json:"name"`
+	PeerURLs   []string `json:"peer_urls"`
+	ClientURLs []string `json:"client_urls"`
+	IsLeader   bool     `json:"is_leader"`
+	IsHealthy  bool     `json:"is_healthy"`
+	DBSize     int64    `json:"db_size,omitempty"`
+	Version    string   `json:"version,omitempty"`
+}
+
+// GetMemberList returns detailed information about all cluster members
+func (hc *HealthChecker) GetMemberList(ctx context.Context) ([]MemberInfo, error) {
+	membersResp, err := hc.client.MemberList(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get member list: %w", err)
+	}
+
+	memberInfos := make([]MemberInfo, 0, len(membersResp.Members))
+
+	for _, member := range membersResp.Members {
+		info := MemberInfo{
+			ID:         member.ID,
+			Name:       member.Name,
+			PeerURLs:   member.PeerURLs,
+			ClientURLs: member.ClientURLs,
+		}
+
+		// Check if member is healthy and if it's the leader
+		if len(member.ClientURLs) > 0 {
+			// Convert etcdserverpb.Member to clientv3.Member
+			clientMember := &clientv3.Member{
+				ID:         member.ID,
+				Name:       member.Name,
+				PeerURLs:   member.PeerURLs,
+				ClientURLs: member.ClientURLs,
+			}
+			healthy, isLeader, err := hc.checkMemberHealth(ctx, clientMember)
+			if err != nil {
+				hc.logger.Warn("Failed to check member health",
+					zap.Uint64("member_id", member.ID),
+					zap.Error(err))
+				info.IsHealthy = false
+			} else {
+				info.IsHealthy = healthy
+				info.IsLeader = isLeader
+
+				// Get additional info from status
+				if statusResp, err := hc.client.Status(ctx, member.ClientURLs[0]); err == nil {
+					info.DBSize = statusResp.DbSize
+					info.Version = statusResp.Version
+				}
+			}
+		}
+
+		memberInfos = append(memberInfos, info)
+	}
+
+	return memberInfos, nil
 }

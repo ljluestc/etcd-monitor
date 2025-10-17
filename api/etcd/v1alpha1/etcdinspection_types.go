@@ -18,6 +18,7 @@ package v1alpha1
 
 import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/runtime"
 )
 
 // +genclient
@@ -53,4 +54,93 @@ type EtcdInspectionList struct {
 	metav1.ListMeta `json:"metadata,omitempty" protobuf:"bytes,1,opt,name=metadata"`
 
 	Items []EtcdInspection `json:"items" protobuf:"bytes,2,rep,name=items"`
+}
+
+// DeepCopyObject returns a generically typed copy of an object
+func (in *EtcdInspection) DeepCopyObject() runtime.Object {
+	if c := in.DeepCopy(); c != nil {
+		return c
+	}
+	return nil
+}
+
+// DeepCopyObject returns a generically typed copy of an object
+func (in *EtcdInspectionList) DeepCopyObject() runtime.Object {
+	if c := in.DeepCopy(); c != nil {
+		return c
+	}
+	return nil
+}
+
+// DeepCopy returns a deep copy of the EtcdInspection
+func (in *EtcdInspection) DeepCopy() *EtcdInspection {
+	if in == nil {
+		return nil
+	}
+	out := new(EtcdInspection)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type
+func (in *EtcdInspection) DeepCopyInto(out *EtcdInspection) {
+	*out = *in
+	out.TypeMeta = in.TypeMeta
+	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
+	in.Spec.DeepCopyInto(&out.Spec)
+	in.Status.DeepCopyInto(&out.Status)
+}
+
+// DeepCopy returns a deep copy of the EtcdInspectionList
+func (in *EtcdInspectionList) DeepCopy() *EtcdInspectionList {
+	if in == nil {
+		return nil
+	}
+	out := new(EtcdInspectionList)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type
+func (in *EtcdInspectionList) DeepCopyInto(out *EtcdInspectionList) {
+	*out = *in
+	out.TypeMeta = in.TypeMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
+	if in.Items != nil {
+		in, out := &in.Items, &out.Items
+		*out = make([]EtcdInspection, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopy returns a deep copy of the EtcdInspectionSpec
+func (in *EtcdInspectionSpec) DeepCopy() *EtcdInspectionSpec {
+	if in == nil {
+		return nil
+	}
+	out := new(EtcdInspectionSpec)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type
+func (in *EtcdInspectionSpec) DeepCopyInto(out *EtcdInspectionSpec) {
+	*out = *in
+}
+
+// DeepCopy returns a deep copy of the EtcdInspectionStatus
+func (in *EtcdInspectionStatus) DeepCopy() *EtcdInspectionStatus {
+	if in == nil {
+		return nil
+	}
+	out := new(EtcdInspectionStatus)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type
+func (in *EtcdInspectionStatus) DeepCopyInto(out *EtcdInspectionStatus) {
+	*out = *in
 }
