@@ -30,6 +30,9 @@ type LatencyMeasurement struct {
 
 // NewMetricsCollector creates a new metrics collector
 func NewMetricsCollector(client *clientv3.Client, logger *zap.Logger) *MetricsCollector {
+	if logger == nil {
+		logger, _ = zap.NewProduction()
+	}
 	return &MetricsCollector{
 		client:         client,
 		logger:         logger,

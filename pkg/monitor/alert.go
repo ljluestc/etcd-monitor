@@ -445,6 +445,9 @@ type ConsoleChannel struct {
 }
 
 func NewConsoleChannel(logger *zap.Logger) *ConsoleChannel {
+	if logger == nil {
+		logger, _ = zap.NewProduction()
+	}
 	return &ConsoleChannel{logger: logger}
 }
 

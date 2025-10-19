@@ -1,0 +1,40 @@
+?   	github.com/etcd-monitor/taskmaster	[no test files]
+?   	github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1	[no test files]
+?   	github.com/etcd-monitor/taskmaster/cmd	[no test files]
+ok  	github.com/etcd-monitor/taskmaster/cmd/etcd-monitor	0.013s	coverage: 10.1% of statements
+?   	github.com/etcd-monitor/taskmaster/cmd/examples	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/clusterprovider/providers	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/clusterprovider/providers/imported	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/controllers/etcdcluster	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/controllers/etcdinspection	[no test files]
+ok  	github.com/etcd-monitor/taskmaster/cmd/etcdcluster-controller	0.026s	coverage: 21.1% of statements
+ok  	github.com/etcd-monitor/taskmaster/cmd/etcdinspection-controller	0.023s	coverage: 21.1% of statements
+ok  	github.com/etcd-monitor/taskmaster/cmd/main	0.003s	coverage: [no statements]
+ok  	github.com/etcd-monitor/taskmaster/pkg/api	0.023s	coverage: 28.3% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/benchmark	0.010s	coverage: 15.5% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/clusterprovider	0.032s	coverage: 0.0% of statements
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client/versions	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client/versions/v3	[no test files]
+ok  	github.com/etcd-monitor/taskmaster/pkg/controllers/util	0.042s	coverage: 16.7% of statements
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers/alarm	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers/consistency	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers/healthy	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers/request	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/util	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/clientset/versioned	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/informers/externalversions	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/informers/externalversions/internalinterfaces	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/inspection/metrics	[no test files]
+?   	github.com/etcd-monitor/taskmaster/testutil/fixtures	[no test files]
+?   	github.com/etcd-monitor/taskmaster/testutil/mocks	[no test files]
+ok  	github.com/etcd-monitor/taskmaster/pkg/etcd	15.040s	coverage: 25.8% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/etcdctl	0.017s	coverage: 68.3% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/examples	0.015s	coverage: 0.0% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/featureprovider	0.032s	coverage: 0.0% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/inspection	0.015s	coverage: 0.0% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/k8s	0.011s	coverage: 76.2% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/monitor	0.327s	coverage: 25.2% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/patterns	0.008s	coverage: 0.0% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/signals	0.003s	coverage: 100.0% of statements

@@ -30,6 +30,9 @@ type Config struct {
 
 // NewServer creates a new API server
 func NewServer(config *Config, monitorService *monitor.MonitorService, logger *zap.Logger) *Server {
+	if logger == nil {
+		logger, _ = zap.NewProduction()
+	}
 	s := &Server{
 		router:         mux.NewRouter(),
 		monitorService: monitorService,

@@ -35,7 +35,9 @@
       "Bash(tee:*)",
       "Bash(chmod:*)",
       "Bash(go clean:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(sort -t: -k1,1 -k2,2n)",
+      "Bash(pkill -f \"go test ./...\")"
     ],
     "deny": [],
     "ask": []
