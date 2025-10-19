@@ -1,0 +1,350 @@
+?   	github.com/etcd-monitor/taskmaster	[no test files]
+?   	github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1	[no test files]
+# github.com/etcd-monitor/taskmaster/cmd/etcdcluster-controller [github.com/etcd-monitor/taskmaster/cmd/etcdcluster-controller.test]
+cmd/etcdcluster-controller/controller_test.go:31:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:38:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:53:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:65:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:73:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:85:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:97:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:116:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:128:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:136:17: undefined: NewEtcdClusterController
+cmd/etcdcluster-controller/controller_test.go:136:17: too many errors
+# github.com/etcd-monitor/taskmaster/cmd/etcdinspection-controller [github.com/etcd-monitor/taskmaster/cmd/etcdinspection-controller.test]
+cmd/etcdinspection-controller/controller_test.go:31:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:38:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:53:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:65:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:73:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:85:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:97:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:116:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:128:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:136:17: undefined: NewEtcdInspectionController
+cmd/etcdinspection-controller/controller_test.go:136:17: too many errors
+# github.com/etcd-monitor/taskmaster/cmd/etcd-monitor [github.com/etcd-monitor/taskmaster/cmd/etcd-monitor.test]
+cmd/etcd-monitor/main_test.go:31:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:38:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:53:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:65:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:73:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:85:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:97:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:116:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:128:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:136:18: undefined: NewEtcdMonitor
+cmd/etcd-monitor/main_test.go:136:18: too many errors
+?   	github.com/etcd-monitor/taskmaster/cmd	[no test files]
+FAIL	github.com/etcd-monitor/taskmaster/cmd/etcd-monitor [build failed]
+FAIL	github.com/etcd-monitor/taskmaster/cmd/etcdcluster-controller [build failed]
+FAIL	github.com/etcd-monitor/taskmaster/cmd/etcdinspection-controller [build failed]
+?   	github.com/etcd-monitor/taskmaster/cmd/examples	[no test files]
+ok  	github.com/etcd-monitor/taskmaster/cmd/main	0.017s	coverage: [no statements]
+2025-10-18T17:10:04.425-0700	INFO	api/server.go:317	HTTP request	{"method": "GET", "path": "/health", "status": 200, "duration": "689.816µs", "remote_addr": ""}
+2025-10-18T17:10:04.428-0700	INFO	api/server.go:317	HTTP request	{"method": "GET", "path": "/custom", "status": 200, "duration": "7.475µs", "remote_addr": ""}
+2025-10-18T17:10:04.428-0700	INFO	api/server.go:317	HTTP request	{"method": "GET", "path": "/health", "status": 200, "duration": "28.522µs", "remote_addr": ""}
+--- FAIL: TestApi_Comprehensive (0.01s)
+    --- FAIL: TestApi_Comprehensive/Server_with_invalid_port (0.00s)
+        server_comprehensive_test.go:148: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/api/server_comprehensive_test.go:148
+            	Error:      	Expected nil, but got: &http.Server{Addr:"localhost:-1", Handler:(*mux.Router)(0xc000000840), DisableGeneralOptionsHandler:false, TLSConfig:(*tls.Config)(nil), ReadTimeout:30000000000, ReadHeaderTimeout:0, WriteTimeout:30000000000, IdleTimeout:0, MaxHeaderBytes:0, TLSNextProto:map[string]func(*http.Server, *tls.Conn, http.Handler)(nil), ConnState:(func(net.Conn, http.ConnState))(nil), ErrorLog:(*log.Logger)(nil), BaseContext:(func(net.Listener) context.Context)(nil), ConnContext:(func(context.Context, net.Conn) context.Context)(nil), inShutdown:atomic.Bool{_:atomic.noCopy{}, v:0x0}, disableKeepAlives:atomic.Bool{_:atomic.noCopy{}, v:0x0}, nextProtoOnce:sync.Once{done:0x0, m:sync.Mutex{state:0, sema:0x0}}, nextProtoErr:error(nil), mu:sync.Mutex{state:0, sema:0x0}, listeners:map[*net.Listener]struct {}(nil), activeConn:map[*http.conn]struct {}(nil), onShutdown:[]func()(nil), listenerGroup:sync.WaitGroup{noCopy:sync.noCopy{}, state:atomic.Uint64{_:atomic.noCopy{}, _:atomic.align64{}, v:0x0}, sema:0x0}}
+            	Test:       	TestApi_Comprehensive/Server_with_invalid_port
+    --- FAIL: TestApi_Comprehensive/Server_with_invalid_host (0.00s)
+        server_comprehensive_test.go:160: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/api/server_comprehensive_test.go:160
+            	Error:      	Expected nil, but got: &http.Server{Addr:"invalid host:8080", Handler:(*mux.Router)(0xc000000900), DisableGeneralOptionsHandler:false, TLSConfig:(*tls.Config)(nil), ReadTimeout:30000000000, ReadHeaderTimeout:0, WriteTimeout:30000000000, IdleTimeout:0, MaxHeaderBytes:0, TLSNextProto:map[string]func(*http.Server, *tls.Conn, http.Handler)(nil), ConnState:(func(net.Conn, http.ConnState))(nil), ErrorLog:(*log.Logger)(nil), BaseContext:(func(net.Listener) context.Context)(nil), ConnContext:(func(context.Context, net.Conn) context.Context)(nil), inShutdown:atomic.Bool{_:atomic.noCopy{}, v:0x0}, disableKeepAlives:atomic.Bool{_:atomic.noCopy{}, v:0x0}, nextProtoOnce:sync.Once{done:0x0, m:sync.Mutex{state:0, sema:0x0}}, nextProtoErr:error(nil), mu:sync.Mutex{state:0, sema:0x0}, listeners:map[*net.Listener]struct {}(nil), activeConn:map[*http.conn]struct {}(nil), onShutdown:[]func()(nil), listenerGroup:sync.WaitGroup{noCopy:sync.noCopy{}, state:atomic.Uint64{_:atomic.noCopy{}, _:atomic.align64{}, v:0x0}, sema:0x0}}
+            	Test:       	TestApi_Comprehensive/Server_with_invalid_host
+    --- FAIL: TestApi_Comprehensive/Server_with_invalid_timeout (0.00s)
+        server_comprehensive_test.go:172: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/api/server_comprehensive_test.go:172
+            	Error:      	Expected nil, but got: &http.Server{Addr:"localhost:8080", Handler:(*mux.Router)(0xc0000009c0), DisableGeneralOptionsHandler:false, TLSConfig:(*tls.Config)(nil), ReadTimeout:-1000000000, ReadHeaderTimeout:0, WriteTimeout:-1000000000, IdleTimeout:0, MaxHeaderBytes:0, TLSNextProto:map[string]func(*http.Server, *tls.Conn, http.Handler)(nil), ConnState:(func(net.Conn, http.ConnState))(nil), ErrorLog:(*log.Logger)(nil), BaseContext:(func(net.Listener) context.Context)(nil), ConnContext:(func(context.Context, net.Conn) context.Context)(nil), inShutdown:atomic.Bool{_:atomic.noCopy{}, v:0x0}, disableKeepAlives:atomic.Bool{_:atomic.noCopy{}, v:0x0}, nextProtoOnce:sync.Once{done:0x0, m:sync.Mutex{state:0, sema:0x0}}, nextProtoErr:error(nil), mu:sync.Mutex{state:0, sema:0x0}, listeners:map[*net.Listener]struct {}(nil), activeConn:map[*http.conn]struct {}(nil), onShutdown:[]func()(nil), listenerGroup:sync.WaitGroup{noCopy:sync.noCopy{}, state:atomic.Uint64{_:atomic.noCopy{}, _:atomic.align64{}, v:0x0}, sema:0x0}}
+            	Test:       	TestApi_Comprehensive/Server_with_invalid_timeout
+    --- FAIL: TestApi_Comprehensive/Server_with_CORS_middleware (0.00s)
+        server_comprehensive_test.go:246: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/api/server_comprehensive_test.go:246
+            	Error:      	Not equal: 
+            	            	expected: 200
+            	            	actual  : 405
+            	Test:       	TestApi_Comprehensive/Server_with_CORS_middleware
+        server_comprehensive_test.go:247: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/api/server_comprehensive_test.go:247
+            	Error:      	Not equal: 
+            	            	expected: "http://example.com"
+            	            	actual  : ""
+            	            	
+            	            	Diff:
+            	            	--- Expected
+            	            	+++ Actual
+            	            	@@ -1 +1 @@
+            	            	-http://example.com
+            	            	+
+            	Test:       	TestApi_Comprehensive/Server_with_CORS_middleware
+        server_comprehensive_test.go:248: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/api/server_comprehensive_test.go:248
+            	Error:      	Not equal: 
+            	            	expected: "GET"
+            	            	actual  : ""
+            	            	
+            	            	Diff:
+            	            	--- Expected
+            	            	+++ Actual
+            	            	@@ -1 +1 @@
+            	            	-GET
+            	            	+
+            	Test:       	TestApi_Comprehensive/Server_with_CORS_middleware
+        server_comprehensive_test.go:249: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/api/server_comprehensive_test.go:249
+            	Error:      	Not equal: 
+            	            	expected: "X-Requested-With"
+            	            	actual  : ""
+            	            	
+            	            	Diff:
+            	            	--- Expected
+            	            	+++ Actual
+            	            	@@ -1 +1 @@
+            	            	-X-Requested-With
+            	            	+
+            	Test:       	TestApi_Comprehensive/Server_with_CORS_middleware
+2025-10-18T17:10:04.430-0700	INFO	api/server.go:317	HTTP request	{"method": "GET", "path": "/health", "status": 200, "duration": "26.311µs", "remote_addr": ""}
+--- FAIL: TestCORSMiddleware (0.00s)
+    server_test.go:63: OPTIONS request failed: got 405 want 200
+    server_test.go:68: CORS header not set correctly: got  want *
+2025-10-18T17:10:04.430-0700	INFO	api/server.go:317	HTTP request	{"method": "GET", "path": "/health", "status": 200, "duration": "54.911µs", "remote_addr": ""}
+2025-10-18T17:10:04.430-0700	ERROR	api/server.go:291	Failed to get cluster status	{"error": "health checker not initialized"}
+github.com/etcd-monitor/taskmaster/pkg/api.(*Server).writeError
+	/home/calelin/dev/etcd-monitor/pkg/api/server.go:291
+github.com/etcd-monitor/taskmaster/pkg/api.(*Server).handleClusterStatus
+	/home/calelin/dev/etcd-monitor/pkg/api/server.go:105
+net/http.HandlerFunc.ServeHTTP
+	/home/calelin/go/go/src/net/http/server.go:2136
+github.com/etcd-monitor/taskmaster/pkg/api.(*Server).corsMiddleware-fm.(*Server).corsMiddleware.func1
+	/home/calelin/dev/etcd-monitor/pkg/api/server.go:338
+net/http.HandlerFunc.ServeHTTP
+	/home/calelin/go/go/src/net/http/server.go:2136
+github.com/etcd-monitor/taskmaster/pkg/api.(*Server).loggingMiddleware-fm.(*Server).loggingMiddleware.func1
+	/home/calelin/dev/etcd-monitor/pkg/api/server.go:313
+net/http.HandlerFunc.ServeHTTP
+	/home/calelin/go/go/src/net/http/server.go:2136
+github.com/gorilla/mux.(*Router).ServeHTTP
+	/home/calelin/go/pkg/mod/github.com/gorilla/mux@v1.8.1/mux.go:212
+github.com/etcd-monitor/taskmaster/pkg/api.TestAPIEndpoints.func1
+	/home/calelin/dev/etcd-monitor/pkg/api/server_test.go:110
+testing.tRunner
+	/home/calelin/go/go/src/testing/testing.go:1595
+2025-10-18T17:10:04.431-0700	INFO	api/server.go:317	HTTP request	{"method": "GET", "path": "/api/v1/cluster/status", "status": 500, "duration": "198.403µs", "remote_addr": ""}
+2025-10-18T17:10:04.431-0700	ERROR	api/server.go:291	Failed to get metrics	{"error": "metrics collector not initialized"}
+github.com/etcd-monitor/taskmaster/pkg/api.(*Server).writeError
+	/home/calelin/dev/etcd-monitor/pkg/api/server.go:291
+github.com/etcd-monitor/taskmaster/pkg/api.(*Server).handleCurrentMetrics
+	/home/calelin/dev/etcd-monitor/pkg/api/server.go:168
+net/http.HandlerFunc.ServeHTTP
+	/home/calelin/go/go/src/net/http/server.go:2136
+github.com/etcd-monitor/taskmaster/pkg/api.(*Server).corsMiddleware-fm.(*Server).corsMiddleware.func1
+	/home/calelin/dev/etcd-monitor/pkg/api/server.go:338
+net/http.HandlerFunc.ServeHTTP
+	/home/calelin/go/go/src/net/http/server.go:2136
+github.com/etcd-monitor/taskmaster/pkg/api.(*Server).loggingMiddleware-fm.(*Server).loggingMiddleware.func1
+	/home/calelin/dev/etcd-monitor/pkg/api/server.go:313
+net/http.HandlerFunc.ServeHTTP
+	/home/calelin/go/go/src/net/http/server.go:2136
+github.com/gorilla/mux.(*Router).ServeHTTP
+	/home/calelin/go/pkg/mod/github.com/gorilla/mux@v1.8.1/mux.go:212
+github.com/etcd-monitor/taskmaster/pkg/api.TestAPIEndpoints.func1
+	/home/calelin/dev/etcd-monitor/pkg/api/server_test.go:110
+testing.tRunner
+	/home/calelin/go/go/src/testing/testing.go:1595
+2025-10-18T17:10:04.431-0700	INFO	api/server.go:317	HTTP request	{"method": "GET", "path": "/api/v1/metrics/current", "status": 500, "duration": "55.211µs", "remote_addr": ""}
+FAIL
+coverage: 25.4% of statements
+FAIL	github.com/etcd-monitor/taskmaster/pkg/api	0.032s
+ok  	github.com/etcd-monitor/taskmaster/pkg/benchmark	0.018s	coverage: 15.5% of statements
+?   	github.com/etcd-monitor/taskmaster/pkg/clusterprovider/providers	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/clusterprovider/providers/imported	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/controllers/etcdcluster	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/controllers/etcdinspection	[no test files]
+ok  	github.com/etcd-monitor/taskmaster/pkg/clusterprovider	0.032s	coverage: 0.0% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/controllers/util	0.020s	coverage: 16.7% of statements
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client/versions	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/etcd/client/versions/v3	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers/alarm	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers/consistency	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers/healthy	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/providers/request	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/featureprovider/util	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/clientset/versioned	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/informers/externalversions	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/generated/informers/externalversions/internalinterfaces	[no test files]
+?   	github.com/etcd-monitor/taskmaster/pkg/inspection/metrics	[no test files]
+--- FAIL: TestClientConfigSecret_Constructor (0.01s)
+    --- FAIL: TestClientConfigSecret_Constructor/GetClientConfig_-_Valid_Secret (0.00s)
+        client_test.go:102: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/etcd/client_test.go:102
+            	Error:      	Received unexpected error:
+            	            	failed to parse certificate: tls: failed to find any PEM data in certificate input
+            	Test:       	TestClientConfigSecret_Constructor/GetClientConfig_-_Valid_Secret
+    --- FAIL: TestClientConfigSecret_Constructor/GetClientConfig_-_Secret_with_TLS_Only (0.00s)
+        client_test.go:140: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/etcd/client_test.go:140
+            	Error:      	Received unexpected error:
+            	            	failed to parse certificate: tls: failed to find any PEM data in certificate input
+            	Test:       	TestClientConfigSecret_Constructor/GetClientConfig_-_Secret_with_TLS_Only
+    --- FAIL: TestClientConfigSecret_Constructor/GetClientConfig_-_Secret_with_CA_Only (0.00s)
+        client_test.go:171: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/etcd/client_test.go:171
+            	Error:      	Expected value not to be nil.
+            	Test:       	TestClientConfigSecret_Constructor/GetClientConfig_-_Secret_with_CA_Only
+panic: runtime error: invalid memory address or nil pointer dereference [recovered]
+	panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x60 pc=0x16b6560]
+
+goroutine 49 [running]:
+testing.tRunner.func1.2({0x1876800, 0x2aab010})
+	/home/calelin/go/go/src/testing/testing.go:1545 +0x238
+testing.tRunner.func1()
+	/home/calelin/go/go/src/testing/testing.go:1548 +0x397
+panic({0x1876800?, 0x2aab010?})
+	/home/calelin/go/go/src/runtime/panic.go:914 +0x21f
+github.com/etcd-monitor/taskmaster/pkg/etcd.TestClientConfigSecret_Constructor.func5(0x0?)
+	/home/calelin/dev/etcd-monitor/pkg/etcd/client_test.go:172 +0x460
+testing.tRunner(0xc000102ea0, 0x1be25d8)
+	/home/calelin/go/go/src/testing/testing.go:1595 +0xff
+created by testing.(*T).Run in goroutine 44
+	/home/calelin/go/go/src/testing/testing.go:1648 +0x3ad
+FAIL	github.com/etcd-monitor/taskmaster/pkg/etcd	0.094s
+ok  	github.com/etcd-monitor/taskmaster/pkg/etcdctl	0.053s	coverage: 68.3% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/examples	0.050s	coverage: 0.0% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/featureprovider	0.108s	coverage: 0.0% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/inspection	0.090s	coverage: 0.0% of statements
+ok  	github.com/etcd-monitor/taskmaster/pkg/k8s	0.026s	coverage: 76.2% of statements
+2025-10-18T17:10:07.743-0700	INFO	monitor/alert.go:113	Triggering alert	{"level": "critical", "type": "cluster_health", "message": "Test alert"}
+2025-10-18T17:10:07.743-0700	INFO	monitor/alert.go:113	Triggering alert	{"level": "warning", "type": "high_latency", "message": "Test alert"}
+2025-10-18T17:10:07.743-0700	INFO	monitor/alert.go:183	Alert cleared	{"type": "high_latency", "message": "Test alert"}
+2025-10-18T17:10:07.743-0700	INFO	monitor/alert.go:113	Triggering alert	{"level": "info", "type": "etcd_alarm", "message": "Test alert"}
+--- FAIL: TestAlertManager_Comprehensive (0.00s)
+    --- FAIL: TestAlertManager_Comprehensive/AlertManager_with_nil_logger (0.00s)
+        alert_comprehensive_test.go:26: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/monitor/alert_comprehensive_test.go:26
+            	Error:      	Expected value not to be nil.
+            	Test:       	TestAlertManager_Comprehensive/AlertManager_with_nil_logger
+2025-10-18T17:10:07.744-0700	INFO	monitor/alert.go:113	Triggering alert	{"level": "warning", "type": "high_latency", "message": "High latency detected"}
+2025-10-18T17:10:07.744-0700	INFO	monitor/alert.go:113	Triggering alert	{"level": "warning", "type": "high_latency", "message": "Duplicate alert"}
+2025-10-18T17:10:07.744-0700	DEBUG	monitor/alert.go:96	Alert deduplicated	{"type": "high_latency", "message": "Duplicate alert"}
+2025-10-18T17:10:07.744-0700	INFO	monitor/alert.go:183	Alert cleared	{"type": "high_latency", "message": "High latency detected"}
+2025-10-18T17:10:07.744-0700	INFO	monitor/alert.go:453	ALERT	{"level": "info", "type": "cluster_health", "message": "Cluster is healthy", "details": null, "timestamp": "2025-10-18T17:10:07.744-0700"}
+--- FAIL: TestHealthChecker_Comprehensive (0.00s)
+    --- FAIL: TestHealthChecker_Comprehensive/NewHealthChecker_with_nil_logger (0.00s)
+        health_test.go:24: 
+            	Error Trace:	/home/calelin/dev/etcd-monitor/pkg/monitor/health_test.go:24
+            	Error:      	Expected value not to be nil.
+            	Test:       	TestHealthChecker_Comprehensive/NewHealthChecker_with_nil_logger
+FAIL
+coverage: 7.7% of statements
+FAIL	github.com/etcd-monitor/taskmaster/pkg/monitor	0.019s
+coverage: 0.5% of statements
+panic: test timed out after 5m0s
+running tests:
+	TestPatterns_Comprehensive (5m0s)
+	TestPatterns_Comprehensive/NewDistributedLock (5m0s)
+
+goroutine 87 [running]:
+testing.(*M).startAlarm.func1()
+	/home/calelin/go/go/src/testing/testing.go:2259 +0x3b9
+created by time.goFunc
+	/home/calelin/go/go/src/time/sleep.go:176 +0x2d
+
+goroutine 1 [chan receive]:
+testing.(*T).Run(0xc0002d64e0, {0xbe2e8e?, 0x57925c?}, 0xc23ba8)
+	/home/calelin/go/go/src/testing/testing.go:1649 +0x3c8
+testing.runTests.func1(0x11a2200?)
+	/home/calelin/go/go/src/testing/testing.go:2054 +0x3e
+testing.tRunner(0xc0002d64e0, 0xc000297c38)
+	/home/calelin/go/go/src/testing/testing.go:1595 +0xff
+testing.runTests(0xc0002b0140?, {0x1187670, 0x1, 0x1}, {0x418a3f?, 0xc000297cf8?, 0x11a1780?})
+	/home/calelin/go/go/src/testing/testing.go:2052 +0x445
+testing.(*M).Run(0xc0002b0140)
+	/home/calelin/go/go/src/testing/testing.go:1925 +0x636
+main.main()
+	_testmain.go:81 +0x1bf
+
+goroutine 19 [chan receive]:
+testing.(*T).Run(0xc0002d6680, {0xbdc7a4?, 0x0?}, 0xc00032dbb0)
+	/home/calelin/go/go/src/testing/testing.go:1649 +0x3c8
+github.com/etcd-monitor/taskmaster/pkg/patterns.TestPatterns_Comprehensive(0x0?)
+	/home/calelin/dev/etcd-monitor/pkg/patterns/patterns_test.go:16 +0x7a
+testing.tRunner(0xc0002d6680, 0xc23ba8)
+	/home/calelin/go/go/src/testing/testing.go:1595 +0xff
+created by testing.(*T).Run in goroutine 1
+	/home/calelin/go/go/src/testing/testing.go:1648 +0x3ad
+
+goroutine 20 [select]:
+google.golang.org/grpc.(*pickerWrapper).pick(0xc0001e79c0, {0xcd4e68, 0xc000365050}, 0x0, {{0xbe78ff?, 0xc000180be0?}, {0xcd4e68?, 0xc000365050?}})
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/picker_wrapper.go:119 +0x205
+google.golang.org/grpc.(*ClientConn).getTransport(0x7f655c409178?, {0xcd4e68?, 0xc000365050?}, 0x65?, {0xbe78ff?, 0xc000376800?})
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/clientconn.go:1177 +0x2f
+google.golang.org/grpc.(*csAttempt).getTransport(0xc000372ea0)
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/stream.go:466 +0x45
+google.golang.org/grpc.newClientStreamWithParams.func2(0xc000372ea0)
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/stream.go:349 +0x25
+google.golang.org/grpc.(*clientStream).withRetry(0xc000336ea0, 0xc0003767f0, 0xc00027f478)
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/stream.go:776 +0x13a
+google.golang.org/grpc.newClientStreamWithParams({0xcd4e68, 0xc000364f90}, 0x11a0a40, 0xc000184c00, {0xbe78ff, 0x1e}, {0x0, 0x0, 0x0, 0x0, ...}, ...)
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/stream.go:361 +0xc05
+google.golang.org/grpc.newClientStream.func3({0xcd4e68?, 0xc000364f90?}, 0xc000364f90?)
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/stream.go:218 +0x8a
+google.golang.org/grpc.newClientStream({0xcd4e68, 0xc000364f90}, 0x11a0a40, 0xc000184c00, {0xbe78ff, 0x1e}, {0xc0001e7e80, 0x3, 0xff?})
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/stream.go:253 +0x7a3
+google.golang.org/grpc.invoke({0xcd4e68?, 0xc000364f90?}, {0xbe78ff?, 0x45dbcd?}, {0xba1c20, 0xc000364f30}, {0xbaaaa0, 0xc000180af0}, 0x11d0894?, {0xc0001e7e80, ...})
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/call.go:66 +0x77
+go.etcd.io/etcd/client/v3.(*Client).unaryClientInterceptor.func1({0xcd4ea0?, 0xc000180640?}, {0xbe78ff, 0x1e}, {0xba1c20, 0xc000364f30}, {0xbaaaa0, 0xc000180af0}, 0xc000184c00, 0xc24968, ...)
+	/home/calelin/go/pkg/mod/go.etcd.io/etcd/client/v3@v3.5.9/retry_interceptor.go:58 +0x618
+google.golang.org/grpc.(*ClientConn).Invoke(0xc000184c00, {0xcd4ea0?, 0xc000180640?}, {0xbe78ff?, 0x6?}, {0xba1c20?, 0xc000364f30?}, {0xbaaaa0?, 0xc000180af0?}, {0xc0003f2120, ...})
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/call.go:35 +0x205
+go.etcd.io/etcd/api/v3/etcdserverpb.(*leaseClient).LeaseGrant(0xc000195490, {0xcd4ea0, 0xc000180640}, 0x30?, {0xc0003f2120, 0x4, 0x6})
+	/home/calelin/go/pkg/mod/go.etcd.io/etcd/api/v3@v3.5.9/etcdserverpb/rpc.pb.go:6812 +0xc5
+go.etcd.io/etcd/client/v3.(*retryLeaseClient).LeaseGrant(0xc000376720, {0xcd4ea0, 0xc000180640}, 0x0?, {0x11a1220, 0x412ae5?, 0x3})
+	/home/calelin/go/pkg/mod/go.etcd.io/etcd/client/v3@v3.5.9/retry.go:144 +0x11d
+go.etcd.io/etcd/client/v3.(*lessor).Grant(0xc0002b0280, {0xcd4ea0, 0xc000180640}, 0x1e)
+	/home/calelin/go/pkg/mod/go.etcd.io/etcd/client/v3@v3.5.9/lease.go:216 +0x72
+go.etcd.io/etcd/client/v3/concurrency.NewSession(0xc000269880, {0xc00027fd50, 0x1, 0x0?})
+	/home/calelin/go/pkg/mod/go.etcd.io/etcd/client/v3@v3.5.9/concurrency/session.go:46 +0xf3
+github.com/etcd-monitor/taskmaster/pkg/patterns.NewDistributedLock(0xc000269880, {{0xbd6d9a?, 0x101dc30?}, 0x114b5e0?, 0x0?}, 0xc0002ae620)
+	/home/calelin/dev/etcd-monitor/pkg/patterns/lock.go:42 +0xda
+github.com/etcd-monitor/taskmaster/pkg/patterns.TestPatterns_Comprehensive.func1(0xc0002d69c0)
+	/home/calelin/dev/etcd-monitor/pkg/patterns/patterns_test.go:27 +0x1a5
+testing.tRunner(0xc0002d69c0, 0xc00032dbb0)
+	/home/calelin/go/go/src/testing/testing.go:1595 +0xff
+created by testing.(*T).Run in goroutine 19
+	/home/calelin/go/go/src/testing/testing.go:1648 +0x3ad
+
+goroutine 21 [select]:
+google.golang.org/grpc/internal/grpcsync.(*CallbackSerializer).run(0xc0001e2860, {0xcd4ea0, 0xc000180730})
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/internal/grpcsync/callback_serializer.go:83 +0x112
+created by google.golang.org/grpc/internal/grpcsync.NewCallbackSerializer in goroutine 20
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/internal/grpcsync/callback_serializer.go:55 +0x129
+
+goroutine 22 [select]:
+google.golang.org/grpc/internal/grpcsync.(*CallbackSerializer).run(0xc0001e2900, {0xcd4ea0, 0xc000180780})
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/internal/grpcsync/callback_serializer.go:83 +0x112
+created by google.golang.org/grpc/internal/grpcsync.NewCallbackSerializer in goroutine 20
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/internal/grpcsync/callback_serializer.go:55 +0x129
+
+goroutine 23 [select]:
+google.golang.org/grpc/internal/grpcsync.(*CallbackSerializer).run(0xc0001e2960, {0xcd4ea0, 0xc0001807d0})
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/internal/grpcsync/callback_serializer.go:83 +0x112
+created by google.golang.org/grpc/internal/grpcsync.NewCallbackSerializer in goroutine 20
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/internal/grpcsync/callback_serializer.go:55 +0x129
+
+goroutine 118 [select]:
+google.golang.org/grpc.(*addrConn).resetTransport(0xc000270300)
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/clientconn.go:1413 +0x3d4
+google.golang.org/grpc.(*addrConn).connect(0xc000270300)
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/clientconn.go:1043 +0x99
+created by google.golang.org/grpc.(*acBalancerWrapper).Connect in goroutine 22
+	/home/calelin/go/pkg/mod/google.golang.org/grpc@v1.59.0/balancer_conn_wrappers.go:376 +0x56
+FAIL	github.com/etcd-monitor/taskmaster/pkg/patterns	300.036s
+ok  	github.com/etcd-monitor/taskmaster/pkg/signals	0.010s	coverage: 100.0% of statements
+FAIL

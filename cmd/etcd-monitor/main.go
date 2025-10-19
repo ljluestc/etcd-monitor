@@ -12,7 +12,6 @@ import (
 
 	"github.com/etcd-monitor/taskmaster/pkg/api"
 	"github.com/etcd-monitor/taskmaster/pkg/benchmark"
-	"github.com/etcd-monitor/taskmaster/pkg/etcdctl"
 	"github.com/etcd-monitor/taskmaster/pkg/monitor"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"go.etcd.io/etcd/client/pkg/v3/transport"

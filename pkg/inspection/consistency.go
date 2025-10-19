@@ -9,6 +9,16 @@ import (
 	"github.com/etcd-monitor/taskmaster/pkg/inspection/metrics"
 )
 
+// memberData represents metadata for a cluster member
+type memberData struct {
+	endpoint          string
+	keyTotal          int64
+	revision          int64
+	index             int64
+	raftAppliedIndex  int64
+	raftIndex         int64
+}
+
 // CollectClusterConsistentData collects consistency data from all etcd members
 // and calculates differences between members
 func (c *Server) CollectClusterConsistentData(inspection *etcdv1alpha1.EtcdInspection) error {
@@ -40,19 +50,11 @@ func (c *Server) CollectClusterConsistentData(inspection *etcdv1alpha1.EtcdInspe
 
 	// Create stat collector
 	config := &etcd.ClientConfig{
-		Endpoints: []string{endpoint},
+		Endpoints: endpoints,
 	}
 	stat := etcd.NewStat(config, string(cluster.Spec.StorageBackend))
 
 	// Collect metadata from all members
-	type memberData struct {
-		endpoint          string
-		keyTotal          int64
-		revision          int64
-		index             int64
-		raftAppliedIndex  int64
-		raftIndex         int64
-	}
 
 	memberStats := make([]memberData, 0, len(endpoints))
 
@@ -76,8 +78,8 @@ func (c *Server) CollectClusterConsistentData(inspection *etcdv1alpha1.EtcdInspe
 			keyTotal:          keyTotal,
 			revision:          indexInfo.Revision,
 			index:             indexInfo.Index,
-			raftAppliedIndex:  indexInfo.RaftAppliedIndex,
-			raftIndex:         indexInfo.RaftIndex,
+			raftAppliedIndex:  int64(indexInfo.RaftAppliedIndex),
+			raftIndex:         int64(indexInfo.RaftIndex),
 		})
 	}
 

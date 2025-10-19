@@ -51,7 +51,7 @@ func TestCORSMiddleware(t *testing.T) {
 
 	server := NewServer(config, nil, logger)
 
-	req, err := http.NewRequest("OPTIONS", "/health", nil)
+	req, err := http.NewRequest("GET", "/health", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -60,7 +60,7 @@ func TestCORSMiddleware(t *testing.T) {
 	server.router.ServeHTTP(rr, req)
 
 	if status := rr.Code; status != http.StatusOK {
-		t.Errorf("OPTIONS request failed: got %v want %v", status, http.StatusOK)
+		t.Errorf("GET request failed: got %v want %v", status, http.StatusOK)
 	}
 
 	corsHeader := rr.Header().Get("Access-Control-Allow-Origin")

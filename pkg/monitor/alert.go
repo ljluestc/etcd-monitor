@@ -65,6 +65,9 @@ type AlertChannel interface {
 
 // NewAlertManager creates a new alert manager
 func NewAlertManager(thresholds AlertThresholds, logger *zap.Logger) *AlertManager {
+	if logger == nil {
+		logger, _ = zap.NewProduction()
+	}
 	return &AlertManager{
 		thresholds:   thresholds,
 		logger:       logger,

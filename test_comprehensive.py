@@ -1,669 +1,501 @@
 #!/usr/bin/env python3
 """
-Comprehensive Test Suite for etcd-monitor
-This script provides end-to-end testing, performance benchmarking, and coverage validation.
+Comprehensive Test Orchestration Script for etcd-monitor
+========================================================
+
+This script provides a unified interface to run all tests, generate coverage
+reports, execute benchmarks, and aggregate results for the etcd-monitor project.
+
+Usage:
+    python3 test_comprehensive.py --all          # Run all tests
+    python3 test_comprehensive.py --unit         # Unit tests only
+    python3 test_comprehensive.py --integration  # Integration tests only
+    python3 test_comprehensive.py --benchmark    # Benchmarks only
+    python3 test_comprehensive.py --coverage     # Generate coverage report
+    python3 test_comprehensive.py --race         # Run with race detection
+    python3 test_comprehensive.py --verbose      # Verbose output
+    python3 test_comprehensive.py --package <pkg>  # Test specific package
+
+Author: etcd-monitor Team
+Date: 2025-10-18
 """
 
-import os
-import sys
+import argparse
 import subprocess
+import sys
+import os
 import json
 import time
-import requests
-import threading
-import signal
-import tempfile
-import shutil
+from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Any, Optional
-from dataclasses import dataclass
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import logging
+from typing import List, Dict, Tuple, Optional
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+# ANSI color codes for terminal output
+class Colors:
+    HEADER = '\033[95m'
+    BLUE = '\033[94m'
+    CYAN = '\033[96m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
 
-@dataclass
-class TestResult:
-    """Test result container"""
-    name: str
-    status: str  # 'PASS', 'FAIL', 'SKIP'
-    duration: float
-    message: str
-    coverage: Optional[float] = None
+class TestRunner:
+    """Main test orchestration class"""
 
-@dataclass
-class BenchmarkResult:
-    """Benchmark result container"""
-    operation: str
-    operations_per_second: float
-    avg_latency_ms: float
-    p95_latency_ms: float
-    p99_latency_ms: float
-    error_rate: float
-
-class ComprehensiveTestSuite:
-    """Main test suite orchestrator"""
-    
-    def __init__(self, project_root: str):
-        self.project_root = Path(project_root)
-        self.go_mod_path = self.project_root / "go.mod"
-        self.test_results: List[TestResult] = []
-        self.benchmark_results: List[BenchmarkResult] = []
-        self.coverage_data: Dict[str, float] = {}
-        self.etcd_process: Optional[subprocess.Popen] = None
-        self.monitor_process: Optional[subprocess.Popen] = None
-        self.temp_dir = None
-        
-    def setup_environment(self) -> bool:
-        """Set up test environment including etcd and dependencies"""
-        logger.info("Setting up test environment...")
-        
-        try:
-            # Create temporary directory for test data
-            self.temp_dir = tempfile.mkdtemp(prefix="etcd-monitor-test-")
-            logger.info(f"Created temp directory: {self.temp_dir}")
-            
-            # Check if Go is installed
-            result = subprocess.run(['go', 'version'], capture_output=True, text=True)
-            if result.returncode != 0:
-                logger.error("Go is not installed or not in PATH")
-                return False
-            logger.info(f"Go version: {result.stdout.strip()}")
-            
-            # Install dependencies
-            logger.info("Installing Go dependencies...")
-            result = subprocess.run(['go', 'mod', 'download'], 
-                                  cwd=self.project_root, capture_output=True, text=True)
-            if result.returncode != 0:
-                logger.error(f"Failed to install dependencies: {result.stderr}")
-                return False
-            
-            # Install test dependencies
-            test_deps = [
-                'github.com/stretchr/testify/assert',
-                'github.com/stretchr/testify/require',
-                'github.com/stretchr/testify/mock',
-                'github.com/golang/mock/gomock',
-                'github.com/onsi/ginkgo/v2',
-                'github.com/onsi/gomega',
-            ]
-            
-            for dep in test_deps:
-                result = subprocess.run(['go', 'get', dep], 
-                                      cwd=self.project_root, capture_output=True, text=True)
-                if result.returncode != 0:
-                    logger.warning(f"Failed to install {dep}: {result.stderr}")
-            
-            return True
-            
-        except Exception as e:
-            logger.error(f"Failed to setup environment: {e}")
-            return False
-    
-    def start_etcd(self) -> bool:
-        """Start etcd server for testing"""
-        logger.info("Starting etcd server...")
-        
-        try:
-            # Create etcd data directory
-            etcd_data_dir = os.path.join(self.temp_dir, "etcd-data")
-            os.makedirs(etcd_data_dir, exist_ok=True)
-            
-            # Start etcd process
-            etcd_cmd = [
-                'etcd',
-                '--data-dir', etcd_data_dir,
-                '--listen-client-urls', 'http://localhost:2379',
-                '--advertise-client-urls', 'http://localhost:2379',
-                '--listen-peer-urls', 'http://localhost:2380',
-                '--initial-advertise-peer-urls', 'http://localhost:2380',
-                '--initial-cluster', 'default=http://localhost:2380',
-                '--initial-cluster-token', 'etcd-cluster-1',
-                '--initial-cluster-state', 'new',
-                '--log-level', 'warn'
-            ]
-            
-            self.etcd_process = subprocess.Popen(
-                etcd_cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True
-            )
-            
-            # Wait for etcd to be ready
-            max_retries = 30
-            for i in range(max_retries):
-                try:
-                    response = requests.get('http://localhost:2379/health', timeout=1)
-                    if response.status_code == 200:
-                        logger.info("etcd server is ready")
-                        return True
-                except requests.exceptions.RequestException:
-                    pass
-                
-                time.sleep(1)
-                logger.info(f"Waiting for etcd... ({i+1}/{max_retries})")
-            
-            logger.error("etcd server failed to start")
-            return False
-            
-        except Exception as e:
-            logger.error(f"Failed to start etcd: {e}")
-            return False
-    
-    def stop_etcd(self):
-        """Stop etcd server"""
-        if self.etcd_process:
-            logger.info("Stopping etcd server...")
-            self.etcd_process.terminate()
-            try:
-                self.etcd_process.wait(timeout=10)
-            except subprocess.TimeoutExpired:
-                self.etcd_process.kill()
-            self.etcd_process = None
-    
-    def run_unit_tests(self) -> bool:
-        """Run all unit tests with coverage"""
-        logger.info("Running unit tests...")
-        
-        try:
-            # Run tests with coverage
-            cmd = [
-                'go', 'test', '-v', '-race', '-coverprofile=coverage.out',
-                '-covermode=atomic', './...'
-            ]
-            
-            result = subprocess.run(
-                cmd,
-                cwd=self.project_root,
-                capture_output=True,
-                text=True,
-                timeout=300
-            )
-            
-            # Parse coverage
-            if os.path.exists(self.project_root / "coverage.out"):
-                self.parse_coverage()
-            
-            # Record test results
-            test_result = TestResult(
-                name="Unit Tests",
-                status="PASS" if result.returncode == 0 else "FAIL",
-                duration=0,  # Would need to parse from output
-                message=result.stdout if result.returncode == 0 else result.stderr
-            )
-            self.test_results.append(test_result)
-            
-            if result.returncode != 0:
-                logger.error(f"Unit tests failed: {result.stderr}")
-                return False
-            
-            logger.info("Unit tests passed")
-            return True
-            
-        except subprocess.TimeoutExpired:
-            logger.error("Unit tests timed out")
-            return False
-        except Exception as e:
-            logger.error(f"Failed to run unit tests: {e}")
-            return False
-    
-    def run_integration_tests(self) -> bool:
-        """Run integration tests"""
-        logger.info("Running integration tests...")
-        
-        try:
-            # Build the monitor service
-            build_cmd = ['go', 'build', '-o', 'etcd-monitor', './cmd/etcd-monitor']
-            result = subprocess.run(build_cmd, cwd=self.project_root, capture_output=True, text=True)
-            if result.returncode != 0:
-                logger.error(f"Failed to build monitor: {result.stderr}")
-                return False
-            
-            # Start the monitor service
-            monitor_binary = self.project_root / "etcd-monitor"
-            config_file = self.create_test_config()
-            
-            self.monitor_process = subprocess.Popen(
-                [str(monitor_binary), '--config', config_file],
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True
-            )
-            
-            # Wait for monitor to be ready
-            time.sleep(5)
-            
-            # Run integration tests
-            integration_tests = [
-                self.test_health_endpoint,
-                self.test_cluster_status,
-                self.test_metrics_endpoints,
-                self.test_alert_endpoints,
-                self.test_performance_endpoints
-            ]
-            
-            success = True
-            for test_func in integration_tests:
-                try:
-                    if not test_func():
-                        success = False
-                except Exception as e:
-                    logger.error(f"Integration test {test_func.__name__} failed: {e}")
-                    success = False
-            
-            return success
-            
-        except Exception as e:
-            logger.error(f"Failed to run integration tests: {e}")
-            return False
-        finally:
-            if self.monitor_process:
-                self.monitor_process.terminate()
-                self.monitor_process.wait()
-                self.monitor_process = None
-    
-    def create_test_config(self) -> str:
-        """Create test configuration file"""
-        config = {
-            "etcd": {
-                "endpoints": ["http://localhost:2379"],
-                "dial_timeout": "5s"
-            },
-            "monitor": {
-                "health_check_interval": "10s",
-                "metrics_interval": "5s",
-                "watch_interval": "1s"
-            },
-            "api": {
-                "port": 8080,
-                "host": "localhost"
-            },
-            "alerts": {
-                "max_latency_ms": 100,
-                "max_database_size_mb": 100,
-                "min_available_nodes": 1
-            }
+    def __init__(self, args):
+        self.args = args
+        self.project_root = Path(__file__).parent.resolve()
+        self.coverage_dir = self.project_root / "coverage"
+        self.results = {
+            "unit_tests": {},
+            "integration_tests": {},
+            "benchmarks": {},
+            "coverage": {},
+            "start_time": datetime.now().isoformat(),
+            "success": False
         }
-        
-        config_path = os.path.join(self.temp_dir, "config.yaml")
-        with open(config_path, 'w') as f:
-            import yaml
-            yaml.dump(config, f)
-        
-        return config_path
-    
-    def test_health_endpoint(self) -> bool:
-        """Test health endpoint"""
+
+        # Ensure coverage directory exists
+        self.coverage_dir.mkdir(exist_ok=True)
+
+    def run(self) -> int:
+        """Main entry point - orchestrate all test execution"""
+        print(f"{Colors.HEADER}{Colors.BOLD}")
+        print("=" * 80)
+        print("  etcd-monitor Comprehensive Test Suite")
+        print("=" * 80)
+        print(f"{Colors.ENDC}")
+        print(f"Project Root: {self.project_root}")
+        print(f"Coverage Dir: {self.coverage_dir}")
+        print()
+
+        start_time = time.time()
+
         try:
-            response = requests.get('http://localhost:8080/health', timeout=5)
-            if response.status_code == 200:
-                data = response.json()
-                if data.get('status') == 'healthy':
-                    logger.info("Health endpoint test passed")
-                    return True
-            
-            logger.error(f"Health endpoint test failed: {response.status_code} - {response.text}")
-            return False
-            
-        except Exception as e:
-            logger.error(f"Health endpoint test failed: {e}")
-            return False
-    
-    def test_cluster_status(self) -> bool:
-        """Test cluster status endpoint"""
-        try:
-            response = requests.get('http://localhost:8080/api/v1/cluster/status', timeout=5)
-            if response.status_code == 200:
-                data = response.json()
-                required_fields = ['healthy', 'member_count', 'quorum_size']
-                if all(field in data for field in required_fields):
-                    logger.info("Cluster status test passed")
-                    return True
-            
-            logger.error(f"Cluster status test failed: {response.status_code} - {response.text}")
-            return False
-            
-        except Exception as e:
-            logger.error(f"Cluster status test failed: {e}")
-            return False
-    
-    def test_metrics_endpoints(self) -> bool:
-        """Test metrics endpoints"""
-        endpoints = [
-            '/api/v1/metrics/current',
-            '/api/v1/metrics/latency'
-        ]
-        
-        for endpoint in endpoints:
-            try:
-                response = requests.get(f'http://localhost:8080{endpoint}', timeout=5)
-                if response.status_code != 200:
-                    logger.error(f"Metrics endpoint {endpoint} failed: {response.status_code}")
-                    return False
-            except Exception as e:
-                logger.error(f"Metrics endpoint {endpoint} failed: {e}")
-                return False
-        
-        logger.info("Metrics endpoints test passed")
-        return True
-    
-    def test_alert_endpoints(self) -> bool:
-        """Test alert endpoints"""
-        endpoints = [
-            '/api/v1/alerts',
-            '/api/v1/alerts/history'
-        ]
-        
-        for endpoint in endpoints:
-            try:
-                response = requests.get(f'http://localhost:8080{endpoint}', timeout=5)
-                if response.status_code != 200:
-                    logger.error(f"Alert endpoint {endpoint} failed: {response.status_code}")
-                    return False
-            except Exception as e:
-                logger.error(f"Alert endpoint {endpoint} failed: {e}")
-                return False
-        
-        logger.info("Alert endpoints test passed")
-        return True
-    
-    def test_performance_endpoints(self) -> bool:
-        """Test performance endpoints"""
-        try:
-            # Test benchmark endpoint
-            data = {"operations": 100}
-            response = requests.post(
-                'http://localhost:8080/api/v1/performance/benchmark',
-                json=data,
-                timeout=10
-            )
-            
-            if response.status_code in [200, 501]:  # 501 is OK for not implemented
-                logger.info("Performance endpoints test passed")
-                return True
-            
-            logger.error(f"Performance endpoint failed: {response.status_code}")
-            return False
-            
-        except Exception as e:
-            logger.error(f"Performance endpoint test failed: {e}")
-            return False
-    
-    def run_benchmark_tests(self) -> bool:
-        """Run performance benchmark tests"""
-        logger.info("Running benchmark tests...")
-        
-        try:
-            # Run Go benchmarks
-            cmd = ['go', 'test', '-bench=.', '-benchmem', './...']
-            result = subprocess.run(
-                cmd,
-                cwd=self.project_root,
-                capture_output=True,
-                text=True,
-                timeout=300
-            )
-            
-            if result.returncode != 0:
-                logger.error(f"Benchmark tests failed: {result.stderr}")
-                return False
-            
-            # Parse benchmark results
-            self.parse_benchmark_results(result.stdout)
-            
-            logger.info("Benchmark tests completed")
-            return True
-            
-        except subprocess.TimeoutExpired:
-            logger.error("Benchmark tests timed out")
-            return False
-        except Exception as e:
-            logger.error(f"Failed to run benchmark tests: {e}")
-            return False
-    
-    def parse_benchmark_results(self, output: str):
-        """Parse benchmark results from Go test output"""
-        lines = output.split('\n')
-        for line in lines:
-            if 'Benchmark' in line and 'ns/op' in line:
-                parts = line.split()
-                if len(parts) >= 3:
-                    name = parts[0]
-                    ops_per_sec = 0
-                    avg_latency = 0
-                    
-                    # Parse ns/op
-                    for part in parts:
-                        if 'ns/op' in part:
-                            ns_per_op = float(part.replace('ns/op', ''))
-                            ops_per_sec = 1e9 / ns_per_op
-                            avg_latency = ns_per_op / 1e6  # Convert to ms
-                            break
-                    
-                    result = BenchmarkResult(
-                        operation=name,
-                        operations_per_second=ops_per_sec,
-                        avg_latency_ms=avg_latency,
-                        p95_latency_ms=0,  # Would need more detailed parsing
-                        p99_latency_ms=0,
-                        error_rate=0
-                    )
-                    self.benchmark_results.append(result)
-    
-    def parse_coverage(self):
-        """Parse coverage data from coverage.out file"""
-        try:
-            cmd = ['go', 'tool', 'cover', '-func=coverage.out']
-            result = subprocess.run(cmd, cwd=self.project_root, capture_output=True, text=True)
-            
-            if result.returncode == 0:
-                lines = result.stdout.split('\n')
-                total_coverage = 0
-                
-                for line in lines:
-                    if 'total:' in line:
-                        parts = line.split()
-                        for part in parts:
-                            if '%' in part:
-                                total_coverage = float(part.replace('%', ''))
-                                break
-                        break
-                
-                self.coverage_data['total'] = total_coverage
-                logger.info(f"Total coverage: {total_coverage:.2f}%")
-            
-        except Exception as e:
-            logger.error(f"Failed to parse coverage: {e}")
-    
-    def run_load_tests(self) -> bool:
-        """Run load tests to verify performance under stress"""
-        logger.info("Running load tests...")
-        
-        try:
-            # Simulate concurrent requests
-            def make_request():
-                try:
-                    response = requests.get('http://localhost:8080/api/v1/metrics/current', timeout=5)
-                    return response.status_code == 200
-                except:
-                    return False
-            
-            # Run 100 concurrent requests
-            with ThreadPoolExecutor(max_workers=20) as executor:
-                futures = [executor.submit(make_request) for _ in range(100)]
-                results = [future.result() for future in as_completed(futures)]
-            
-            success_rate = sum(results) / len(results)
-            logger.info(f"Load test success rate: {success_rate:.2%}")
-            
-            return success_rate > 0.95  # 95% success rate threshold
-            
-        except Exception as e:
-            logger.error(f"Load test failed: {e}")
-            return False
-    
-    def generate_report(self) -> str:
-        """Generate comprehensive test report"""
-        report = {
-            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
-            "test_results": [
-                {
-                    "name": result.name,
-                    "status": result.status,
-                    "duration": result.duration,
-                    "message": result.message,
-                    "coverage": result.coverage
-                }
-                for result in self.test_results
-            ],
-            "benchmark_results": [
-                {
-                    "operation": result.operation,
-                    "ops_per_sec": result.operations_per_second,
-                    "avg_latency_ms": result.avg_latency_ms,
-                    "p95_latency_ms": result.p95_latency_ms,
-                    "p99_latency_ms": result.p99_latency_ms,
-                    "error_rate": result.error_rate
-                }
-                for result in self.benchmark_results
-            ],
-            "coverage": self.coverage_data,
-            "summary": {
-                "total_tests": len(self.test_results),
-                "passed_tests": len([r for r in self.test_results if r.status == "PASS"]),
-                "failed_tests": len([r for r in self.test_results if r.status == "FAIL"]),
-                "skipped_tests": len([r for r in self.test_results if r.status == "SKIP"]),
-                "total_coverage": self.coverage_data.get('total', 0)
-            }
-        }
-        
-        report_path = self.project_root / "test_report.json"
-        with open(report_path, 'w') as f:
-            json.dump(report, f, indent=2)
-        
-        return str(report_path)
-    
-    def cleanup(self):
-        """Clean up test environment"""
-        logger.info("Cleaning up test environment...")
-        
-        # Stop processes
-        if self.monitor_process:
-            self.monitor_process.terminate()
-            self.monitor_process.wait()
-        
-        self.stop_etcd()
-        
-        # Clean up temporary directory
-        if self.temp_dir and os.path.exists(self.temp_dir):
-            shutil.rmtree(self.temp_dir)
-        
-        # Clean up build artifacts
-        build_artifacts = ['etcd-monitor', 'coverage.out']
-        for artifact in build_artifacts:
-            artifact_path = self.project_root / artifact
-            if artifact_path.exists():
-                artifact_path.unlink()
-    
-    def run_all_tests(self) -> bool:
-        """Run the complete test suite"""
-        logger.info("Starting comprehensive test suite...")
-        
-        try:
-            # Setup
-            if not self.setup_environment():
-                return False
-            
-            # Start etcd
-            if not self.start_etcd():
-                return False
-            
-            # Run tests
-            success = True
-            
-            # Unit tests
-            if not self.run_unit_tests():
-                success = False
-            
-            # Integration tests
-            if not self.run_integration_tests():
-                success = False
-            
-            # Benchmark tests
-            if not self.run_benchmark_tests():
-                success = False
-            
-            # Load tests
-            if not self.run_load_tests():
-                success = False
-            
-            # Generate report
-            report_path = self.generate_report()
-            logger.info(f"Test report generated: {report_path}")
-            
-            # Print summary
-            self.print_summary()
-            
-            return success
-            
+            # Validate environment
+            if not self._validate_environment():
+                return 1
+
+            # Run tests based on arguments
+            if self.args.all or self.args.unit:
+                if not self._run_unit_tests():
+                    return 1
+
+            if self.args.all or self.args.integration:
+                if not self._run_integration_tests():
+                    return 1
+
+            if self.args.all or self.args.benchmark:
+                self._run_benchmarks()
+
+            if self.args.coverage or self.args.all:
+                self._generate_coverage_report()
+
+            # Generate final report
+            self._generate_summary_report()
+
+            # Mark as successful
+            self.results["success"] = True
+
+            # Save results to JSON
+            self._save_results()
+
+            elapsed = time.time() - start_time
+            print(f"\n{Colors.GREEN}{Colors.BOLD}✓ All tests completed successfully in {elapsed:.2f}s{Colors.ENDC}\n")
+            return 0
+
         except KeyboardInterrupt:
-            logger.info("Test suite interrupted by user")
-            return False
+            print(f"\n{Colors.YELLOW}Test execution interrupted by user{Colors.ENDC}")
+            return 130
         except Exception as e:
-            logger.error(f"Test suite failed with error: {e}")
+            print(f"\n{Colors.RED}{Colors.BOLD}✗ Test execution failed: {e}{Colors.ENDC}")
+            import traceback
+            traceback.print_exc()
+            return 1
+
+    def _validate_environment(self) -> bool:
+        """Validate that required tools are available"""
+        print(f"{Colors.CYAN}Validating environment...{Colors.ENDC}")
+
+        # Check for Go
+        if not self._check_command("go version"):
+            print(f"{Colors.RED}✗ Go not found. Please install Go 1.19+{Colors.ENDC}")
             return False
-        finally:
-            self.cleanup()
-    
-    def print_summary(self):
-        """Print test summary"""
-        print("\n" + "="*60)
-        print("TEST SUITE SUMMARY")
-        print("="*60)
-        
-        total = len(self.test_results)
-        passed = len([r for r in self.test_results if r.status == "PASS"])
-        failed = len([r for r in self.test_results if r.status == "FAIL"])
-        skipped = len([r for r in self.test_results if r.status == "SKIP"])
-        
-        print(f"Total Tests: {total}")
-        print(f"Passed: {passed}")
-        print(f"Failed: {failed}")
-        print(f"Skipped: {skipped}")
-        print(f"Success Rate: {(passed/total*100):.1f}%" if total > 0 else "N/A")
-        
-        coverage = self.coverage_data.get('total', 0)
-        print(f"Code Coverage: {coverage:.1f}%")
-        
-        if self.benchmark_results:
-            print(f"\nBenchmark Results: {len(self.benchmark_results)} operations tested")
-            for result in self.benchmark_results[:5]:  # Show top 5
-                print(f"  {result.operation}: {result.operations_per_second:.0f} ops/sec")
-        
-        print("="*60)
+
+        # Check Go version
+        result = subprocess.run(["go", "version"], capture_output=True, text=True)
+        print(f"  ✓ {result.stdout.strip()}")
+
+        # Check for git (optional but recommended)
+        if self._check_command("git --version"):
+            result = subprocess.run(["git", "--version"], capture_output=True, text=True)
+            print(f"  ✓ {result.stdout.strip()}")
+
+        # Check for golangci-lint (optional)
+        if self._check_command("golangci-lint --version"):
+            result = subprocess.run(["golangci-lint", "--version"], capture_output=True, text=True)
+            print(f"  ✓ golangci-lint found")
+        else:
+            print(f"  ⚠ golangci-lint not found (optional)")
+
+        print()
+        return True
+
+    def _check_command(self, cmd: str) -> bool:
+        """Check if a command exists"""
+        try:
+            subprocess.run(cmd.split(), capture_output=True, check=True)
+            return True
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            return False
+
+    def _run_unit_tests(self) -> bool:
+        """Run all unit tests"""
+        print(f"{Colors.CYAN}{Colors.BOLD}Running Unit Tests...{Colors.ENDC}")
+        print()
+
+        # Build test command
+        cmd = ["go", "test"]
+
+        # Add package selector
+        if self.args.package:
+            cmd.append(f"./{self.args.package}/...")
+        else:
+            cmd.append("./...")
+
+        # Add flags
+        cmd.extend([
+            "-v" if self.args.verbose else "-v",
+            "-coverprofile=" + str(self.coverage_dir / "coverage.out"),
+            "-covermode=atomic",
+        ])
+
+        # Add race detection if requested
+        if self.args.race or self.args.all:
+            cmd.append("-race")
+            print(f"  {Colors.YELLOW}Race detection enabled{Colors.ENDC}")
+
+        # Add timeout
+        cmd.append("-timeout=10m")
+
+        # Add short flag if quick mode
+        if self.args.quick:
+            cmd.append("-short")
+
+        # Run tests
+        print(f"  Command: {' '.join(cmd)}")
+        print()
+
+        start_time = time.time()
+        result = subprocess.run(cmd, cwd=self.project_root)
+        elapsed = time.time() - start_time
+
+        # Store results
+        self.results["unit_tests"] = {
+            "command": " ".join(cmd),
+            "exit_code": result.returncode,
+            "duration": elapsed,
+            "success": result.returncode == 0
+        }
+
+        if result.returncode == 0:
+            print(f"\n{Colors.GREEN}✓ Unit tests passed in {elapsed:.2f}s{Colors.ENDC}\n")
+            return True
+        else:
+            print(f"\n{Colors.RED}✗ Unit tests failed with exit code {result.returncode}{Colors.ENDC}\n")
+            return False
+
+    def _run_integration_tests(self) -> bool:
+        """Run integration tests"""
+        print(f"{Colors.CYAN}{Colors.BOLD}Running Integration Tests...{Colors.ENDC}")
+        print()
+
+        # Integration tests are in integration_tests/ directory
+        integration_dir = self.project_root / "integration_tests"
+
+        if not integration_dir.exists():
+            print(f"  {Colors.YELLOW}No integration tests directory found, skipping...{Colors.ENDC}\n")
+            self.results["integration_tests"]["skipped"] = True
+            return True
+
+        # Build test command
+        cmd = [
+            "go", "test",
+            "-v",
+            "-tags=integration",
+            "-timeout=30m",
+            "./integration_tests/..."
+        ]
+
+        if self.args.race:
+            cmd.append("-race")
+
+        print(f"  Command: {' '.join(cmd)}")
+        print()
+
+        start_time = time.time()
+        result = subprocess.run(cmd, cwd=self.project_root)
+        elapsed = time.time() - start_time
+
+        # Store results
+        self.results["integration_tests"] = {
+            "command": " ".join(cmd),
+            "exit_code": result.returncode,
+            "duration": elapsed,
+            "success": result.returncode == 0
+        }
+
+        if result.returncode == 0:
+            print(f"\n{Colors.GREEN}✓ Integration tests passed in {elapsed:.2f}s{Colors.ENDC}\n")
+            return True
+        else:
+            print(f"\n{Colors.RED}✗ Integration tests failed with exit code {result.returncode}{Colors.ENDC}\n")
+            return False
+
+    def _run_benchmarks(self) -> bool:
+        """Run Go benchmarks"""
+        print(f"{Colors.CYAN}{Colors.BOLD}Running Benchmarks...{Colors.ENDC}")
+        print()
+
+        # Build benchmark command
+        cmd = [
+            "go", "test",
+            "-bench=.",
+            "-benchmem",
+            "-benchtime=5s",
+            "-run=^$",  # Don't run regular tests
+        ]
+
+        if self.args.package:
+            cmd.append(f"./{self.args.package}/...")
+        else:
+            cmd.append("./...")
+
+        print(f"  Command: {' '.join(cmd)}")
+        print()
+
+        start_time = time.time()
+        result = subprocess.run(cmd, cwd=self.project_root, capture_output=True, text=True)
+        elapsed = time.time() - start_time
+
+        # Store results
+        self.results["benchmarks"] = {
+            "command": " ".join(cmd),
+            "exit_code": result.returncode,
+            "duration": elapsed,
+            "output": result.stdout,
+            "success": result.returncode == 0
+        }
+
+        # Print benchmark output
+        print(result.stdout)
+
+        if result.returncode == 0:
+            print(f"\n{Colors.GREEN}✓ Benchmarks completed in {elapsed:.2f}s{Colors.ENDC}\n")
+
+            # Save benchmark output to file
+            benchmark_file = self.coverage_dir / "benchmarks.txt"
+            benchmark_file.write_text(result.stdout)
+            print(f"  Benchmark results saved to: {benchmark_file}")
+            print()
+
+            return True
+        else:
+            print(f"\n{Colors.YELLOW}⚠ Benchmarks completed with warnings{Colors.ENDC}\n")
+            return True  # Don't fail on benchmark issues
+
+    def _generate_coverage_report(self):
+        """Generate HTML coverage report"""
+        print(f"{Colors.CYAN}{Colors.BOLD}Generating Coverage Report...{Colors.ENDC}")
+        print()
+
+        coverage_file = self.coverage_dir / "coverage.out"
+
+        if not coverage_file.exists():
+            print(f"  {Colors.YELLOW}No coverage data found, skipping...{Colors.ENDC}\n")
+            return
+
+        # Generate HTML report
+        html_file = self.coverage_dir / "coverage.html"
+        cmd = ["go", "tool", "cover", f"-html={coverage_file}", f"-o={html_file}"]
+
+        result = subprocess.run(cmd, cwd=self.project_root, capture_output=True)
+
+        if result.returncode == 0:
+            print(f"  {Colors.GREEN}✓ HTML coverage report generated: {html_file}{Colors.ENDC}")
+
+        # Calculate coverage percentage
+        cmd = ["go", "tool", "cover", f"-func={coverage_file}"]
+        result = subprocess.run(cmd, cwd=self.project_root, capture_output=True, text=True)
+
+        if result.returncode == 0:
+            # Parse coverage output
+            lines = result.stdout.strip().split('\n')
+            total_line = lines[-1]  # Last line has total coverage
+
+            # Extract percentage from "total:  (statements)  XX.X%"
+            if "%" in total_line:
+                coverage_pct = total_line.split()[-1].rstrip('%')
+                try:
+                    coverage_value = float(coverage_pct)
+                    self.results["coverage"] = {
+                        "percentage": coverage_value,
+                        "report": str(html_file),
+                        "raw_output": result.stdout
+                    }
+
+                    # Color code the coverage percentage
+                    if coverage_value >= 95:
+                        color = Colors.GREEN
+                        status = "EXCELLENT"
+                    elif coverage_value >= 80:
+                        color = Colors.CYAN
+                        status = "GOOD"
+                    elif coverage_value >= 60:
+                        color = Colors.YELLOW
+                        status = "NEEDS IMPROVEMENT"
+                    else:
+                        color = Colors.RED
+                        status = "CRITICAL"
+
+                    print(f"\n  {color}{Colors.BOLD}Overall Coverage: {coverage_pct}% ({status}){Colors.ENDC}")
+
+                    # Save coverage summary
+                    summary_file = self.coverage_dir / "coverage-summary.txt"
+                    summary_file.write_text(result.stdout)
+                    print(f"  Coverage summary saved to: {summary_file}")
+
+                except ValueError:
+                    print(f"  {Colors.YELLOW}Could not parse coverage percentage{Colors.ENDC}")
+
+        print()
+
+    def _generate_summary_report(self):
+        """Generate and display summary report"""
+        print(f"{Colors.HEADER}{Colors.BOLD}")
+        print("=" * 80)
+        print("  Test Execution Summary")
+        print("=" * 80)
+        print(f"{Colors.ENDC}")
+
+        # Unit tests
+        if "unit_tests" in self.results and not self.results["unit_tests"].get("skipped"):
+            unit = self.results["unit_tests"]
+            status = "✓ PASSED" if unit.get("success") else "✗ FAILED"
+            color = Colors.GREEN if unit.get("success") else Colors.RED
+            print(f"\n{Colors.BOLD}Unit Tests:{Colors.ENDC}")
+            print(f"  Status: {color}{status}{Colors.ENDC}")
+            if "duration" in unit:
+                print(f"  Duration: {unit['duration']:.2f}s")
+
+        # Integration tests
+        if "integration_tests" in self.results and not self.results["integration_tests"].get("skipped"):
+            integration = self.results["integration_tests"]
+            status = "✓ PASSED" if integration.get("success") else "✗ FAILED"
+            color = Colors.GREEN if integration.get("success") else Colors.RED
+            print(f"\n{Colors.BOLD}Integration Tests:{Colors.ENDC}")
+            print(f"  Status: {color}{status}{Colors.ENDC}")
+            if "duration" in integration:
+                print(f"  Duration: {integration['duration']:.2f}s")
+
+        # Benchmarks
+        if "benchmarks" in self.results and not self.results["benchmarks"].get("skipped"):
+            bench = self.results["benchmarks"]
+            status = "✓ COMPLETED" if bench.get("success") else "⚠ WARNINGS"
+            color = Colors.GREEN if bench.get("success") else Colors.YELLOW
+            print(f"\n{Colors.BOLD}Benchmarks:{Colors.ENDC}")
+            print(f"  Status: {color}{status}{Colors.ENDC}")
+            if "duration" in bench:
+                print(f"  Duration: {bench['duration']:.2f}s")
+
+        # Coverage
+        if "coverage" in self.results and "percentage" in self.results["coverage"]:
+            cov = self.results["coverage"]
+            pct = cov["percentage"]
+
+            if pct >= 95:
+                color = Colors.GREEN
+                status = "EXCELLENT"
+            elif pct >= 80:
+                color = Colors.CYAN
+                status = "GOOD"
+            elif pct >= 60:
+                color = Colors.YELLOW
+                status = "NEEDS IMPROVEMENT"
+            else:
+                color = Colors.RED
+                status = "CRITICAL"
+
+            print(f"\n{Colors.BOLD}Test Coverage:{Colors.ENDC}")
+            print(f"  Overall: {color}{pct:.1f}% ({status}){Colors.ENDC}")
+            print(f"  Report: {cov['report']}")
+
+        print()
+        print("=" * 80)
+        print()
+
+    def _save_results(self):
+        """Save test results to JSON file"""
+        self.results["end_time"] = datetime.now().isoformat()
+
+        results_file = self.coverage_dir / "test-results.json"
+        with open(results_file, 'w') as f:
+            json.dump(self.results, f, indent=2)
+
+        print(f"Test results saved to: {results_file}\n")
+
 
 def main():
     """Main entry point"""
-    if len(sys.argv) != 2:
-        print("Usage: python3 test_comprehensive.py <project_root>")
-        sys.exit(1)
-    
-    project_root = sys.argv[1]
-    if not os.path.exists(project_root):
-        print(f"Project root does not exist: {project_root}")
-        sys.exit(1)
-    
-    # Create and run test suite
-    test_suite = ComprehensiveTestSuite(project_root)
-    success = test_suite.run_all_tests()
-    
-    sys.exit(0 if success else 1)
+    parser = argparse.ArgumentParser(
+        description="Comprehensive test orchestration for etcd-monitor",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Examples:
+  %(prog)s --all              Run all tests with coverage
+  %(prog)s --unit --race      Run unit tests with race detection
+  %(prog)s --integration      Run integration tests only
+  %(prog)s --benchmark        Run benchmarks only
+  %(prog)s --coverage         Generate coverage report from existing data
+  %(prog)s --package monitor  Test only the monitor package
+        """
+    )
+
+    # Test selection
+    parser.add_argument("--all", action="store_true",
+                       help="Run all tests (unit, integration, benchmarks)")
+    parser.add_argument("--unit", action="store_true",
+                       help="Run unit tests only")
+    parser.add_argument("--integration", action="store_true",
+                       help="Run integration tests only")
+    parser.add_argument("--benchmark", action="store_true",
+                       help="Run benchmarks only")
+    parser.add_argument("--coverage", action="store_true",
+                       help="Generate coverage report")
+
+    # Test options
+    parser.add_argument("--race", action="store_true",
+                       help="Enable race detection")
+    parser.add_argument("--verbose", "-v", action="store_true",
+                       help="Verbose output")
+    parser.add_argument("--quick", action="store_true",
+                       help="Run tests in short mode")
+    parser.add_argument("--package", type=str,
+                       help="Test specific package (e.g., 'pkg/monitor')")
+
+    args = parser.parse_args()
+
+    # If no test type specified, default to --all
+    if not any([args.all, args.unit, args.integration, args.benchmark, args.coverage]):
+        args.all = True
+
+    # Create and run test runner
+    runner = TestRunner(args)
+    sys.exit(runner.run())
+
 
 if __name__ == "__main__":
     main()

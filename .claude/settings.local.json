@@ -34,7 +34,8 @@
       "Bash(rm:*)",
       "Bash(tee:*)",
       "Bash(chmod:*)",
-      "Bash(go clean:*)"
+      "Bash(go clean:*)",
+      "Bash(awk:*)"
     ],
     "deny": [],
     "ask": []

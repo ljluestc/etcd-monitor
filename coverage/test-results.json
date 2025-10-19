@@ -1,0 +1,14 @@
+{
+  "unit_tests": {
+    "command": "go test ./... -v -coverprofile=/home/calelin/dev/etcd-monitor/coverage/coverage.out -covermode=atomic -timeout=10m -short",
+    "exit_code": 0,
+    "duration": 18.075277090072632,
+    "success": true
+  },
+  "integration_tests": {},
+  "benchmarks": {},
+  "coverage": {},
+  "start_time": "2025-10-18T22:44:23.086284",
+  "success": true,
+  "end_time": "2025-10-18T22:44:41.180304"
+}

@@ -28,6 +28,9 @@ type LeaderChange struct {
 
 // NewHealthChecker creates a new health checker
 func NewHealthChecker(client *clientv3.Client, logger *zap.Logger) *HealthChecker {
+	if logger == nil {
+		logger, _ = zap.NewProduction()
+	}
 	return &HealthChecker{
 		client:        client,
 		logger:        logger,

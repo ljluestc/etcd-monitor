@@ -10,7 +10,6 @@ import (
 	"k8s.io/klog/v2"
 
 	etcdv1alpha1 "github.com/etcd-monitor/taskmaster/api/etcd/v1alpha1"
-	"github.com/etcd-monitor/taskmaster/pkg/controllers/util"
 	"github.com/etcd-monitor/taskmaster/pkg/etcd"
 	"github.com/etcd-monitor/taskmaster/pkg/featureprovider"
 	featureutil "github.com/etcd-monitor/taskmaster/pkg/featureprovider/util"
