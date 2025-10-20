@@ -13,11 +13,21 @@ import (
 	"go.uber.org/zap"
 )
 
+// MonitorServiceInterface defines the interface for MonitorService
+type MonitorServiceInterface interface {
+	GetClusterStatus() (*monitor.ClusterStatus, error)
+	GetCurrentMetrics() (*monitor.MetricsSnapshot, error)
+	GetAlertManager() *monitor.AlertManager
+	GetHealthChecker() *monitor.HealthChecker
+	GetMetricsCollector() *monitor.MetricsCollector
+	IsRunning() bool
+}
+
 // Server is the API server
 type Server struct {
 	router         *mux.Router
 	server         *http.Server
-	monitorService *monitor.MonitorService
+	monitorService MonitorServiceInterface
 	logger         *zap.Logger
 }
 
@@ -29,7 +39,7 @@ type Config struct {
 }
 
 // NewServer creates a new API server
-func NewServer(config *Config, monitorService *monitor.MonitorService, logger *zap.Logger) *Server {
+func NewServer(config *Config, monitorService MonitorServiceInterface, logger *zap.Logger) *Server {
 	if logger == nil {
 		logger, _ = zap.NewProduction()
 	}
@@ -41,11 +51,13 @@ func NewServer(config *Config, monitorService *monitor.MonitorService, logger *z
 
 	s.setupRoutes()
 
-	s.server = &http.Server{
-		Addr:         fmt.Sprintf("%s:%d", config.Host, config.Port),
-		Handler:      s.router,
-		ReadTimeout:  config.Timeout,
-		WriteTimeout: config.Timeout,
+	if config != nil {
+		s.server = &http.Server{
+			Addr:         fmt.Sprintf("%s:%d", config.Host, config.Port),
+			Handler:      s.router,
+			ReadTimeout:  config.Timeout,
+			WriteTimeout: config.Timeout,
+		}
 	}
 
 	return s
