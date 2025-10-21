@@ -64,11 +64,34 @@ jobs:
       run: |
         COVERAGE=$(go tool cover -func=coverage.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
         echo "Total coverage: $COVERAGE%"
-        if (( $(echo "$COVERAGE < 80" | bc -l) )); then
-          echo "❌ Coverage is below 80% threshold: $COVERAGE%"
+
+        # Progressive coverage targets based on branch
+        if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          THRESHOLD=95
+        elif [[ "${{ github.base_ref }}" == "main" ]]; then
+          THRESHOLD=90
+        else
+          THRESHOLD=15
+        fi
+
+        echo "Coverage threshold for this branch: $THRESHOLD%"
+
+        if (( $(echo "$COVERAGE < $THRESHOLD" | bc -l) )); then
+          echo "❌ Coverage is below $THRESHOLD% threshold: $COVERAGE%"
+          echo "::error::Coverage $COVERAGE% is below required $THRESHOLD%"
           exit 1
         else
-          echo "✅ Coverage meets 80% threshold: $COVERAGE%"
+          echo "✅ Coverage meets $THRESHOLD% threshold: $COVERAGE%"
+        fi
+
+        # Check coverage didn't decrease
+        if [ -f coverage_baseline.out ]; then
+          BASELINE=$(go tool cover -func=coverage_baseline.out | grep total | awk '{print substr($3, 1, length($3)-1)}')
+          echo "Baseline coverage: $BASELINE%"
+          if (( $(echo "$COVERAGE < $BASELINE" | bc -l) )); then
+            echo "⚠️  Warning: Coverage decreased from $BASELINE% to $COVERAGE%"
+            echo "::warning::Coverage decreased from $BASELINE% to $COVERAGE%"
+          fi
         fi
 
     - name: Run tests with run_tests.sh

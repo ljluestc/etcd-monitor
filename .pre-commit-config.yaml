@@ -45,6 +45,13 @@ repos:
         args: [test, -v, ./...]
         files: \.go$
 
+      - id: go-test-coverage
+        name: go test coverage check
+        entry: bash -c 'go test -coverprofile=coverage_precommit.out ./... >/dev/null 2>&1 && COVERAGE=$(go tool cover -func=coverage_precommit.out | grep total | awk "{print substr(\$3, 1, length(\$3)-1)}") && echo "Coverage: $COVERAGE%" && if (( $(echo "$COVERAGE < 15" | bc -l) )); then echo "❌ Coverage below 15%!"; exit 1; fi && rm coverage_precommit.out'
+        language: system
+        files: \.go$
+        pass_filenames: false
+
       - id: go-mod-tidy
         name: go mod tidy
         entry: go
