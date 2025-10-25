@@ -1,0 +1,1873 @@
+{
+  "project": "etcd-monitor",
+  "version": "1.0.0",
+  "phases": [
+    {
+      "id": "phase-1",
+      "name": "MVP",
+      "timeline": "Weeks 1-6",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-1.1",
+          "title": "Performance Metrics Collection",
+          "description": "Implement Performance Metrics Collection as per PRD section 3.2",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.1.2",
+              "title": "Request latency (read/write)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.3",
+              "title": "Throughput (ops/sec)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.4",
+              "title": "Database size",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.5",
+              "title": "Memory usage",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.6",
+              "title": "Disk I/O",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.7",
+              "title": "Network bandwidth",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.8",
+              "title": "Support time-series data storage",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.9",
+              "title": "Provide metric aggregation and rollups",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.1.10",
+              "title": "Enable custom metric queries",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.2",
+          "title": "Multi-Cluster Management",
+          "description": "Implement Multi-Cluster Management as per PRD section 3.5",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.2.1",
+              "title": "Support monitoring multiple etcd clusters",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.2.2",
+              "title": "Cluster grouping and organization",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.2.3",
+              "title": "Unified view across all clusters",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.2.4",
+              "title": "Per-cluster configuration",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.3",
+          "title": "Benchmark Testing",
+          "description": "Implement Benchmark Testing as per PRD section 3.10",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.3.2",
+              "title": "Write performance testing (sequential/random keys)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.3",
+              "title": "Read performance testing (linearizable/serializable)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.4",
+              "title": "Configurable test parameters (connections, clients, key/value size)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.5",
+              "title": "Support for targeting leader or all members",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.9",
+              "title": "Historical benchmark results and comparison",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.10",
+              "title": "Automated benchmark scheduling",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.3.11",
+              "title": "Performance regression detection",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.4",
+          "title": "Disk Performance Testing",
+          "description": "Implement Disk Performance Testing as per PRD section 3.11",
+          "priority": "P2",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.4.1",
+              "title": "FIO-based disk performance testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.3",
+              "title": "WAL fsync performance testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.4",
+              "title": "Database read/write patterns",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.6",
+              "title": "99% fsync latency \u003c 10ms for production readiness",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.7",
+              "title": "Automated disk health checks",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.4.8",
+              "title": "Performance recommendations based on test results",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.5",
+          "title": "Cluster Health Monitoring",
+          "description": "Implement Cluster Health Monitoring as per PRD section 3.1",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.5.1",
+              "title": "Monitor cluster membership status",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.2",
+              "title": "Track leader election and stability",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.3",
+              "title": "Detect split-brain scenarios",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.4",
+              "title": "Monitor node connectivity and network partitions",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.5",
+              "title": "Display cluster topology visualization",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.6",
+          "title": "Dashboard and Visualization",
+          "description": "Implement Dashboard and Visualization as per PRD section 3.4",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.6.1",
+              "title": "Real-time cluster overview dashboard",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.2",
+              "title": "Per-node detailed metrics view",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.3",
+              "title": "Historical trend charts",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.4",
+              "title": "Custom dashboard creation",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.5",
+              "title": "Support for multiple visualization types (graphs, gauges, tables)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.6",
+              "title": "Dark/light theme support",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.7",
+          "title": "Backup and Snapshot Monitoring",
+          "description": "Implement Backup and Snapshot Monitoring as per PRD section 3.6",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.7.1",
+              "title": "Track backup job status and schedule",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.7.2",
+              "title": "Monitor snapshot creation and retention",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.7.3",
+              "title": "Alert on backup failures",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.7.4",
+              "title": "Verify snapshot integrity",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.8",
+          "title": "Audit Log and Event History",
+          "description": "Implement Audit Log and Event History as per PRD section 3.7",
+          "priority": "P2",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.8.1",
+              "title": "Log all cluster events (elections, membership changes, etc.)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.8.2",
+              "title": "Track configuration changes",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.8.3",
+              "title": "Provide event search and filtering",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.8.4",
+              "title": "Export event logs",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.9",
+          "title": "API and Integration",
+          "description": "Implement API and Integration as per PRD section 3.8",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.9.1",
+              "title": "RESTful API for all monitoring data",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.9.2",
+              "title": "Prometheus metrics export",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.9.3",
+              "title": "Grafana dashboard templates",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.9.4",
+              "title": "CLI tool for querying status",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.10",
+          "title": "etcdctl Command Interface",
+          "description": "Implement etcdctl Command Interface as per PRD section 3.9",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.10.2",
+              "title": "Key-value operations (put, get, delete, watch)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.10.3",
+              "title": "Cluster maintenance (member list, endpoint health/status)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.10.4",
+              "title": "Data operations (compaction, snapshot save/restore)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.10.5",
+              "title": "Command history and auto-completion",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.10.6",
+              "title": "Secure command execution with proper authentication",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.10.7",
+              "title": "Output formatting and visualization",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.10.8",
+              "title": "Batch command execution",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.11",
+          "title": "Alerting System",
+          "description": "Implement Alerting System as per PRD section 3.3",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.11.2",
+              "title": "Cluster health status",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.3",
+              "title": "Performance thresholds",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.4",
+              "title": "Resource utilization",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.5",
+              "title": "Error rates",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.7",
+              "title": "Email",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.8",
+              "title": "Slack",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.9",
+              "title": "PagerDuty",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.10",
+              "title": "Webhook",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.11",
+              "title": "Alert severity levels (Critical, Warning, Info)",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.12",
+              "title": "Alert deduplication and grouping",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.11.13",
+              "title": "Silence/snooze functionality",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-2",
+      "name": "Enhanced Monitoring",
+      "timeline": "Weeks 7-10",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-2.12",
+          "title": "Performance Metrics Collection",
+          "description": "Implement Performance Metrics Collection as per PRD section 3.2",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.12.2",
+              "title": "Request latency (read/write)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.12.3",
+              "title": "Throughput (ops/sec)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.12.4",
+              "title": "Database size",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.12.5",
+              "title": "Memory usage",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.12.6",
+              "title": "Disk I/O",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.12.7",
+              "title": "Network bandwidth",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.12.8",
+              "title": "Support time-series data storage",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.12.9",
+              "title": "Provide metric aggregation and rollups",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.12.10",
+              "title": "Enable custom metric queries",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.13",
+          "title": "Multi-Cluster Management",
+          "description": "Implement Multi-Cluster Management as per PRD section 3.5",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.13.1",
+              "title": "Support monitoring multiple etcd clusters",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.13.2",
+              "title": "Cluster grouping and organization",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.13.3",
+              "title": "Unified view across all clusters",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.13.4",
+              "title": "Per-cluster configuration",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.14",
+          "title": "Benchmark Testing",
+          "description": "Implement Benchmark Testing as per PRD section 3.10",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.14.2",
+              "title": "Write performance testing (sequential/random keys)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.14.3",
+              "title": "Read performance testing (linearizable/serializable)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.14.4",
+              "title": "Configurable test parameters (connections, clients, key/value size)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.14.5",
+              "title": "Support for targeting leader or all members",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.14.9",
+              "title": "Historical benchmark results and comparison",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.14.10",
+              "title": "Automated benchmark scheduling",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.14.11",
+              "title": "Performance regression detection",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.15",
+          "title": "Disk Performance Testing",
+          "description": "Implement Disk Performance Testing as per PRD section 3.11",
+          "priority": "P2",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.15.1",
+              "title": "FIO-based disk performance testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.15.3",
+              "title": "WAL fsync performance testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.15.4",
+              "title": "Database read/write patterns",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.15.6",
+              "title": "99% fsync latency \u003c 10ms for production readiness",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.15.7",
+              "title": "Automated disk health checks",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.15.8",
+              "title": "Performance recommendations based on test results",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.16",
+          "title": "Cluster Health Monitoring",
+          "description": "Implement Cluster Health Monitoring as per PRD section 3.1",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.16.1",
+              "title": "Monitor cluster membership status",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.16.2",
+              "title": "Track leader election and stability",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.16.3",
+              "title": "Detect split-brain scenarios",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.16.4",
+              "title": "Monitor node connectivity and network partitions",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.16.5",
+              "title": "Display cluster topology visualization",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.17",
+          "title": "Dashboard and Visualization",
+          "description": "Implement Dashboard and Visualization as per PRD section 3.4",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.17.1",
+              "title": "Real-time cluster overview dashboard",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.17.2",
+              "title": "Per-node detailed metrics view",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.17.3",
+              "title": "Historical trend charts",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.17.4",
+              "title": "Custom dashboard creation",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.17.5",
+              "title": "Support for multiple visualization types (graphs, gauges, tables)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.17.6",
+              "title": "Dark/light theme support",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.18",
+          "title": "Backup and Snapshot Monitoring",
+          "description": "Implement Backup and Snapshot Monitoring as per PRD section 3.6",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.18.1",
+              "title": "Track backup job status and schedule",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.18.2",
+              "title": "Monitor snapshot creation and retention",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.18.3",
+              "title": "Alert on backup failures",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.18.4",
+              "title": "Verify snapshot integrity",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.19",
+          "title": "Audit Log and Event History",
+          "description": "Implement Audit Log and Event History as per PRD section 3.7",
+          "priority": "P2",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.19.1",
+              "title": "Log all cluster events (elections, membership changes, etc.)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.19.2",
+              "title": "Track configuration changes",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.19.3",
+              "title": "Provide event search and filtering",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.19.4",
+              "title": "Export event logs",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.20",
+          "title": "API and Integration",
+          "description": "Implement API and Integration as per PRD section 3.8",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.20.1",
+              "title": "RESTful API for all monitoring data",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.20.2",
+              "title": "Prometheus metrics export",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.20.3",
+              "title": "Grafana dashboard templates",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.20.4",
+              "title": "CLI tool for querying status",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.21",
+          "title": "etcdctl Command Interface",
+          "description": "Implement etcdctl Command Interface as per PRD section 3.9",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.21.2",
+              "title": "Key-value operations (put, get, delete, watch)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.21.3",
+              "title": "Cluster maintenance (member list, endpoint health/status)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.21.4",
+              "title": "Data operations (compaction, snapshot save/restore)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.21.5",
+              "title": "Command history and auto-completion",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.21.6",
+              "title": "Secure command execution with proper authentication",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.21.7",
+              "title": "Output formatting and visualization",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.21.8",
+              "title": "Batch command execution",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-2.22",
+          "title": "Alerting System",
+          "description": "Implement Alerting System as per PRD section 3.3",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-2.22.2",
+              "title": "Cluster health status",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.3",
+              "title": "Performance thresholds",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.4",
+              "title": "Resource utilization",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.5",
+              "title": "Error rates",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.7",
+              "title": "Email",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.8",
+              "title": "Slack",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.9",
+              "title": "PagerDuty",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.10",
+              "title": "Webhook",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.11",
+              "title": "Alert severity levels (Critical, Warning, Info)",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.12",
+              "title": "Alert deduplication and grouping",
+              "status": "pending"
+            },
+            {
+              "id": "task-2.22.13",
+              "title": "Silence/snooze functionality",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-3",
+      "name": "Enterprise Features",
+      "timeline": "Weeks 11-14",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-3.23",
+          "title": "Dashboard and Visualization",
+          "description": "Implement Dashboard and Visualization as per PRD section 3.4",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.23.1",
+              "title": "Real-time cluster overview dashboard",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.23.2",
+              "title": "Per-node detailed metrics view",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.23.3",
+              "title": "Historical trend charts",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.23.4",
+              "title": "Custom dashboard creation",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.23.5",
+              "title": "Support for multiple visualization types (graphs, gauges, tables)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.23.6",
+              "title": "Dark/light theme support",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.24",
+          "title": "Backup and Snapshot Monitoring",
+          "description": "Implement Backup and Snapshot Monitoring as per PRD section 3.6",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.24.1",
+              "title": "Track backup job status and schedule",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.24.2",
+              "title": "Monitor snapshot creation and retention",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.24.3",
+              "title": "Alert on backup failures",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.24.4",
+              "title": "Verify snapshot integrity",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.25",
+          "title": "Audit Log and Event History",
+          "description": "Implement Audit Log and Event History as per PRD section 3.7",
+          "priority": "P2",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.25.1",
+              "title": "Log all cluster events (elections, membership changes, etc.)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.25.2",
+              "title": "Track configuration changes",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.25.3",
+              "title": "Provide event search and filtering",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.25.4",
+              "title": "Export event logs",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.26",
+          "title": "API and Integration",
+          "description": "Implement API and Integration as per PRD section 3.8",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.26.1",
+              "title": "RESTful API for all monitoring data",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.26.2",
+              "title": "Prometheus metrics export",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.26.3",
+              "title": "Grafana dashboard templates",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.26.4",
+              "title": "CLI tool for querying status",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.27",
+          "title": "etcdctl Command Interface",
+          "description": "Implement etcdctl Command Interface as per PRD section 3.9",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.27.2",
+              "title": "Key-value operations (put, get, delete, watch)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.27.3",
+              "title": "Cluster maintenance (member list, endpoint health/status)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.27.4",
+              "title": "Data operations (compaction, snapshot save/restore)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.27.5",
+              "title": "Command history and auto-completion",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.27.6",
+              "title": "Secure command execution with proper authentication",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.27.7",
+              "title": "Output formatting and visualization",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.27.8",
+              "title": "Batch command execution",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.28",
+          "title": "Alerting System",
+          "description": "Implement Alerting System as per PRD section 3.3",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.28.2",
+              "title": "Cluster health status",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.3",
+              "title": "Performance thresholds",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.4",
+              "title": "Resource utilization",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.5",
+              "title": "Error rates",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.7",
+              "title": "Email",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.8",
+              "title": "Slack",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.9",
+              "title": "PagerDuty",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.10",
+              "title": "Webhook",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.11",
+              "title": "Alert severity levels (Critical, Warning, Info)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.12",
+              "title": "Alert deduplication and grouping",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.28.13",
+              "title": "Silence/snooze functionality",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.29",
+          "title": "Performance Metrics Collection",
+          "description": "Implement Performance Metrics Collection as per PRD section 3.2",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.29.2",
+              "title": "Request latency (read/write)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.29.3",
+              "title": "Throughput (ops/sec)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.29.4",
+              "title": "Database size",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.29.5",
+              "title": "Memory usage",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.29.6",
+              "title": "Disk I/O",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.29.7",
+              "title": "Network bandwidth",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.29.8",
+              "title": "Support time-series data storage",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.29.9",
+              "title": "Provide metric aggregation and rollups",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.29.10",
+              "title": "Enable custom metric queries",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.30",
+          "title": "Multi-Cluster Management",
+          "description": "Implement Multi-Cluster Management as per PRD section 3.5",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.30.1",
+              "title": "Support monitoring multiple etcd clusters",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.30.2",
+              "title": "Cluster grouping and organization",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.30.3",
+              "title": "Unified view across all clusters",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.30.4",
+              "title": "Per-cluster configuration",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.31",
+          "title": "Benchmark Testing",
+          "description": "Implement Benchmark Testing as per PRD section 3.10",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.31.2",
+              "title": "Write performance testing (sequential/random keys)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.31.3",
+              "title": "Read performance testing (linearizable/serializable)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.31.4",
+              "title": "Configurable test parameters (connections, clients, key/value size)",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.31.5",
+              "title": "Support for targeting leader or all members",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.31.9",
+              "title": "Historical benchmark results and comparison",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.31.10",
+              "title": "Automated benchmark scheduling",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.31.11",
+              "title": "Performance regression detection",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.32",
+          "title": "Disk Performance Testing",
+          "description": "Implement Disk Performance Testing as per PRD section 3.11",
+          "priority": "P2",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.32.1",
+              "title": "FIO-based disk performance testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.32.3",
+              "title": "WAL fsync performance testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.32.4",
+              "title": "Database read/write patterns",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.32.6",
+              "title": "99% fsync latency \u003c 10ms for production readiness",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.32.7",
+              "title": "Automated disk health checks",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.32.8",
+              "title": "Performance recommendations based on test results",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-3.33",
+          "title": "Cluster Health Monitoring",
+          "description": "Implement Cluster Health Monitoring as per PRD section 3.1",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-3.33.1",
+              "title": "Monitor cluster membership status",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.33.2",
+              "title": "Track leader election and stability",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.33.3",
+              "title": "Detect split-brain scenarios",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.33.4",
+              "title": "Monitor node connectivity and network partitions",
+              "status": "pending"
+            },
+            {
+              "id": "task-3.33.5",
+              "title": "Display cluster topology visualization",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-4",
+      "name": "Polish and Scale",
+      "timeline": "Weeks 15-16",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-4.34",
+          "title": "Dashboard and Visualization",
+          "description": "Implement Dashboard and Visualization as per PRD section 3.4",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.34.1",
+              "title": "Real-time cluster overview dashboard",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.34.2",
+              "title": "Per-node detailed metrics view",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.34.3",
+              "title": "Historical trend charts",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.34.4",
+              "title": "Custom dashboard creation",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.34.5",
+              "title": "Support for multiple visualization types (graphs, gauges, tables)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.34.6",
+              "title": "Dark/light theme support",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.35",
+          "title": "Backup and Snapshot Monitoring",
+          "description": "Implement Backup and Snapshot Monitoring as per PRD section 3.6",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.35.1",
+              "title": "Track backup job status and schedule",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.35.2",
+              "title": "Monitor snapshot creation and retention",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.35.3",
+              "title": "Alert on backup failures",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.35.4",
+              "title": "Verify snapshot integrity",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.36",
+          "title": "Audit Log and Event History",
+          "description": "Implement Audit Log and Event History as per PRD section 3.7",
+          "priority": "P2",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.36.1",
+              "title": "Log all cluster events (elections, membership changes, etc.)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.36.2",
+              "title": "Track configuration changes",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.36.3",
+              "title": "Provide event search and filtering",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.36.4",
+              "title": "Export event logs",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.37",
+          "title": "API and Integration",
+          "description": "Implement API and Integration as per PRD section 3.8",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.37.1",
+              "title": "RESTful API for all monitoring data",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.37.2",
+              "title": "Prometheus metrics export",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.37.3",
+              "title": "Grafana dashboard templates",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.37.4",
+              "title": "CLI tool for querying status",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.38",
+          "title": "etcdctl Command Interface",
+          "description": "Implement etcdctl Command Interface as per PRD section 3.9",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.38.2",
+              "title": "Key-value operations (put, get, delete, watch)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.38.3",
+              "title": "Cluster maintenance (member list, endpoint health/status)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.38.4",
+              "title": "Data operations (compaction, snapshot save/restore)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.38.5",
+              "title": "Command history and auto-completion",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.38.6",
+              "title": "Secure command execution with proper authentication",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.38.7",
+              "title": "Output formatting and visualization",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.38.8",
+              "title": "Batch command execution",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.39",
+          "title": "Alerting System",
+          "description": "Implement Alerting System as per PRD section 3.3",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.39.2",
+              "title": "Cluster health status",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.3",
+              "title": "Performance thresholds",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.4",
+              "title": "Resource utilization",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.5",
+              "title": "Error rates",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.7",
+              "title": "Email",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.8",
+              "title": "Slack",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.9",
+              "title": "PagerDuty",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.10",
+              "title": "Webhook",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.11",
+              "title": "Alert severity levels (Critical, Warning, Info)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.12",
+              "title": "Alert deduplication and grouping",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.39.13",
+              "title": "Silence/snooze functionality",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.40",
+          "title": "Performance Metrics Collection",
+          "description": "Implement Performance Metrics Collection as per PRD section 3.2",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.40.2",
+              "title": "Request latency (read/write)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.40.3",
+              "title": "Throughput (ops/sec)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.40.4",
+              "title": "Database size",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.40.5",
+              "title": "Memory usage",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.40.6",
+              "title": "Disk I/O",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.40.7",
+              "title": "Network bandwidth",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.40.8",
+              "title": "Support time-series data storage",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.40.9",
+              "title": "Provide metric aggregation and rollups",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.40.10",
+              "title": "Enable custom metric queries",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.41",
+          "title": "Multi-Cluster Management",
+          "description": "Implement Multi-Cluster Management as per PRD section 3.5",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.41.1",
+              "title": "Support monitoring multiple etcd clusters",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.41.2",
+              "title": "Cluster grouping and organization",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.41.3",
+              "title": "Unified view across all clusters",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.41.4",
+              "title": "Per-cluster configuration",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.42",
+          "title": "Benchmark Testing",
+          "description": "Implement Benchmark Testing as per PRD section 3.10",
+          "priority": "P1",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.42.2",
+              "title": "Write performance testing (sequential/random keys)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.42.3",
+              "title": "Read performance testing (linearizable/serializable)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.42.4",
+              "title": "Configurable test parameters (connections, clients, key/value size)",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.42.5",
+              "title": "Support for targeting leader or all members",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.42.9",
+              "title": "Historical benchmark results and comparison",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.42.10",
+              "title": "Automated benchmark scheduling",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.42.11",
+              "title": "Performance regression detection",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.43",
+          "title": "Disk Performance Testing",
+          "description": "Implement Disk Performance Testing as per PRD section 3.11",
+          "priority": "P2",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.43.1",
+              "title": "FIO-based disk performance testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.43.3",
+              "title": "WAL fsync performance testing",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.43.4",
+              "title": "Database read/write patterns",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.43.6",
+              "title": "99% fsync latency \u003c 10ms for production readiness",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.43.7",
+              "title": "Automated disk health checks",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.43.8",
+              "title": "Performance recommendations based on test results",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-4.44",
+          "title": "Cluster Health Monitoring",
+          "description": "Implement Cluster Health Monitoring as per PRD section 3.1",
+          "priority": "P0",
+          "estimatedHours": 20,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-4.44.1",
+              "title": "Monitor cluster membership status",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.44.2",
+              "title": "Track leader election and stability",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.44.3",
+              "title": "Detect split-brain scenarios",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.44.4",
+              "title": "Monitor node connectivity and network partitions",
+              "status": "pending"
+            },
+            {
+              "id": "task-4.44.5",
+              "title": "Display cluster topology visualization",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "totalPhases": 4,
+    "totalTasks": 44,
+    "totalSubtasks": 268,
+    "estimatedTotalHours": 880,
+    "priorities": {
+      "P0": 16,
+      "P1": 20,
+      "P2": 8
+    }
+  }
+}

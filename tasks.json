@@ -4,287 +4,168 @@
   "phases": [
     {
       "id": "phase-1",
-      "name": "MVP",
-      "timeline": "Weeks 1-6",
-      "status": "in_progress",
+      "name": "Infrastructure",
+      "timeline": "Day 1",
+      "status": "pending",
       "tasks": [
         {
           "id": "task-1.1",
-          "title": "Setup Project Infrastructure",
-          "description": "Initialize project structure, dependencies, and development environment",
+          "title": "Configure Maven Build System",
+          "description": "Initialize Maven (pom.xml), dependency management, and module structure",
           "priority": "P0",
-          "estimatedHours": 8,
-          "status": "completed",
-          "assignee": "TaskMaster",
-          "startedAt": "2025-10-10T20:30:00Z",
+          "estimatedHours": 2,
+          "status": "in_progress",
+          "assignee": null,
           "subtasks": [
             {
               "id": "task-1.1.1",
-              "title": "Initialize Go backend project",
-              "status": "pending"
+              "title": "Create/validate pom.xml with plugins",
+              "status": "in_progress"
             },
             {
               "id": "task-1.1.2",
-              "title": "Setup React/TypeScript frontend",
+              "title": "Define compiler, surefire, failsafe plugins",
               "status": "pending"
             },
             {
               "id": "task-1.1.3",
-              "title": "Configure PostgreSQL + TimescaleDB",
+              "title": "Set up multi-module if needed",
               "status": "pending"
             },
             {
               "id": "task-1.1.4",
-              "title": "Setup Redis for messaging",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.1.5",
-              "title": "Configure Docker Compose for local dev",
+              "title": "Document build commands",
               "status": "pending"
             }
           ],
-          "completedAt": "2025-10-15T12:56:58.217441Z"
+          "startedAt": "2025-10-22T09:02:00-07:00"
         },
         {
           "id": "task-1.2",
-          "title": "Implement etcd Client Connection",
-          "description": "Create secure connection handler for etcd clusters with TLS support",
+          "title": "Configure JaCoCo Code Coverage",
+          "description": "Add JaCoCo plugin, reports, and thresholds into Maven build",
           "priority": "P0",
-          "estimatedHours": 12,
-          "status": "completed",
-          "assignee": "TaskMaster",
-          "startedAt": "2025-10-10T20:30:00Z",
-          "subtasks": [
-            {
-              "id": "task-1.2.1",
-              "title": "Implement etcd v3 client wrapper",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.2.2",
-              "title": "Add TLS/SSL connection support",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.2.3",
-              "title": "Implement connection pooling",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.2.4",
-              "title": "Add connection health checks",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.2.5",
-              "title": "Handle connection retries and failover",
-              "status": "pending"
-            }
-          ],
-          "completedAt": "2025-10-15T12:56:58.217441Z"
-        },
-        {
-          "id": "task-1.3",
-          "title": "Implement Cluster Health Monitoring",
-          "description": "Monitor cluster membership, leader status, and node health",
-          "priority": "P0",
-          "estimatedHours": 20,
-          "status": "completed",
-          "assignee": "TaskMaster",
-          "startedAt": "2025-10-10T20:30:00Z",
-          "subtasks": [
-            {
-              "id": "task-1.3.1",
-              "title": "Implement cluster membership tracking",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.3.2",
-              "title": "Monitor leader election and changes",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.3.3",
-              "title": "Detect split-brain scenarios",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.3.4",
-              "title": "Monitor node connectivity",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.3.5",
-              "title": "Create health status aggregation logic",
-              "status": "pending"
-            }
-          ],
-          "completedAt": "2025-10-15T12:56:58.217441Z"
-        },
-        {
-          "id": "task-1.4",
-          "title": "Implement Core Metrics Collection",
-          "description": "Collect latency, throughput, and database size metrics",
-          "priority": "P0",
-          "estimatedHours": 24,
-          "status": "completed",
-          "assignee": "TaskMaster",
-          "startedAt": "2025-10-10T20:30:00Z",
-          "subtasks": [
-            {
-              "id": "task-1.4.1",
-              "title": "Implement request latency tracking (read/write)",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.4.2",
-              "title": "Implement throughput metrics (ops/sec)",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.4.3",
-              "title": "Track database size growth",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.4.4",
-              "title": "Setup time-series data storage in TimescaleDB",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.4.5",
-              "title": "Implement metric aggregation and rollups",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.4.6",
-              "title": "Create metrics API endpoints",
-              "status": "pending"
-            }
-          ],
-          "completedAt": "2025-10-15T12:56:58.217441Z"
-        },
-        {
-          "id": "task-1.5",
-          "title": "Implement Basic Alerting System",
-          "description": "Create alerting engine with email notifications",
-          "priority": "P0",
-          "estimatedHours": 16,
-          "status": "completed",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-1.5.1",
-              "title": "Design alert rule engine",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.5.2",
-              "title": "Implement threshold-based alert triggers",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.5.3",
-              "title": "Create alert severity classification",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.5.4",
-              "title": "Implement email notification handler",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.5.5",
-              "title": "Add alert deduplication logic",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.5.6",
-              "title": "Create alert configuration API",
-              "status": "pending"
-            }
-          ],
-          "completedAt": "2025-10-15T12:56:58.217441Z"
-        },
-        {
-          "id": "task-1.6",
-          "title": "Build Basic Dashboard UI",
-          "description": "Create React dashboard with key metrics visualization",
-          "priority": "P0",
-          "estimatedHours": 32,
+          "estimatedHours": 1,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
-              "id": "task-1.6.1",
-              "title": "Setup React app structure and routing",
+              "id": "task-1.2.1",
+              "title": "Configure jacoco-maven-plugin",
               "status": "pending"
             },
             {
-              "id": "task-1.6.2",
-              "title": "Design and implement cluster overview page",
+              "id": "task-1.2.2",
+              "title": "Enable report generation (XML/HTML)",
               "status": "pending"
             },
             {
-              "id": "task-1.6.3",
-              "title": "Create real-time metrics charts",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.6.4",
-              "title": "Implement cluster health status display",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.6.5",
-              "title": "Add node details view",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.6.6",
-              "title": "Implement WebSocket for real-time updates",
-              "status": "pending"
-            },
-            {
-              "id": "task-1.6.7",
-              "title": "Create alert notification UI",
+              "id": "task-1.2.3",
+              "title": "Set coverage thresholds",
               "status": "pending"
             }
           ]
         },
         {
-          "id": "task-1.7",
-          "title": "Testing and Quality Assurance",
-          "description": "Write tests and ensure quality for MVP features",
+          "id": "task-1.3",
+          "title": "Configure SpotBugs Static Analysis",
+          "description": "Integrate SpotBugs plugin and fail on high severity issues",
           "priority": "P0",
-          "estimatedHours": 24,
+          "estimatedHours": 1,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
-              "id": "task-1.7.1",
-              "title": "Write unit tests for backend services",
+              "id": "task-1.3.1",
+              "title": "Add spotbugs-maven-plugin",
               "status": "pending"
             },
             {
-              "id": "task-1.7.2",
-              "title": "Write integration tests for etcd client",
+              "id": "task-1.3.2",
+              "title": "Configure effort/threshold",
               "status": "pending"
             },
             {
-              "id": "task-1.7.3",
-              "title": "Write frontend component tests",
+              "id": "task-1.3.3",
+              "title": "Wire into CI lifecycle",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.4",
+          "title": "Configure Spotless Code Formatting",
+          "description": "Add Spotless with Google Java Format and enforce on build",
+          "priority": "P0",
+          "estimatedHours": 1,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.4.1",
+              "title": "Add spotless-maven-plugin",
               "status": "pending"
             },
             {
-              "id": "task-1.7.4",
-              "title": "Setup CI/CD pipeline",
+              "id": "task-1.4.2",
+              "title": "Configure format and check goals",
               "status": "pending"
             },
             {
-              "id": "task-1.7.5",
-              "title": "Perform manual QA testing",
+              "id": "task-1.4.3",
+              "title": "Document formatting commands",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.5",
+          "title": "Create Test Directory Structure",
+          "description": "Create src/test/java and src/test/resources with package layout",
+          "priority": "P0",
+          "estimatedHours": 2,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.5.1",
+              "title": "Create test packages",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.2",
+              "title": "Add example tests to verify surefire",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.5.3",
+              "title": "Organize test resources",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-1.6",
+          "title": "Create Test Utility Classes",
+          "description": "Add reusable test utilities, fixtures, and assertions",
+          "priority": "P0",
+          "estimatedHours": 2,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-1.6.1",
+              "title": "Fixture builders and factories",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.2",
+              "title": "Custom assertions/helpers",
+              "status": "pending"
+            },
+            {
+              "id": "task-1.6.3",
+              "title": "Test data generators",
               "status": "pending"
             }
           ]
@@ -293,334 +174,150 @@
     },
     {
       "id": "phase-2",
-      "name": "Enhanced Monitoring",
-      "timeline": "Weeks 7-10",
+      "name": "Unit Tests",
+      "timeline": "Day 2",
       "status": "pending",
       "tasks": [
         {
           "id": "task-2.1",
-          "title": "Implement Advanced Metrics Collection",
-          "description": "Add memory, disk I/O, network, and additional performance metrics",
+          "title": "Implement CollisionDetectorTest (25+ methods)",
+          "description": "Comprehensive unit tests for CollisionDetector",
           "priority": "P0",
-          "estimatedHours": 20,
+          "estimatedHours": 4,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
               "id": "task-2.1.1",
-              "title": "Implement memory usage tracking",
+              "title": "Nominal cases",
               "status": "pending"
             },
             {
               "id": "task-2.1.2",
-              "title": "Implement disk I/O metrics",
+              "title": "Boundary conditions",
               "status": "pending"
             },
             {
               "id": "task-2.1.3",
-              "title": "Add network bandwidth monitoring",
+              "title": "Invalid inputs/exceptions",
               "status": "pending"
             },
             {
               "id": "task-2.1.4",
-              "title": "Track proposal commit duration",
+              "title": "Parameterized tests",
               "status": "pending"
             },
             {
               "id": "task-2.1.5",
-              "title": "Monitor watcher count and performance",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.1.6",
-              "title": "Add custom metric query support",
+              "title": "Coverage validation",
               "status": "pending"
             }
           ]
         },
         {
           "id": "task-2.2",
-          "title": "Implement Multi-Cluster Support",
-          "description": "Enable monitoring multiple etcd clusters from single interface",
-          "priority": "P1",
-          "estimatedHours": 28,
+          "title": "Implement UnionFindTest (15+ methods)",
+          "description": "Comprehensive unit tests for UnionFind",
+          "priority": "P0",
+          "estimatedHours": 3,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
               "id": "task-2.2.1",
-              "title": "Design multi-cluster data model",
+              "title": "Union and find operations",
               "status": "pending"
             },
             {
               "id": "task-2.2.2",
-              "title": "Implement cluster registration API",
+              "title": "Path compression and rank",
               "status": "pending"
             },
             {
               "id": "task-2.2.3",
-              "title": "Create cluster grouping functionality",
+              "title": "Disconnected sets",
               "status": "pending"
             },
             {
               "id": "task-2.2.4",
-              "title": "Build unified dashboard view",
+              "title": "Edge inputs",
               "status": "pending"
             },
             {
               "id": "task-2.2.5",
-              "title": "Implement cluster switching UI",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.2.6",
-              "title": "Add per-cluster configuration management",
+              "title": "Coverage validation",
               "status": "pending"
             }
           ]
         },
         {
           "id": "task-2.3",
-          "title": "Integrate Additional Alert Channels",
-          "description": "Add Slack, PagerDuty, and webhook integrations",
+          "title": "Implement SortingAlgorithmsTest (20+ methods)",
+          "description": "Comprehensive unit tests for sorting algorithms",
           "priority": "P0",
-          "estimatedHours": 20,
+          "estimatedHours": 4,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
               "id": "task-2.3.1",
-              "title": "Implement Slack notification integration",
+              "title": "Correctness across algorithms",
               "status": "pending"
             },
             {
               "id": "task-2.3.2",
-              "title": "Implement PagerDuty integration",
+              "title": "Stability and duplicates",
               "status": "pending"
             },
             {
               "id": "task-2.3.3",
-              "title": "Add generic webhook support",
+              "title": "Performance on large inputs",
               "status": "pending"
             },
             {
               "id": "task-2.3.4",
-              "title": "Create alert channel configuration UI",
+              "title": "Randomized tests",
               "status": "pending"
             },
             {
               "id": "task-2.3.5",
-              "title": "Implement alert routing logic",
+              "title": "Coverage validation",
               "status": "pending"
             }
           ]
         },
         {
           "id": "task-2.4",
-          "title": "Develop RESTful API",
-          "description": "Create comprehensive API for all monitoring data and operations",
-          "priority": "P1",
-          "estimatedHours": 24,
+          "title": "Implement SearchAlgorithmsTest (15+ methods)",
+          "description": "Comprehensive unit tests for search algorithms",
+          "priority": "P0",
+          "estimatedHours": 3,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
               "id": "task-2.4.1",
-              "title": "Design API specification (OpenAPI/Swagger)",
+              "title": "Binary/linear search correctness",
               "status": "pending"
             },
             {
               "id": "task-2.4.2",
-              "title": "Implement cluster management endpoints",
+              "title": "Edge and error conditions",
               "status": "pending"
             },
             {
               "id": "task-2.4.3",
-              "title": "Implement metrics query endpoints",
+              "title": "Parameterized tests",
               "status": "pending"
             },
             {
               "id": "task-2.4.4",
-              "title": "Implement alert management endpoints",
+              "title": "Randomized tests",
               "status": "pending"
             },
             {
               "id": "task-2.4.5",
-              "title": "Add API authentication (JWT)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.4.6",
-              "title": "Create API documentation",
-              "status": "pending"
-            }
-          ]
-        },
-        {
-          "id": "task-2.5",
-          "title": "Enhanced Visualization Features",
-          "description": "Add advanced charts, historical trends, and custom dashboards",
-          "priority": "P1",
-          "estimatedHours": 28,
-          "status": "pending",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-2.5.1",
-              "title": "Implement historical trend charts",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.5.2",
-              "title": "Add custom dashboard builder",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.5.3",
-              "title": "Create cluster topology visualization",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.5.4",
-              "title": "Implement metric comparison views",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.5.5",
-              "title": "Add dark/light theme toggle",
-              "status": "pending"
-            }
-          ]
-        },
-        {
-          "id": "task-2.6",
-          "title": "Implement etcdctl Command Interface",
-          "description": "Build interactive etcdctl command execution interface",
-          "priority": "P1",
-          "estimatedHours": 20,
-          "status": "pending",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-2.6.1",
-              "title": "Implement key-value operations (put/get/delete/watch)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.6.2",
-              "title": "Implement cluster operations (member list, endpoint health/status)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.6.3",
-              "title": "Implement data operations (compaction, snapshot save/restore)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.6.4",
-              "title": "Add command history and auto-completion",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.6.5",
-              "title": "Create command execution UI with output formatting",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.6.6",
-              "title": "Implement batch command execution",
-              "status": "pending"
-            }
-          ]
-        },
-        {
-          "id": "task-2.7",
-          "title": "Implement Benchmark Testing System",
-          "description": "Build comprehensive benchmark testing for performance validation",
-          "priority": "P1",
-          "estimatedHours": 24,
-          "status": "pending",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-2.7.1",
-              "title": "Implement write benchmark tests (sequential/random)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.7.2",
-              "title": "Implement read benchmark tests (linearizable/serializable)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.7.3",
-              "title": "Add configurable test parameters (connections, clients, key/value size)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.7.4",
-              "title": "Implement SLI/SLO tracking (throughput and latency baselines)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.7.5",
-              "title": "Create historical benchmark results storage and comparison",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.7.6",
-              "title": "Build benchmark scheduling and automation",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.7.7",
-              "title": "Implement performance regression detection",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.7.8",
-              "title": "Create benchmark results visualization UI",
-              "status": "pending"
-            }
-          ]
-        },
-        {
-          "id": "task-2.8",
-          "title": "Implement Disk Performance Testing",
-          "description": "Add FIO-based disk performance validation",
-          "priority": "P2",
-          "estimatedHours": 16,
-          "status": "pending",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-2.8.1",
-              "title": "Integrate FIO for disk testing",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.8.2",
-              "title": "Implement WAL fsync performance tests",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.8.3",
-              "title": "Test database read/write patterns",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.8.4",
-              "title": "Add production readiness validation (99% fsync < 10ms)",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.8.5",
-              "title": "Create disk health check automation",
-              "status": "pending"
-            },
-            {
-              "id": "task-2.8.6",
-              "title": "Build performance recommendations engine",
+              "title": "Coverage validation",
               "status": "pending"
             }
           ]
@@ -629,201 +326,42 @@
     },
     {
       "id": "phase-3",
-      "name": "Enterprise Features",
-      "timeline": "Weeks 11-14",
+      "name": "Integration Tests",
+      "timeline": "Day 3",
       "status": "pending",
       "tasks": [
         {
           "id": "task-3.1",
-          "title": "Implement RBAC and Security",
-          "description": "Add role-based access control and security hardening",
+          "title": "Implement CollisionVisualizerIntegrationTest (15+ methods)",
+          "description": "End-to-end tests for visualizer integration",
           "priority": "P0",
-          "estimatedHours": 32,
+          "estimatedHours": 6,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
               "id": "task-3.1.1",
-              "title": "Design RBAC model (roles and permissions)",
+              "title": "Startup and wiring",
               "status": "pending"
             },
             {
               "id": "task-3.1.2",
-              "title": "Implement user authentication system",
+              "title": "Rendering and correctness",
               "status": "pending"
             },
             {
               "id": "task-3.1.3",
-              "title": "Implement authorization middleware",
+              "title": "Error handling",
               "status": "pending"
             },
             {
               "id": "task-3.1.4",
-              "title": "Add OAuth2 support",
+              "title": "Resource cleanup",
               "status": "pending"
             },
             {
               "id": "task-3.1.5",
-              "title": "Implement secrets management",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.1.6",
-              "title": "Create user management UI",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.1.7",
-              "title": "Perform security audit",
-              "status": "pending"
-            }
-          ]
-        },
-        {
-          "id": "task-3.2",
-          "title": "Implement Backup Monitoring",
-          "description": "Track backup jobs, snapshots, and integrity verification",
-          "priority": "P1",
-          "estimatedHours": 20,
-          "status": "pending",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-3.2.1",
-              "title": "Implement backup job tracking",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.2.2",
-              "title": "Monitor snapshot creation and schedule",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.2.3",
-              "title": "Track snapshot retention policies",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.2.4",
-              "title": "Implement snapshot integrity checks",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.2.5",
-              "title": "Create backup monitoring dashboard",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.2.6",
-              "title": "Add backup failure alerts",
-              "status": "pending"
-            }
-          ]
-        },
-        {
-          "id": "task-3.3",
-          "title": "Implement Audit Logging",
-          "description": "Log cluster events, configuration changes, and admin actions",
-          "priority": "P2",
-          "estimatedHours": 16,
-          "status": "pending",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-3.3.1",
-              "title": "Design audit log data model",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.3.2",
-              "title": "Implement cluster event logging",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.3.3",
-              "title": "Track configuration changes",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.3.4",
-              "title": "Log administrative actions",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.3.5",
-              "title": "Create audit log search and filter UI",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.3.6",
-              "title": "Implement audit log export",
-              "status": "pending"
-            }
-          ]
-        },
-        {
-          "id": "task-3.4",
-          "title": "Prometheus and Grafana Integration",
-          "description": "Export metrics to Prometheus and provide Grafana templates",
-          "priority": "P1",
-          "estimatedHours": 16,
-          "status": "pending",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-3.4.1",
-              "title": "Implement Prometheus metrics exporter",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.4.2",
-              "title": "Create Grafana dashboard templates",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.4.3",
-              "title": "Document Prometheus integration",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.4.4",
-              "title": "Create Grafana setup guide",
-              "status": "pending"
-            }
-          ]
-        },
-        {
-          "id": "task-3.5",
-          "title": "Performance Optimization",
-          "description": "Optimize system performance for scale",
-          "priority": "P0",
-          "estimatedHours": 24,
-          "status": "pending",
-          "assignee": null,
-          "subtasks": [
-            {
-              "id": "task-3.5.1",
-              "title": "Profile and optimize database queries",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.5.2",
-              "title": "Implement caching layer (Redis)",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.5.3",
-              "title": "Optimize metrics collection pipeline",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.5.4",
-              "title": "Frontend performance optimization",
-              "status": "pending"
-            },
-            {
-              "id": "task-3.5.5",
-              "title": "Load testing and benchmarking",
+              "title": "Coverage validation",
               "status": "pending"
             }
           ]
@@ -832,191 +370,360 @@
     },
     {
       "id": "phase-4",
-      "name": "Polish and Scale",
-      "timeline": "Weeks 15-16",
+      "name": "Performance \u0026 Edge",
+      "timeline": "Day 4",
       "status": "pending",
       "tasks": [
         {
           "id": "task-4.1",
-          "title": "UI/UX Improvements",
-          "description": "Polish user interface and improve user experience",
-          "priority": "P1",
-          "estimatedHours": 20,
+          "title": "Implement AlgorithmPerformanceTest (20+ benchmarks)",
+          "description": "Performance benchmark suite for algorithms",
+          "priority": "P0",
+          "estimatedHours": 4,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
               "id": "task-4.1.1",
-              "title": "Conduct UX review and gather feedback",
+              "title": "Benchmark harness setup",
               "status": "pending"
             },
             {
               "id": "task-4.1.2",
-              "title": "Improve dashboard layout and navigation",
+              "title": "Dataset generation",
               "status": "pending"
             },
             {
               "id": "task-4.1.3",
-              "title": "Add in-app help and tooltips",
+              "title": "Metrics capture/reporting",
               "status": "pending"
             },
             {
               "id": "task-4.1.4",
-              "title": "Improve error messages and user feedback",
+              "title": "Thresholds and alerts",
               "status": "pending"
             },
             {
               "id": "task-4.1.5",
-              "title": "Accessibility improvements (WCAG compliance)",
+              "title": "Coverage validation",
               "status": "pending"
             }
           ]
         },
         {
           "id": "task-4.2",
-          "title": "Documentation Completion",
-          "description": "Write comprehensive documentation for users and developers",
+          "title": "Implement EdgeCaseTest (25+ edge cases)",
+          "description": "Robustness tests for extreme and failure scenarios",
           "priority": "P0",
-          "estimatedHours": 24,
+          "estimatedHours": 4,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
               "id": "task-4.2.1",
-              "title": "Write installation guide",
+              "title": "Network/timeouts simulation",
               "status": "pending"
             },
             {
               "id": "task-4.2.2",
-              "title": "Write user guide and tutorials",
+              "title": "Resource exhaustion scenarios",
               "status": "pending"
             },
             {
               "id": "task-4.2.3",
-              "title": "Write API reference documentation",
+              "title": "Error propagation validation",
               "status": "pending"
             },
             {
               "id": "task-4.2.4",
-              "title": "Write architecture documentation",
+              "title": "Recovery and retries",
               "status": "pending"
             },
             {
               "id": "task-4.2.5",
-              "title": "Create troubleshooting guide",
+              "title": "Coverage validation",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-5",
+      "name": "Automation",
+      "timeline": "Day 5",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-5.1",
+          "title": "Create run_comprehensive_tests.sh script",
+          "description": "Shell runner for full suite (unit, integration, performance)",
+          "priority": "P0",
+          "estimatedHours": 3,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-5.1.1",
+              "title": "CLI args and colored output",
               "status": "pending"
             },
             {
-              "id": "task-4.2.6",
-              "title": "Write developer contribution guide",
+              "id": "task-5.1.2",
+              "title": "Run Maven test phases",
+              "status": "pending"
+            },
+            {
+              "id": "task-5.1.3",
+              "title": "Aggregate reports",
+              "status": "pending"
+            },
+            {
+              "id": "task-5.1.4",
+              "title": "Exit codes for CI",
               "status": "pending"
             }
           ]
         },
         {
-          "id": "task-4.3",
-          "title": "CLI Tool Development",
-          "description": "Create command-line interface for etcd-monitor",
+          "id": "task-5.2",
+          "title": "Create test_comprehensive.py orchestrator",
+          "description": "Python orchestrator for multi-stage testing and coverage",
+          "priority": "P0",
+          "estimatedHours": 3,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-5.2.1",
+              "title": "Argument parsing and logging",
+              "status": "pending"
+            },
+            {
+              "id": "task-5.2.2",
+              "title": "Invoke Maven goals and parse output",
+              "status": "pending"
+            },
+            {
+              "id": "task-5.2.3",
+              "title": "Generate JSON/HTML summaries",
+              "status": "pending"
+            },
+            {
+              "id": "task-5.2.4",
+              "title": "Return nonzero on failures",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-5.3",
+          "title": "Create verify_test_structure.py validator",
+          "description": "Validate presence and structure of test files and packages",
+          "priority": "P0",
+          "estimatedHours": 2,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-5.3.1",
+              "title": "Define expected tree",
+              "status": "pending"
+            },
+            {
+              "id": "task-5.3.2",
+              "title": "Validate files and packages",
+              "status": "pending"
+            },
+            {
+              "id": "task-5.3.3",
+              "title": "Report deviations",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-6",
+      "name": "CI/CD",
+      "timeline": "Day 6",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-6.1",
+          "title": "Implement pre-commit hook",
+          "description": "Install pre-commit and configure formatting, analysis, and tests",
+          "priority": "P0",
+          "estimatedHours": 3,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-6.1.1",
+              "title": "Install pre-commit framework",
+              "status": "pending"
+            },
+            {
+              "id": "task-6.1.2",
+              "title": "Spotless/SpotBugs hooks",
+              "status": "pending"
+            },
+            {
+              "id": "task-6.1.3",
+              "title": "Run unit tests fast path",
+              "status": "pending"
+            },
+            {
+              "id": "task-6.1.4",
+              "title": "Document usage",
+              "status": "pending"
+            },
+            {
+              "id": "task-6.1.5",
+              "title": "Verify on sample commit",
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "id": "task-6.2",
+          "title": "Configure GitHub Actions CI/CD pipeline",
+          "description": "Create Maven build workflow with gates and badges",
+          "priority": "P0",
+          "estimatedHours": 3,
+          "status": "pending",
+          "assignee": null,
+          "subtasks": [
+            {
+              "id": "task-6.2.1",
+              "title": "Setup Maven cache and matrix",
+              "status": "pending"
+            },
+            {
+              "id": "task-6.2.2",
+              "title": "Run tests and JaCoCo",
+              "status": "pending"
+            },
+            {
+              "id": "task-6.2.3",
+              "title": "Upload artifacts/reports",
+              "status": "pending"
+            },
+            {
+              "id": "task-6.2.4",
+              "title": "Quality gates and status checks",
+              "status": "pending"
+            },
+            {
+              "id": "task-6.2.5",
+              "title": "Badges in README",
+              "status": "pending"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phase-7",
+      "name": "Documentation",
+      "timeline": "Day 7",
+      "status": "pending",
+      "tasks": [
+        {
+          "id": "task-7.1",
+          "title": "Create test documentation",
+          "description": "Write comprehensive testing documentation",
           "priority": "P1",
-          "estimatedHours": 16,
+          "estimatedHours": 3,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
-              "id": "task-4.3.1",
-              "title": "Design CLI commands and structure",
+              "id": "task-7.1.1",
+              "title": "How to write tests",
               "status": "pending"
             },
             {
-              "id": "task-4.3.2",
-              "title": "Implement cluster status commands",
+              "id": "task-7.1.2",
+              "title": "How to run tests",
               "status": "pending"
             },
             {
-              "id": "task-4.3.3",
-              "title": "Implement metrics query commands",
+              "id": "task-7.1.3",
+              "title": "Debugging and best practices",
               "status": "pending"
             },
             {
-              "id": "task-4.3.4",
-              "title": "Implement alert management commands",
+              "id": "task-7.1.4",
+              "title": "Examples and commands",
               "status": "pending"
             },
             {
-              "id": "task-4.3.5",
-              "title": "Add CLI documentation",
+              "id": "task-7.1.5",
+              "title": "Troubleshooting",
               "status": "pending"
             }
           ]
         },
         {
-          "id": "task-4.4",
-          "title": "Production Readiness",
-          "description": "Prepare system for production deployment",
-          "priority": "P0",
-          "estimatedHours": 20,
+          "id": "task-7.2",
+          "title": "Generate and validate coverage reports",
+          "description": "Produce and verify coverage reports for compliance",
+          "priority": "P1",
+          "estimatedHours": 3,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
-              "id": "task-4.4.1",
-              "title": "Create deployment guides (Docker, K8s)",
+              "id": "task-7.2.1",
+              "title": "Generate HTML/XML reports",
               "status": "pending"
             },
             {
-              "id": "task-4.4.2",
-              "title": "Setup monitoring for etcd-monitor itself",
+              "id": "task-7.2.2",
+              "title": "Validate thresholds",
               "status": "pending"
             },
             {
-              "id": "task-4.4.3",
-              "title": "Implement health check endpoints",
+              "id": "task-7.2.3",
+              "title": "Publish reports",
               "status": "pending"
             },
             {
-              "id": "task-4.4.4",
-              "title": "Create backup and disaster recovery procedures",
-              "status": "pending"
-            },
-            {
-              "id": "task-4.4.5",
-              "title": "Final security review",
-              "status": "pending"
-            },
-            {
-              "id": "task-4.4.6",
-              "title": "Performance benchmarking and validation",
+              "id": "task-7.2.4",
+              "title": "Record results in docs",
               "status": "pending"
             }
           ]
         },
         {
-          "id": "task-4.5",
-          "title": "Release Preparation",
-          "description": "Prepare for v1.0 release",
-          "priority": "P0",
-          "estimatedHours": 12,
+          "id": "task-7.3",
+          "title": "Create troubleshooting guides",
+          "description": "Write troubleshooting for common failures and CI issues",
+          "priority": "P1",
+          "estimatedHours": 3,
           "status": "pending",
           "assignee": null,
           "subtasks": [
             {
-              "id": "task-4.5.1",
-              "title": "Create release notes",
+              "id": "task-7.3.1",
+              "title": "Flaky tests and timeouts",
               "status": "pending"
             },
             {
-              "id": "task-4.5.2",
-              "title": "Build release artifacts",
+              "id": "task-7.3.2",
+              "title": "Build failures",
               "status": "pending"
             },
             {
-              "id": "task-4.5.3",
-              "title": "Create demo environment",
+              "id": "task-7.3.3",
+              "title": "Coverage shortfalls",
               "status": "pending"
             },
             {
-              "id": "task-4.5.4",
-              "title": "Prepare launch announcement",
+              "id": "task-7.3.4",
+              "title": "CI environment quirks",
               "status": "pending"
             }
           ]
@@ -1025,14 +732,13 @@
     }
   ],
   "summary": {
-    "totalPhases": 4,
-    "totalTasks": 33,
-    "totalSubtasks": 192,
-    "estimatedTotalHours": 560,
+    "totalPhases": 7,
+    "totalTasks": 21,
+    "totalSubtasks": 88,
+    "estimatedTotalHours": 60,
     "priorities": {
-      "P0": 15,
-      "P1": 16,
-      "P2": 2
+      "P0": 18,
+      "P1": 3
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-10-10T20:30:00Z",
+  "lastUpdated": "2025-10-22T23:35:35-07:00",
   "history": [
     {
       "timestamp": "2025-10-10T20:30:00Z",
@@ -35,6 +35,26 @@
       "oldStatus": "pending",
       "newStatus": "in_progress",
       "notes": "Starting core metrics collection"
+    },
+    {
+      "timestamp": "2025-10-22T00:19:16-07:00",
+      "taskId": "task-1.1",
+      "oldStatus": "pending",
+      "newStatus": "in_progress",
+      "notes": "Starting Infrastructure: repo tooling \u0026 Makefile"
+    },
+    {
+      "timestamp": "2025-10-22T09:02:00-07:00",
+      "taskId": "task-1.1",
+      "oldStatus": "pending",
+      "newStatus": "in_progress",
+      "notes": "Starting Maven setup: pom + plugins"
+    },
+    {
+      "timestamp": "2025-10-22T23:35:35-07:00",
+      "taskId": "task-1.1.1",
+      "oldStatus": "pending",
+      "newStatus": "in_progress"
     }
   ]
 }
